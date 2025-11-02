@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1761963303 source:c:\users\msi\onedrive\documentos\facultad\utn\programacion 2\archivos 2 analisis\clases\src\golcls.cpp
+	"golcls.h"
+
+1761967956 c:\users\msi\onedrive\documentos\facultad\utn\programacion 2\archivos 2 analisis\clases\include\golcls.h
+	<string>
+
+1761968176 source:c:\users\msi\onedrive\documentos\facultad\utn\programacion 2\archivos 2 analisis\clases\main.cpp
+	<iostream>
+	"golcls.h"
+
