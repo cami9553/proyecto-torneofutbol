@@ -1,5 +1,7 @@
 #include <iostream>
 #include "golcls.h"
+#include "club.h"
+#include "gestionClub.h"
 using namespace std;
 
 int main()
@@ -13,5 +15,19 @@ int main()
     cout << endl;
     std::cout << asistenciacls1.getnroPartido() << endl;
     std::cout << asistenciacls1.getdnijugador() << endl;
+
+  cout << "\n\n==== PRUEBA DE CLUBES ====\n";
+
+
+    GestionClub gestion;
+
+    Club c1(1, "Club A", "Presidente A", "Ciudad A");
+    Club c2(2, "Club B", "Presidente B", "Ciudad B");
+
+    gestion.agregarClub(c1);
+    gestion.agregarClub(c2);
+
+    gestion.listarClubs();
+
     return 0;
 }
