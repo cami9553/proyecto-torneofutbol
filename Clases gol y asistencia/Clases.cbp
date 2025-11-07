@@ -34,9 +34,25 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="include/golcls.h" />
+		<Unit filename="include/ArchivoGol.h" />
+		<Unit filename="include/ArchivoJugador.h" />
+		<Unit filename="include/Asistencia.h" />
+		<Unit filename="include/Club.h" />
+		<Unit filename="include/Fecha.h" />
+		<Unit filename="include/GestionClub.h" />
+		<Unit filename="include/Gol.h" />
+		<Unit filename="include/Jugador.h" />
+		<Unit filename="include/Persona.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/golcls.cpp" />
+		<Unit filename="src/ArchivoGol.cpp" />
+		<Unit filename="src/ArchivoJugador.cpp" />
+		<Unit filename="src/Asistencia.cpp" />
+		<Unit filename="src/Club.cpp" />
+		<Unit filename="src/Fecha.cpp" />
+		<Unit filename="src/GestionClub.cpp" />
+		<Unit filename="src/Gol.cpp" />
+		<Unit filename="src/Jugador.cpp" />
+		<Unit filename="src/Persona.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

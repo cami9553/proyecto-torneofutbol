@@ -9,3 +9,85 @@
 	<iostream>
 	"golcls.h"
 
+1762487259 source:c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\main.cpp
+	<iostream>
+	"golcls.h"
+	"Asistencia.h"
+	"Club.h"
+	"gestionClub.h"
+	"ArchivoJugador.h"
+
+1762485823 c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\include\golcls.h
+	<string>
+
+1762486196 c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\include\club.h
+	<string>
+	<vector>
+	<Jugador.h>
+
+1762486887 c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\include\jugador.h
+	"Persona.h"
+
+1762485861 c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\include\persona.h
+	"Fecha.h"
+	<iostream>
+	<string>
+
+1762485418 c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\include\fecha.h
+	<string>
+
+1762482986 c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\include\gestionclub.h
+	<vector>
+	"club.h"
+
+1762484510 source:c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\src\asistencia.cpp
+	"Asistencia.h"
+
+1762484622 c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\include\asistencia.h
+
+1762485405 source:c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\src\fecha.cpp
+	"Fecha.h"
+	<iostream>
+
+1762484686 source:c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\src\golcls.cpp
+	"golcls.h"
+
+1762482986 source:c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\src\club.cpp
+	"club.h"
+	<iostream>
+
+1762482986 source:c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\src\gestionclub.cpp
+	"gestionClub.h"
+	<iostream>
+
+1762487278 source:c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\src\jugador.cpp
+	"Jugador.h"
+
+1762486114 source:c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\src\persona.cpp
+	"Persona.h"
+	<cstring>
+	<iostream>
+
+1762486483 source:c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\src\archivojugador.cpp
+	"ArchivoJugador.h"
+	<cstdio>
+
+1762486519 c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\include\archivojugador.h
+	<string>
+	"Jugador.h"
+
+1762487959 source:c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\src\archivogol.cpp
+	<iostream>
+	<cstdio>
+	"ArchivoGol.h"
+
+1762488021 c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\include\archivogol.h
+	<string>
+	"Gol.h"
+
+1762487818 c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\include\gol.h
+	<string>
+
+1762488045 source:c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\src\gol.cpp
+	"Gol.h"
+

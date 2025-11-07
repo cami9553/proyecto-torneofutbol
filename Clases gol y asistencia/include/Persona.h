@@ -1,5 +1,7 @@
 #ifndef PERSONA_H
 #define PERSONA_H
+#include "Fecha.h"
+
 #include <iostream>
 #include <string>
 
@@ -11,18 +13,25 @@ class Persona
         char _nombre[30];
         char _telefono[30];
         char _email[30];
-        
+        Fecha _fechaNacimiento;
+
     public:
         Persona();
         int getDni();
         void setDni(int dni);
-        void setNombre(string nombre);
-        void setApellido(string apellido);
-        void setTelefono(string telefono);
-        void setEmail(string email); 
+        void setNombre(std::string nombre);
+        void setApellido(std::string apellido);
+        void setTelefono(std::string telefono);
+        void setEmail(std::string email);
+        void setFechaNacimiento(Fecha f);
         const char *getNombre();
         const char *getApellido();
         const char *getTelefono();
-        const char *getEmail();       
+        const char *getEmail();
+        Fecha getFechaNacimiento();
+
+        //Otros metodos
+        void cargar();
+        void mostrar();
 };
 #endif // PERSONA_H

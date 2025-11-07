@@ -1,9 +1,9 @@
-#ifndef CLUB_H_INCLUDED
-#define CLUB_H_INGLUDED
+#ifndef CLUB_H
+#define CLUB_H
 
 #include <string>
 #include <vector>
-#include <jugador.h>
+#include <Jugador.h>
 using namespace std;
 
 class Club {

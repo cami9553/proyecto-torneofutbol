@@ -9,7 +9,6 @@ class Jugador: public Persona
     private:
         int _posicion;
         int _idClub;
-        
 
     public:
         Jugador();
@@ -17,7 +16,10 @@ class Jugador: public Persona
         int getIdClub();
         void setPosicion(int posicion);
         void setIdClub(int idClub);
-           
+        //Otros metodos
+        void cargar();
+        void mostrar();
+
 };
 
 #endif // JUGADOR_H
