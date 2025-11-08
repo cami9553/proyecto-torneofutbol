@@ -16,7 +16,9 @@ void GestionClub::listarClubs(){
 
 Club* GestionClub::buscarClubPorId(int id){
     for(Club &c : _clubs){
-        if(c.getIdClub() == id) return &c;
+        if(c.getIdClub() == id)
+        return &c;
     }
-    return nullptr;
+
+return nullptr;
 }

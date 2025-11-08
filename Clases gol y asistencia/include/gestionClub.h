@@ -3,16 +3,18 @@
 
 #include <vector>
 #include "club.h"
+
+
 using namespace std;
 
 class GestionClub {
     private:
-    vector<Club> _clubs;
+   std::vector<Club> _clubs;
 
     public:
     void agregarClub(Club c);
     void listarClubs();
-    Club* buscarClubPorId(int id); 
-};
+   Club* buscarClubPorId(int id);
 
+};
 #endif
