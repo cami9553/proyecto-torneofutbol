@@ -19,20 +19,20 @@ void Persona::setDni(int dni){
 	_dni = dni;
 }
 
-void Persona::setApellido(std::string apellido){
-	strcpy(_apellido, apellido.c_str());
+void Persona::setApellido(const char* apellido){
+    strcpy(_apellido, apellido);
 }
 
-void Persona::setNombre(std::string nombre){
-	strcpy(_nombre, nombre.c_str());
+void Persona::setNombre(const char* nombre){
+    strcpy(_nombre, nombre);
 }
 
-void Persona::setTelefono(std::string telefono){
-	strcpy(_telefono, telefono.c_str());
+void Persona::setTelefono(const char* telefono){
+    strcpy(_telefono, telefono);
 }
 
-void Persona::setEmail(std::string email){
-	strcpy(_email, email.c_str());
+void Persona::setEmail(const char* email){
+    strcpy(_email, email);
 }
 
 void Persona::setFechaNacimiento(Fecha f) {
