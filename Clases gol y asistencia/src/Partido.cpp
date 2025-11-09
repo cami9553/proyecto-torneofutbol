@@ -68,3 +68,29 @@ int Partido::getGolesVisitante(){
 	return _golesVisitante;
 }
 
+void Partido::cargar() {
+    cout << "Numero de Partido: ";
+    cin >> _nroPartido;
+	cout << "ID Torneo: ";
+    cin >> _idTorneo;
+    cout << "ID Club Local: ";
+    cin >> _idClubLocal;
+    cout << "ID Club Visitante: ";
+    cin >> _idClubVisitante;
+    cout << "Goles Local: ";
+    cin >> _golesLocal;
+    cout << "Goles Visitante: ";
+    cin >> _golesVisitante;
+    cout << "Fecha: " << endl;
+    _fecha.cargar();
+}
+
+void Partido::mostrar() {
+    cout << "Numero de Partido: " << _nroPartido << endl;
+	cout << "Id Torneo: " << _idTorneo << endl;
+    cout << "Club Local: " << _idClubLocal << endl;
+    cout << "Club Visitante: " << _idClubVisitante << endl;
+    cout << "Goles Local: " << _golesLocal << endl;
+    cout << "Goles Visitante: " << _golesVisitante << endl;
+    cout << "Fecha: " << _fecha.toString() << endl;
+}
