@@ -1,15 +1,14 @@
 #ifndef GESTIONCLUB_H_INCLUDED
 #define GESTIONCLUB_H_INCLUDED
 
-#include <vector>
+
 #include "club.h"
-
-
 using namespace std;
 
 class GestionClub {
     private:
-   std::vector<Club> _clubs;
+  Club _clubs[50];
+  int _cantidad;
 
     public:
     void agregarClub(Club c);
