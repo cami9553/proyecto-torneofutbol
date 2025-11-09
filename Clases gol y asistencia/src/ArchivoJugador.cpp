@@ -48,6 +48,22 @@ bool ArchivoJugador::modificarRegistro(const Jugador& jugador, int posicion) {
     return ok;
 }
 
+void ArchivoJugador::listarRegistros() {
+    int cantidad = getCantidadRegistros();
+    if (cantidad == 0) {
+        cout << "No hay jugadores registrados.\n";
+        return;
+    }
+
+    Jugador J;
+    cout << "\n=== LISTA DE JUGADORES ===\n";
+    for (int i = 0; i < cantidad; i++) {
+        J = leerRegistro(i);
+        cout << "\nJugador #" << i + 1 << endl;
+        J.mostrar();
+    }
+}
+
 void ArchivoJugador::leerTodos(Jugador* vector, int cantidadRegistros) {
     FILE* pFile = fopen(_nombreArchivo.c_str(), "rb");
     if (pFile == NULL) return;
