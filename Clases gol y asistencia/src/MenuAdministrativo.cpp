@@ -95,16 +95,8 @@ void menuAdministrativo()
 
         case 5:
         {
-            cout << "\n=== LISTA DE CLUBES ===\n";
-
-            int cantidad = archivoClubes.cantidadRegistros();
-            Club C;
-            for(int i = 0; i < cantidad; i++)
-            {
-                C = archivoClubes.leerRegistro(i);
-                cout << "\nClub #" << i+1 << endl;
-                C.mostrar();
-            }
+            archivoClubes.listarRegistros();
+            cin.ignore();
             cin.get();
             break;
         }
@@ -139,14 +131,7 @@ void menuAdministrativo()
         }
         case 9:
         {
-            cout << "\n=== LISTA DE JUGADORES ===\n";
-            int cantidad = archivoJugadores.getCantidadRegistros();
-            Jugador J;
-            for(int i = 0; i < cantidad; i++)
-            {
-                J = archivoJugadores.leerRegistro(i);
-                J.mostrar();
-            }
+            archivoJugadores.listarRegistros();
             cin.ignore();
             cin.get();
             break;
@@ -157,7 +142,7 @@ void menuAdministrativo()
             break;
 
         default:
-            cout << "Opción inválida intente nuevamente.\n";
+            cout << "OpciÃ³n invÃ¡lida intente nuevamente.\n";
         }
     }
     while(opcion != 0);
