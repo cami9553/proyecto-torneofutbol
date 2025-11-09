@@ -1,5 +1,6 @@
 #include "Partido.h"
 #include <iostream>
+using namespace std;
 
 Partido::Partido() {
     _nroPartido = 0;
@@ -8,7 +9,7 @@ Partido::Partido() {
     _idClubLocal = 0;
     _idClubVisitante = 0;
     _golesLocal = 0;
-    _golesVisitante = 0;    
+    _golesVisitante = 0;
 }
 
 Partido::Partido(int nroPartido, Fecha fecha, int idTorneo, int idClubLocal, int idClubVisitante, int golesLocal, int golesVisitante) {

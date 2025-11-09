@@ -1,4 +1,6 @@
 #include "Jugador.h"
+#include "ArchivoClub.h"
+#include <iomanip>
 using namespace std;
 
 Jugador::Jugador()
@@ -7,8 +9,8 @@ Jugador::Jugador()
 	_idClub = 0;
 }
 
-Jugador::Jugador(int posicion, int idClub, int dni, const char* apellido, const char* nombre, const char* telefono, const char* email, Fecha fechaNacimiento) 
-    : Persona(dni, apellido, nombre, telefono, email, fechaNacimiento)  
+Jugador::Jugador(int posicion, int idClub, int dni, const char* apellido, const char* nombre, const char* telefono, const char* email, Fecha fechaNacimiento)
+    : Persona(dni, apellido, nombre, telefono, email, fechaNacimiento)
 {
     _posicion = posicion;
     _idClub = idClub;
@@ -33,16 +35,35 @@ int Jugador::getIdClub(){
 //Otros metodos
 void Jugador::cargar() {
     Persona::cargar();
-    cout << "Club: "<<endl; //aca habria que traer lista de clubes, cargarlo de archivo y mostrar lista para que elija una opcion de clubes ya creados.
+    cout << "Club (Elige ID): "<<endl; //aca habria que traer lista de clubes, cargarlo de archivo y mostrar lista para que elija una opcion de clubes ya creados.
+
+    //Muestro lista de clubes creados
+    ArchivoClub archivo("clubes.dat");
+    Club* lista = archivo.getClubes();
+
+    for (int i = 0; i < archivo.cantidadRegistros(); i++) {
+        cout << lista[i].getIdClub() << "- " << lista[i].getNombre() << endl;
+    }
+
     cin >> _idClub;
     cout << "Posición (Defensor:1/Mediocampista:2/Delantero:3):  "<<endl;
     cin.ignore();
     cin >> _posicion;
 }
 
-void Jugador::mostrar(){
+void Jugador::mostrar() {
+    ArchivoClub archivo("clubes.dat");
+    string nombrePosicion;
+
+    if(_posicion == 1)
+        nombrePosicion = "Defensor";
+    else if(_posicion == 2)
+        nombrePosicion = "Mediocampista";
+    else
+        nombrePosicion = "Delantero";
+
     Persona::mostrar();
-    cout << "------ Club ------"<<endl;
-    cout << "Club: " << _idClub << endl;
-    cout << "Posicion: " << _posicion << endl;
+    cout << left << setw(20) << "Club:"      << archivo.buscarPorId(_idClub)->getNombre() << endl;
+    cout << left << setw(20) << "Posicion:"  << nombrePosicion << endl;
+    cout << "====================================================\n\n" << endl;
 }

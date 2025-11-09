@@ -91,3 +91,126 @@
 1762488045 source:c:\users\ibani\onedrive\desktop\proyecto final pg2\proyecto\proyecto-torneofutbol\clases gol y asistencia\src\gol.cpp
 	"Gol.h"
 
+1762713455 source:c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\main.cpp
+	<iostream>
+	"MenuAdministrativo.h"
+	"MenuOperativo.h"
+
+1762712714 c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\include\gol.h
+	<string>
+
+1762712714 c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\include\asistencia.h
+
+1762713723 c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\include\club.h
+	<string>
+
+1762715747 c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\include\jugador.h
+	"Persona.h"
+
+1762715743 c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\include\persona.h
+	"Fecha.h"
+	<iostream>
+	<string>
+
+1762712714 c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\include\fecha.h
+	<string>
+
+1762712714 c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\include\gestionclub.h
+	"club.h"
+
+1762712714 c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\include\archivojugador.h
+	<string>
+	"Jugador.h"
+
+1762712714 source:c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\src\archivogol.cpp
+	<iostream>
+	<cstdio>
+	"ArchivoGol.h"
+
+1762712714 c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\include\archivogol.h
+	<string>
+	"Gol.h"
+
+1762712714 source:c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\src\archivojugador.cpp
+	"ArchivoJugador.h"
+	<cstdio>
+
+1762712714 source:c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\src\asistencia.cpp
+	"Asistencia.h"
+
+1762713733 source:c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\src\club.cpp
+	"club.h"
+	<cstring>
+	<iostream>
+
+1762712714 source:c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\src\fecha.cpp
+	"Fecha.h"
+	<iostream>
+
+1762712714 source:c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\src\gestionclub.cpp
+	"gestionClub.h"
+	<iostream>
+
+1762712714 source:c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\src\gol.cpp
+	"Gol.h"
+
+1762717781 source:c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\src\jugador.cpp
+	"Jugador.h"
+	"ArchivoClub.h"
+	<iomanip>
+
+1762717041 source:c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\src\persona.cpp
+	"Persona.h"
+	<cstring>
+	<iostream>
+	<iomanip>
+
+1762712714 source:c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\src\archivotorneo.cpp
+	"Fecha.h"
+	"ArchivoTorneo.h"
+
+1762712714 c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\include\archivotorneo.h
+	<string>
+	"Torneo.h"
+
+1762712714 c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\include\torneo.h
+	<iostream>
+
+1762713045 source:c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\src\partido.cpp
+	"Partido.h"
+	<iostream>
+
+1762712714 c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\include\partido.h
+	"Fecha.h"
+
+1762713073 source:c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\src\torneo.cpp
+	"Torneo.h"
+	<iostream>
+	<cstring>
+
+1762717458 source:c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\src\archivoclub.cpp
+	"Fecha.h"
+	"Club.h"
+	"ArchivoClub.h"
+
+1762717473 c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\include\archivoclub.h
+	<string>
+	"Club.h"
+	"Torneo.h"
+
+1762713499 c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\include\menuadministrativo.h
+
+1762713536 c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\include\menuoperativo.h
+
+1762713556 source:c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\src\menuoperativo.cpp
+	"MenuAdministrativo.h"
+	<iostream>
+
+1762714479 source:c:\users\ibani\onedrive\desktop\version ultima\clases gol y asistencia\src\menuadministrativo.cpp
+	"MenuAdministrativo.h"
+	<iostream>
+	"Club.h"
+	"Jugador.h"
+	"ArchivoJugador.h"
+	"ArchivoClub.h"
+

@@ -4,6 +4,7 @@
 #include "Persona.h"
 
 
+
 class Jugador: public Persona
 {
     private:

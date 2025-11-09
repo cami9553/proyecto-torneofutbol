@@ -1,6 +1,7 @@
 #include "Torneo.h"
 #include <iostream>
 #include <cstring>
+using namespace std;
 
 Torneo::Torneo() {
     _idTorneo = 0;
@@ -42,7 +43,7 @@ void Torneo::cargar() {
     cout << "ID Torneo: ";
     cin >> _idTorneo;
     cout << "Nombre: ";
-    cin.ignore(); 
+    cin.ignore();
     cin.getline(_nombre, 30);
     cout << "Año: ";
     cin >> _anio;

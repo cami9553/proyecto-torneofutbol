@@ -1,6 +1,7 @@
 #include "Persona.h"
 #include <cstring>
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 Persona::Persona()
@@ -28,20 +29,20 @@ void Persona::setDni(int dni){
 	_dni = dni;
 }
 
-void Persona::setApellido(const char* apellido){
-    strcpy(_apellido, apellido);
+void Persona::setApellido(std::string apellido){
+	strcpy(_apellido, apellido.c_str());
 }
 
-void Persona::setNombre(const char* nombre){
-    strcpy(_nombre, nombre);
+void Persona::setNombre(std::string nombre){
+	strcpy(_nombre, nombre.c_str());
 }
 
-void Persona::setTelefono(const char* telefono){
-    strcpy(_telefono, telefono);
+void Persona::setTelefono(std::string telefono){
+	strcpy(_telefono, telefono.c_str());
 }
 
-void Persona::setEmail(const char* email){
-    strcpy(_email, email);
+void Persona::setEmail(std::string email){
+	strcpy(_email, email.c_str());
 }
 
 void Persona::setFechaNacimiento(Fecha f) {
@@ -97,10 +98,10 @@ void Persona::cargar() {
 }
 
 void Persona::mostrar() {
-    cout << "DNI: " << _dni << endl;
-    cout << "Nombre: " << _nombre << endl;
-    cout << "Apellido: " << _apellido << endl;
-    cout << "Telefono: " << _telefono << endl;
-    cout << "Email: " << _email << endl;
-    cout << "Fecha Nacimiento: " << _fechaNacimiento.toString() << endl;
+    cout << left << setw(20) << "Nombre:"           << _nombre << " " << _apellido << endl;
+    cout << left << setw(20) << "DNI:"              << _dni << endl;
+    cout << left << setw(20) << "Telefono:"         << _telefono << endl;
+    cout << left << setw(20) << "Email:"            << _email << endl;
+    cout << left << setw(20) << "Fecha Nacimiento:" << _fechaNacimiento.toString() << endl;
 }
+
