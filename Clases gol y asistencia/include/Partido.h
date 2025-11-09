@@ -30,6 +30,8 @@ class Partido
         int getIdClubVisitante();
         int getGolesLocal();
         int getGolesVisitante();
+        void cargar();
+        void mostrar();
             
 };
 
