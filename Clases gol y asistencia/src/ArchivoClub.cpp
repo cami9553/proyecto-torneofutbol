@@ -46,7 +46,7 @@ bool ArchivoClub::guardar(Club club){
     bool ok = fwrite(&club, sizeof(Club), 1, pFile);
     fclose(pFile);
 
-    // Actualizar la memoria din·mica
+    // Actualizar la memoria din√°mica
     Club* aux = new Club[cantidadClubes + 1];
     for (int i = 0; i < cantidadClubes; i++) {
         aux[i] = clubes[i];
@@ -121,6 +121,22 @@ void ArchivoClub::leer(int cantidadRegistros, Club *vector){
         fread(&vector[i], sizeof(Club), 1, pArchivo);
     }
     fclose(pArchivo);
+}
+
+void ArchivoClub::listarRegistros() {
+    int cantidad = cantidadRegistros();
+    if (cantidad == 0) {
+        cout << "No hay clubes registrados.\n";
+        return;
+    }
+
+    Club C;
+    cout << "\n=== LISTA DE CLUBES ===\n";
+    for (int i = 0; i < cantidad; i++) {
+        C = leerRegistro(i);
+        cout << "\nClub #" << i + 1 << endl;
+        C.mostrar();
+    }
 }
 
 Club* ArchivoClub::buscarPorId(int id) {
