@@ -17,6 +17,7 @@ class Persona
 
     public:
         Persona();
+        Persona(int dni, const char* apellido, const char* nombre, const char* telefono, const char* email, Fecha fechaNacimiento);
         int getDni();
         void setDni(int dni);
         void setNombre(std::string nombre);
