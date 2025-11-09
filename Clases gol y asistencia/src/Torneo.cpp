@@ -8,6 +8,12 @@ Torneo::Torneo() {
     _anio = 0;
 }
 
+Torneo::Torneo(int idTorneo, const char* nombre, int anio) {
+    _idTorneo = idTorneo;
+    strcpy(_nombre, nombre);
+    _anio = anio;
+}
+
 void Torneo::setIdTorneo(int idTorneo) {
     _idTorneo = idTorneo;
 }
