@@ -21,6 +21,7 @@ class ArchivoClub{
         Torneo leer(int posicion);
         int cantidadRegistros();
         void leer(int cantidadRegistros, Club *vector);
+        void listarRegistros();
         Club leerRegistro(int posicion);
         Club* buscarPorId(int id);
         Club* getClubes()const;
