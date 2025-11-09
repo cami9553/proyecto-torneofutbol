@@ -1,21 +1,66 @@
 #include "Fecha.h"
+#include "Club.h"
 #include "ArchivoClub.h"
 
-ArchivoClub::ArchivoClub(std::string nombreArchivo){
+ArchivoClub::ArchivoClub(const std::string& nombreArchivo){
     _nombreArchivo = nombreArchivo;
+    clubes = nullptr;
+    cantidadClubes = 0;
+    cargarDesdeArchivo();
 }
 
-bool ArchivoClub::Guardar(Club club){
-    FILE *pArchivo = fopen(_nombreArchivo.c_str(), "ab");
-    if(pArchivo == NULL){
+ArchivoClub::~ArchivoClub() {
+    delete[] clubes;
+}
+
+
+void ArchivoClub::cargarDesdeArchivo() {
+    FILE* pFile = fopen(_nombreArchivo.c_str(), "rb");
+    if (pFile == NULL) {
+        cantidadClubes = 0;
+        clubes = nullptr;
+        return;
+    }
+
+    fseek(pFile, 0, SEEK_END);
+    int tam = ftell(pFile);
+    cantidadClubes = tam / sizeof(Club);
+    rewind(pFile);
+
+    delete[] clubes;
+    clubes = new Club[cantidadClubes];
+    fread(clubes, sizeof(Club), cantidadClubes, pFile);
+
+    fclose(pFile);
+}
+
+
+
+bool ArchivoClub::guardar(Club club){
+    FILE* pFile = fopen(_nombreArchivo.c_str(), "ab");
+    if (pFile == NULL) {
+        std::cout << "Error al abrir el archivo para guardar.\n";
         return false;
     }
-    bool ok = fwrite(&club, sizeof(Club), 1, pArchivo);
-    fclose(pArchivo);
+
+    bool ok = fwrite(&club, sizeof(Club), 1, pFile);
+    fclose(pFile);
+
+    // Actualizar la memoria dinámica
+    Club* aux = new Club[cantidadClubes + 1];
+    for (int i = 0; i < cantidadClubes; i++) {
+        aux[i] = clubes[i];
+    }
+    aux[cantidadClubes] = club;
+
+    delete[] clubes;
+    clubes = aux;
+    cantidadClubes++;
+
     return ok;
 }
 
-bool ArchivoClub::Guardar(Club club, int posicion){
+bool ArchivoClub::actualizar(Club club, int posicion){
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb+");
     if(pArchivo == NULL){
         return false;
@@ -26,7 +71,7 @@ bool ArchivoClub::Guardar(Club club, int posicion){
     return ok;
 }
 
-int ArchivoClub::Buscar(int idClub){
+int ArchivoClub::buscar(int idClub){
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb");
     if(pArchivo == NULL){
         return -1;
@@ -44,19 +89,19 @@ int ArchivoClub::Buscar(int idClub){
     return -1;
 }
 
-Club ArchivoClub::Leer(int posicion){
+Club ArchivoClub::leerRegistro(int posicion){
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb");
     if(pArchivo == NULL){
         return Club();
     }
-    Ckub club;
+    Club club;
     fseek(pArchivo, sizeof(Club) * posicion, SEEK_SET);
     fread(&club, sizeof(Club), 1, pArchivo);
     fclose(pArchivo);
     return club;
 }
 
-int ArchivoClub::CantidadRegistros(){
+int ArchivoClub::cantidadRegistros(){
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb");
     if(pArchivo == NULL){
         return 0;
@@ -67,7 +112,7 @@ int ArchivoClub::CantidadRegistros(){
     return cantidadRegistros;
 }
 
-void ArchivoClub::Leer(int cantidadRegistros, Club *vector){
+void ArchivoClub::leer(int cantidadRegistros, Club *vector){
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb");
     if(pArchivo == NULL){
         return;
@@ -76,4 +121,17 @@ void ArchivoClub::Leer(int cantidadRegistros, Club *vector){
         fread(&vector[i], sizeof(Club), 1, pArchivo);
     }
     fclose(pArchivo);
+}
+
+Club* ArchivoClub::buscarPorId(int id) {
+    for (int i = 0; i < cantidadClubes; i++) {
+        if (clubes[i].getIdClub() == id) {
+            return &clubes[i];
+        }
+    }
+    return nullptr; // Por si no se encuentra el club
+}
+
+Club* ArchivoClub::getClubes() const {
+    return clubes;
 }

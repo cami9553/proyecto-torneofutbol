@@ -1,5 +1,5 @@
-#ifndef PARTIDO_H_INCLUDED
-#define PARTIDO_H_INCLUDED
+#ifndef PARTIDO_H
+#define PARTIDO_H
 #include "Fecha.h"
 
 class Partido
@@ -16,9 +16,9 @@ class Partido
 
     public:
         Partido();
-        Partido(int nroPartido, Fecha& fecha, int idTorneo, int idClubLocal, int idClubVisitante, int golesLocal, int golesVisitante);
+        Partido(int nroPartido, Fecha fecha, int idTorneo, int idClubLocal, int idClubVisitante, int golesLocal, int golesVisitante);
         void setNroPartido(int nro);
-        void setFecha(const Fecha& fecha);
+        void setFecha(Fecha fecha);
         void setIdTorneo(int id);
         void setIdClubLocal(int id);
         void setIdClubVisitante(int id);

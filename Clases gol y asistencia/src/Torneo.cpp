@@ -1,13 +1,12 @@
 #include "Torneo.h"
 #include <iostream>
+#include <cstring>
 using namespace std;
-
 
 Torneo::Torneo() {
     _idTorneo = 0;
-    _nombre = "";
+    strcpy(_nombre, "");
     _anio = 0;
-
 }
 
 Torneo::Torneo(int idTorneo, const char* nombre, int anio) {
@@ -20,11 +19,11 @@ void Torneo::setIdTorneo(int idTorneo) {
     _idTorneo = idTorneo;
 }
 
-void Torneo::setNombre(const string& nombre) {
-    _nombre = nombre;
+void Torneo::setNombre(const char* nombre) {
+    strcpy(_nombre, nombre);
 }
 
-void Torneo::setAnio(int anio) { 
+void Torneo::setAnio(int anio) {
     _anio = anio;
 }
 
@@ -32,7 +31,7 @@ int Torneo::getIdTorneo() {
     return _idTorneo;
 }
 
-string Torneo::getNombre() {
+const char* Torneo::getNombre() {
     return _nombre;
 }
 
@@ -44,7 +43,7 @@ void Torneo::cargar() {
     cout << "ID Torneo: ";
     cin >> _idTorneo;
     cout << "Nombre: ";
-    cin.ignore(); 
+    cin.ignore();
     cin.getline(_nombre, 30);
     cout << "Año: ";
     cin >> _anio;

@@ -1,36 +1,33 @@
 #ifndef CLUB_H
 #define CLUB_H
-
 #include <string>
-#include <vector>
-#include <Jugador.h>
-using namespace std;
+
 
 class Club {
     private:
     int _idClub;
-    string _nombre;
-    string _presidente;
-    string _ciudad;
-    vector<Jugador> _jugadores;
+    char _nombre[30];
+    char _presidente[30];
+    char _ciudad[30];
 
     public:
     Club();
-    Club(int idClub, string nombre, string presidente, string ciudad);
 
-    void setIdClub(int idClub);
-    void setNombre(string nombre);
-    void setPresidente(string presidente);
-    void setCiudad(string ciudad);
+    void setIdClub(int id);
+    void setNombre(std::string nombre);
+    void setPresidente(std::string presidente);
+    void setCiudad(std::string ciudad);
 
     int getIdClub();
-    string getNombre();
-    string getPresidente();
-    string getCiudad();
+    const char* getNombre();
+    const char* getPresidente();
+    const char* getCiudad();
 
-    void agregarJugador(Jugador j);
+    void cargar();
     void mostrar();
-
-
 };
 #endif
+
+
+
+
