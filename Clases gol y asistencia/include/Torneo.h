@@ -1,25 +1,26 @@
-#ifndef TORNEO_H_INCLUDED
-#define TORNEO_H_INCLUDED
+#ifndef TORNEO_H
+#define TORNEO_H
 
 #include <iostream>
 
 class Torneo {
-    private:
+private:
     int _idTorneo;
-    string _nombre;
+    char _nombre[30];
     int _anio;
 
-    public:
+public:
+    
     Torneo();
-
+    Torneo(int idTorneo, const char* nombre, int anio);
     void setIdTorneo(int idTorneo);
-    void setNombre(const string& nombre);
+    void setNombre(const char* nombre);
     void setAnio(int anio);
-
-
     int getIdTorneo();
-    string getNombre();
+    const char* getNombre();
     int getAnio();
+    void cargar();
+    void mostrar();
 };
 
-#endif
+#endif // TORNEO_H

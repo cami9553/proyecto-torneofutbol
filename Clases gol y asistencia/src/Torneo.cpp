@@ -10,6 +10,12 @@ Torneo::Torneo() {
 
 }
 
+Torneo::Torneo(int idTorneo, const char* nombre, int anio) {
+    _idTorneo = idTorneo;
+    strcpy(_nombre, nombre);
+    _anio = anio;
+}
+
 void Torneo::setIdTorneo(int idTorneo) {
     _idTorneo = idTorneo;
 }
@@ -32,4 +38,20 @@ string Torneo::getNombre() {
 
 int Torneo::getAnio() {
     return _anio;
+}
+
+void Torneo::cargar() {
+    cout << "ID Torneo: ";
+    cin >> _idTorneo;
+    cout << "Nombre: ";
+    cin.ignore(); 
+    cin.getline(_nombre, 30);
+    cout << "Año: ";
+    cin >> _anio;
+}
+
+void Torneo::mostrar() {
+    cout << "ID Torneo: " << _idTorneo << endl;
+    cout << "Nombre: " << _nombre << endl;
+    cout << "Año: " << _anio << endl;
 }
