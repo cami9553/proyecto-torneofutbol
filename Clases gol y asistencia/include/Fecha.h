@@ -1,7 +1,8 @@
-#ifndef FECHA_H
-#define FECHA_H
+#ifndef FECHA_H_INCLUDED
+#define FECHA_H_INCLUDED
 
 #include <string>
+
 
 class Fecha {
 private:
