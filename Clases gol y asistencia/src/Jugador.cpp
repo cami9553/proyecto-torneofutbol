@@ -7,6 +7,13 @@ Jugador::Jugador()
 	_idClub = 0;
 }
 
+Jugador::Jugador(int posicion, int idClub, int dni, const char* apellido, const char* nombre, const char* telefono, const char* email, Fecha fechaNacimiento) 
+    : Persona(dni, apellido, nombre, telefono, email, fechaNacimiento)  
+{
+    _posicion = posicion;
+    _idClub = idClub;
+}
+
 void Jugador::setPosicion(int posicion){
 	_posicion=posicion;
 }
@@ -28,7 +35,7 @@ void Jugador::cargar() {
     Persona::cargar();
     cout << "Club: "<<endl; //aca habria que traer lista de clubes, cargarlo de archivo y mostrar lista para que elija una opcion de clubes ya creados.
     cin >> _idClub;
-    cout << "Posición (Defensor:1/Mediocampista:2/Delantero:3):  "<<endl;
+    cout << "PosiciÃ³n (Defensor:1/Mediocampista:2/Delantero:3):  "<<endl;
     cin.ignore();
     cin >> _posicion;
 }
