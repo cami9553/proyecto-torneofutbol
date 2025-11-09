@@ -31,3 +31,19 @@ const char* Torneo::getNombre() {
 int Torneo::getAnio() {
     return _anio;
 }
+
+void Torneo::cargar() {
+    cout << "ID Torneo: ";
+    cin >> _idTorneo;
+    cout << "Nombre: ";
+    cin.ignore(); 
+    cin.getline(_nombre, 30);
+    cout << "Año: ";
+    cin >> _anio;
+}
+
+void Torneo::mostrar() {
+    cout << "ID Torneo: " << _idTorneo << endl;
+    cout << "Nombre: " << _nombre << endl;
+    cout << "Año: " << _anio << endl;
+}
