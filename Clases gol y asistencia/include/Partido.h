@@ -16,6 +16,7 @@ class Partido
 
     public:
         Partido();
+        Partido(int nroPartido, Fecha fecha, int idTorneo, int idClubLocal, int idClubVisitante, int golesLocal, int golesVisitante);
         void setNroPartido(int nro);
         void setFecha(Fecha fecha);
         void setIdTorneo(int id);
