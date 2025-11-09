@@ -2,18 +2,20 @@
 #define ARCHIVOPARTIDO_H_INCLUDED
 
 #include "Partido.h"
-#include <fstream>
+#include <string>
 
 class ArchivoPartido {
-    private:
+private:
     std::string _nombreArchivo;
 
-    public: 
+public:
     ArchivoPartido(const std::string& nombreArchivo);
 
-    bool guardadRegistro(const Partido& p);
-    Partido leerRegistro(int nroRegistro);
     int getCantidadRegistros();
+    Partido leerRegistro(int posicion);
+    bool guardarRegistro(const Partido& partido);
+    bool modificarRegistro(const Partido& partido, int posicion);
+    void leerTodos(Partido* vector, int cantidadRegistros);
 };
 
-#endif 
+#endif
