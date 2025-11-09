@@ -11,6 +11,16 @@ Partido::Partido() {
     _golesVisitante = 0;    
 }
 
+Partido::Partido(int nroPartido, Fecha fecha, int idTorneo, int idClubLocal, int idClubVisitante, int golesLocal, int golesVisitante) {
+    _nroPartido = nroPartido;
+    _fecha = fecha;
+    _idTorneo = idTorneo;
+    _idClubLocal = idClubLocal;
+    _idClubVisitante = idClubVisitante;
+    _golesLocal = golesLocal;
+    _golesVisitante = golesVisitante;
+}
+
 void Partido::setNroPartido(int nro){
 	_nroPartido = nro;
 }
