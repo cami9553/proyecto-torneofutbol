@@ -14,6 +14,15 @@ Persona::Persona()
 
 }
 
+Persona::Persona(int dni, const char* apellido, const char* nombre, const char* telefono, const char* email, Fecha fechaNacimiento) {
+    _dni = dni;
+    strcpy(_apellido, apellido);
+    strcpy(_nombre, nombre);
+    strcpy(_telefono, telefono);
+    strcpy(_email, email);
+    _fechaNacimiento = fechaNacimiento;
+}
+
 //Setters
 void Persona::setDni(int dni){
 	_dni = dni;
