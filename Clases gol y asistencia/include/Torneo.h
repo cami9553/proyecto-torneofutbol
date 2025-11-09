@@ -12,6 +12,7 @@ private:
 public:
     
     Torneo();
+    Torneo(int idTorneo, const char* nombre, int anio);
     void setIdTorneo(int idTorneo);
     void setNombre(const char* nombre);
     void setAnio(int anio);
