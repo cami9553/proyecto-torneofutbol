@@ -1,33 +1,25 @@
-#include "Torneo.h"
+#ifndef TORNEO_H_INCLUDED
+#define TORNEO_H_INCLUDED
+
 #include <iostream>
-#include <cstring>
 
-Torneo::Torneo() {
-    _idTorneo = 0;
-    strcpy(_nombre, "");
-    _anio = 0;
-}
+class Torneo {
+    private:
+    int _idTorneo;
+    string _nombre;
+    int _anio;
 
-void Torneo::setIdTorneo(int idTorneo) {
-    _idTorneo = idTorneo;
-}
+    public:
+    Torneo();
 
-void Torneo::setNombre(const char* nombre) {
-    strcpy(_nombre, nombre);
-}
+    void setIdTorneo(int idTorneo);
+    void setNombre(const string& nombre);
+    void setAnio(int anio);
 
-void Torneo::setAnio(int anio) {
-    _anio = anio;
-}
 
-int Torneo::getIdTorneo() {
-    return _idTorneo;
-}
+    int getIdTorneo();
+    string getNombre();
+    int getAnio();
+};
 
-const char* Torneo::getNombre() {
-    return _nombre;
-}
-
-int Torneo::getAnio() {
-    return _anio;
-}
+#endif
