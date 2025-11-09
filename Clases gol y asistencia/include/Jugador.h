@@ -12,6 +12,7 @@ class Jugador: public Persona
 
     public:
         Jugador();
+        Jugador(int posicion, int idClub, int dni, const char* apellido, const char* nombre, const char* telefono, const char* email, Fecha fechaNacimiento);
         int getPosicion();
         int getIdClub();
         void setPosicion(int posicion);
