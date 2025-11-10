@@ -64,6 +64,16 @@ void ArchivoJugador::listarRegistros() {
     }
 }
 
+int ArchivoJugador::buscarPorId(int dni) {
+    Jugador j;
+    int cantidad = getCantidadRegistros();
+    for (int i = 0; i < cantidad; i++) {
+        j = leerRegistro(i);
+        if (j.getDni() == dni) return i;
+    }
+    return -1;
+}
+
 void ArchivoJugador::leerTodos(Jugador* vector, int cantidadRegistros) {
     FILE* pFile = fopen(_nombreArchivo.c_str(), "rb");
     if (pFile == NULL) return;
