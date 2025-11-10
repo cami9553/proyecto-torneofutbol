@@ -60,6 +60,30 @@ void menuAdministrativo()
         }
         case 2:
         {
+            cout << "\n=== EDITAR CLUB ===\n";
+            int id;
+            cout << "Ingrese el ID del club a editar: ";
+            cin >> id;
+
+            int pos = archivoClubes.buscarPorId(id);
+            if (pos == -1) {
+                cout << "No se encontró el club con ese ID.\n";
+            } else {
+                Club C = archivoClubes.leerRegistro(pos);
+                cout << "\nDatos actuales del club:\n";
+                C.mostrar();
+
+                cout << "\nIngrese los nuevos datos del club:\n";
+                C.cargar();
+
+                if (archivoClubes.modificarRegistro(C, pos)) {
+                    cout << "Club modificado correctamente.\n";
+                } else {
+                    cout << "Error al modificar el registro.\n";
+                }
+            }
+
+            cin.ignore();
             cin.get();
             break;
         }
@@ -126,37 +150,25 @@ void menuAdministrativo()
             cout << "Ingrese el DNI del jugador a editar: ";
             cin >> dni;
 
-            int cantidad = archivoJugadores.getCantidadRegistros();
-            Jugador J;
-            bool encontrado = false;
-            int posicion = -1;
+            int pos = archivoJugadores.buscarPorId(dni);
 
-            for (int i = 0; i < cantidad; i++) {
-                J = archivoJugadores.leerRegistro(i);
-                if (J.getDni() == dni) {
-                    encontrado = true;
-                    posicion = i;
-                    break;
-                }
-            }
-
-            if (!encontrado) {
+            if (pos == -1) {
                 cout << "Jugador no encontrado.\n";
             } else {
+                Jugador J = archivoJugadores.leerRegistro(pos);
                 cout << "\nDatos actuales del jugador:\n";
                 J.mostrar();
-
+                
                 cout << "\nIngrese los nuevos datos:\n";
-                Jugador nuevoJugador;
-                nuevoJugador.cargar();
-
-                if (archivoJugadores.modificarRegistro(nuevoJugador, posicion)) {
+                J.cargar();
+                
+                if (archivoJugadores.modificarRegistro(J, pos)) {
                     cout << "Jugador modificado correctamente.\n";
                 } else {
                     cout << "Error al modificar el registro.\n";
                 }
             }
-
+                       
             cin.ignore();
             cin.get();
             break;                 
