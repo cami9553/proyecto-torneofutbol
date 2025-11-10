@@ -126,20 +126,20 @@ void ArchivoClub::leer(int cantidadRegistros, Club *vector){
 void ArchivoClub::listarRegistros() {
     int cantidad = cantidadRegistros();
     if (cantidad == 0) {
-        cout << "No hay clubes registrados.\n";
+        std::cout << "No hay clubes registrados.\n";
         return;
     }
 
     Club C;
-    cout << "\n=== LISTA DE CLUBES ===\n";
+    std::cout << "\n=== LISTA DE CLUBES ===\n";
     for (int i = 0; i < cantidad; i++) {
         C = leerRegistro(i);
-        cout << "\nClub #" << i + 1 << endl;
+        std::cout << "\nClub #" << i + 1 << std::endl;
         C.mostrar();
     }
 }
 
-bool ArchivoClubr::modificarRegistro(const Club& club, int posicion) {
+bool ArchivoClub::modificarRegistro(const Club& club, int posicion) {
     FILE* pFile = fopen(_nombreArchivo.c_str(), "rb+");
     if (pFile == NULL) return false;
 

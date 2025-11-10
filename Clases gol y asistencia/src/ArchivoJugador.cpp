@@ -51,15 +51,15 @@ bool ArchivoJugador::modificarRegistro(const Jugador& jugador, int posicion) {
 void ArchivoJugador::listarRegistros() {
     int cantidad = getCantidadRegistros();
     if (cantidad == 0) {
-        cout << "No hay jugadores registrados.\n";
+        std::cout << "No hay jugadores registrados.\n";
         return;
     }
 
     Jugador J;
-    cout << "\n=== LISTA DE JUGADORES ===\n";
+    std::cout << "\n=== LISTA DE JUGADORES ===\n";
     for (int i = 0; i < cantidad; i++) {
         J = leerRegistro(i);
-        cout << "\nJugador #" << i + 1 << endl;
+        std::cout << "\nJugador #" << i + 1 << std::endl;
         J.mostrar();
     }
 }
