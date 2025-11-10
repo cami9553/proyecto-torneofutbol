@@ -139,6 +139,16 @@ void ArchivoClub::listarRegistros() {
     }
 }
 
+bool ArchivoClubr::modificarRegistro(const Club& club, int posicion) {
+    FILE* pFile = fopen(_nombreArchivo.c_str(), "rb+");
+    if (pFile == NULL) return false;
+
+    fseek(pFile, posicion * sizeof(Club), SEEK_SET);
+    bool ok = fwrite(&club, sizeof(Club), 1, pFile);
+    fclose(pFile);
+    return ok;
+}
+
 Club* ArchivoClub::buscarPorId(int id) {
     for (int i = 0; i < cantidadClubes; i++) {
         if (clubes[i].getIdClub() == id) {
