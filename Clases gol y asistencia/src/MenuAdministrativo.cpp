@@ -95,6 +95,44 @@ void menuAdministrativo()
         }
         case 3:
         {
+            cout << "\n==== ELIMINAR CLUB ====\n";
+            int id;
+            cout << "ingrese el ID del club a eliminar:";
+            cin >> id;
+
+            int pos = archivoClubes.buscar(id);
+
+            if (pos == -1)
+        {
+            cout << "No se encontró el club con ese ID. \n";
+        }
+        else
+        { 
+            Club c = archivoClubes.leerRegistro(pos);
+            cout << "\nClub encontrado:\n";
+            c.mostrar();
+
+            char confirm; 
+            cout << "\n¿Desea eliminar este club? (S/N):";
+            cin >> confirm;
+
+            if (confirm == 'S' || confirm == 's')
+        {
+            if (archivoClubes.eliminarRegistroFisico(id))
+            {
+                cout << "Club eliminado correctamente. \n";
+            }
+            else
+            {
+                cout << "Operación cancelada. \n";
+            }
+        }
+
+        cin.ignore();
+        cin.get();
+        break;
+    }
+        {
             cin.get();
             break;
         }
@@ -182,6 +220,49 @@ void menuAdministrativo()
 
         case 8:
         {
+            cout << "\n==== ELIMINAR JUGADOR ====\n";
+            int dni;
+            cout << "Ingrese el DNI del jugador a eliminar:";
+            cin >> dni;
+        
+            int pos = archivoJugadores.buscarPorId(dni);
+            
+            if (pos == -1)
+        {
+            cout << "Jugador no encontrado. \n";
+        }
+        else
+        {
+            Jugador J = archivoJugadores.leerRegistro(pos);
+            cout << "\nJugador encontrado:\n";
+            J.mostrar();
+
+            char confirm;
+            cout << "\n ¿Desea eliminar este jugador? (S/N):";
+            cin >> confirm;
+
+            if (confirm == 'S' || confirm == 's')
+            {
+                if (archivoJugadores.eliminarRegistroFisico(dni))
+                {
+                    cout << "Jugador eliminado correctamente.\n";
+                }
+                else
+                {
+                    cout << "Error al eliminar el jugador. \n";
+                }
+            }
+            else
+            {
+                cout << "Operación cancelada. \n";
+            }
+        }
+          cin.ignore();
+          cin.get();
+          break;
+    }
+    
+        {
             cin.get();
             break;
         }
@@ -202,6 +283,4 @@ void menuAdministrativo()
         }
     }
     while(opcion != 0);
-
-
-}
+    }

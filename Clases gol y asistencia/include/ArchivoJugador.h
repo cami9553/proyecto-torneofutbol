@@ -18,6 +18,8 @@ public:
     void leerTodos(Jugador* vector, int cantidadRegistros);
     void listarRegistros();
     int buscarPorId(int dni);
+    bool eliminarRegistroFisico(int id);
+
 };
 
 #endif

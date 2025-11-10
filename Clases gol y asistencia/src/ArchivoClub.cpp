@@ -155,9 +155,30 @@ Club* ArchivoClub::buscarPorId(int id) {
             return &clubes[i];
         }
     }
-    return nullptr; // Por si no se encuentra el club
+    return nullptr; // Por si no  encuentra el club
 }
 
 Club* ArchivoClub::getClubes() const {
     return clubes;
+}
+
+bool ArchivoClub::eliminarRegistroFisico(int id)
+{
+    Club club;
+    FILE *p = fopen("clubes.dat", "rb");
+    FILE *temp = fopen ("temp.dat", "wb");
+    if (p == NULL || temp == NULL) return false;
+
+while (fread(&club, sizeof(Club), 1, p))
+{
+    if (club.getIdClub() != id)
+    {
+        fwrite(&club, sizeof(Club), 1, temp);
+    }
+}
+fclose(p);
+fclose(temp);
+remove("clubes.dat");
+rename("temp.dat", "clubes.dat");
+return true;
 }

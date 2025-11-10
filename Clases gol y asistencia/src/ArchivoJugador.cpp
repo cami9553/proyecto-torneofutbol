@@ -81,3 +81,24 @@ void ArchivoJugador::leerTodos(Jugador* vector, int cantidadRegistros) {
     fread(vector, sizeof(Jugador), cantidadRegistros, pFile);
     fclose(pFile);
 }
+
+bool ArchivoJugador::eliminarRegistroFisico(int dni)
+{
+    Jugador jugador;
+    FILE *p = fopen("jugadores.dat","rb" );
+    FILE *temp = fopen("temp.dat", "wb");
+    if (p == NULL || temp == NULL) return false;
+
+    while (fread(&jugador, sizeof(jugador), 1, p))
+{
+    if (jugador.getDni() != dni)
+    {
+        fwrite(&jugador, sizeof(Jugador), 1, temp);
+    }
+}
+fclose(p);
+fclose(temp);
+remove("jugadores.dat");
+rename("temp.dat", "jugadores.dat");
+return true;
+}

@@ -26,6 +26,8 @@ class ArchivoClub{
         Club leerRegistro(int posicion);
         Club* buscarPorId(int id);
         Club* getClubes()const;
+        bool eliminarRegistroFisico(int id);
+
 
 };
 #endif // ARCHIVOCLUB_H
