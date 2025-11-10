@@ -17,6 +17,7 @@ public:
     bool modificarRegistro(const Jugador& jugador, int posicion);
     void leerTodos(Jugador* vector, int cantidadRegistros);
     void listarRegistros();
+    int buscarPorId(int dni);
 };
 
 #endif
