@@ -42,7 +42,8 @@ void menuOperativo()
             ArchivoGol archivoGoles("goles.dat");
             ArchivoJugador archivoJugadores("jugadores.dat");
     
-            int cantGoles = archivoGoles.getCantidadRegistros();
+            archivoGoles.cargarDesdeArchivo();
+            int cantGoles = archivoGoles.getCantidad();
             int cantJugadores = archivoJugadores.getCantidadRegistros();
 
             if (cantGoles == 0) {
