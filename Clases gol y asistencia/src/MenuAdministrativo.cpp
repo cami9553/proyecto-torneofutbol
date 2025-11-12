@@ -132,10 +132,6 @@ void menuAdministrativo()
         cin.get();
         break;
     }
-        {
-            cin.get();
-            break;
-        }
 
         case 4:
         {
@@ -261,19 +257,15 @@ void menuAdministrativo()
           cin.get();
           break;
     }
-    
-        {
-            cin.get();
-            break;
-        }
-        case 9:
-        {
-            archivoJugadores.listarRegistros();
-            cin.ignore();
-            cin.get();
-            break;
-        }
+          cin.ignore();
+          cin.get();
+          break;
+    }
 
+        case 9:
+            break;
+        
+       
         case 0:
             cout << "\nSaliendo del sistema...\n";
             break;
@@ -283,4 +275,4 @@ void menuAdministrativo()
         }
     }
     while(opcion != 0);
-    }
+}

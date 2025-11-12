@@ -2,6 +2,8 @@
 #define JUGADOR_H
 
 #include "Persona.h"
+#include <string> 
+
 
 
 

@@ -52,3 +52,8 @@ void Archivoasistencia::guardarEnArchivo() {
     fwrite(_Asistencias, sizeof(Asistencia), _cantidadasistencias, pFile);
     fclose(pFile);
 }
+ Asistencia Archivoasistencia::getAsistencia(int indice) const {
+    if (indice < 0 || indice >= _cantidadasistencias) return Asistencia();
+    return _Asistencias[indice];
+ }
+

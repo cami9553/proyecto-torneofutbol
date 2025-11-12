@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Asistencia.h"
+using namespace std;
 
 class Archivoasistencia {
 private:
@@ -19,6 +20,8 @@ public:
     void buscarPorPartido(int idPartido);
     void cargarDesdeArchivo();
     void guardarEnArchivo();
+
+    Asistencia getAsistencia(int indice) const;
 };
 
 

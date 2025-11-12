@@ -1,6 +1,7 @@
 #ifndef ASISTENCIA_H
 #define ASISTENCIA_H
 
+
 class Asistencia {
 private:
     int _nroPartido;
@@ -14,6 +15,8 @@ public:
     // Setters
     void setNroPartido(int nro);
     void setDniJugador(int dni);
+
+    void cargar();
 };
 
 #endif

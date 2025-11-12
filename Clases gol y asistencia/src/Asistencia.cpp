@@ -1,4 +1,6 @@
 #include "Asistencia.h"
+#include <iostream>
+using namespace std;
 
 // Getters
 int Asistencia::getNroPartido() {
@@ -17,3 +19,9 @@ void Asistencia::setNroPartido(int nro) {
 void Asistencia::setDniJugador(int dni) {
     _dniJugador = dni;
 }
+ void Asistencia::cargar() {
+    cout << "Ingrese DNI del jugador:";
+    cin >> _dniJugador;
+    cout << "Ingrese número del partido:";
+    cin >> _nroPartido;
+ }

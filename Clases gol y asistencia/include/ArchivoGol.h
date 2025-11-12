@@ -12,7 +12,10 @@ private:
 
 public:
     ArchivoGol(const std::string& nombreArchivo);
-    ~ArchivoGol();
+   bool guardarRegistro(const Gol& gol);
+   Gol leerRegistro(int posicion);
+   int getCantidadRegistros();
+   ~ArchivoGol();
 
     int getCantidad() const;
     void agregarGol(const Gol& g);
