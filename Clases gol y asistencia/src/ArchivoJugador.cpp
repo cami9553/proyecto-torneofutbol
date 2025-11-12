@@ -2,11 +2,13 @@
 #include <cstdio>
 
 
-ArchivoJugador::ArchivoJugador(const std::string& nombreArchivo) {
+ArchivoJugador::ArchivoJugador(const std::string& nombreArchivo)
+{
     _nombreArchivo = nombreArchivo;
 }
 
-int ArchivoJugador::getCantidadRegistros() {
+int ArchivoJugador::getCantidadRegistros()
+{
     FILE* pFile = fopen(_nombreArchivo.c_str(), "rb");
     if (pFile == NULL) return 0;
 
@@ -17,7 +19,8 @@ int ArchivoJugador::getCantidadRegistros() {
     return tam / sizeof(Jugador);
 }
 
-Jugador ArchivoJugador::leerRegistro(int posicion) {
+Jugador ArchivoJugador::leerRegistro(int posicion)
+{
     Jugador jugador;
     FILE* pFile = fopen(_nombreArchivo.c_str(), "rb");
     if (pFile == NULL) return jugador;
@@ -29,7 +32,8 @@ Jugador ArchivoJugador::leerRegistro(int posicion) {
     return jugador;
 }
 
-bool ArchivoJugador::guardarRegistro(const Jugador& jugador) {
+bool ArchivoJugador::guardarRegistro(const Jugador& jugador)
+{
     FILE* pFile = fopen(_nombreArchivo.c_str(), "ab");
     if (pFile == NULL) return false;
 
@@ -38,7 +42,8 @@ bool ArchivoJugador::guardarRegistro(const Jugador& jugador) {
     return ok;
 }
 
-bool ArchivoJugador::modificarRegistro(const Jugador& jugador, int posicion) {
+bool ArchivoJugador::modificarRegistro(const Jugador& jugador, int posicion)
+{
     FILE* pFile = fopen(_nombreArchivo.c_str(), "rb+");
     if (pFile == NULL) return false;
 
@@ -48,33 +53,39 @@ bool ArchivoJugador::modificarRegistro(const Jugador& jugador, int posicion) {
     return ok;
 }
 
-void ArchivoJugador::listarRegistros() {
+void ArchivoJugador::listarRegistros()
+{
     int cantidad = getCantidadRegistros();
-    if (cantidad == 0) {
+    if (cantidad == 0)
+    {
         std::cout << "No hay jugadores registrados.\n";
         return;
     }
 
     Jugador J;
     std::cout << "\n=== LISTA DE JUGADORES ===\n";
-    for (int i = 0; i < cantidad; i++) {
+    for (int i = 0; i < cantidad; i++)
+    {
         J = leerRegistro(i);
         std::cout << "\nJugador #" << i + 1 << std::endl;
         J.mostrar();
     }
 }
 
-int ArchivoJugador::buscarPorId(int dni) {
+int ArchivoJugador::buscarPorId(int dni)
+{
     Jugador j;
     int cantidad = getCantidadRegistros();
-    for (int i = 0; i < cantidad; i++) {
+    for (int i = 0; i < cantidad; i++)
+    {
         j = leerRegistro(i);
         if (j.getDni() == dni) return i;
     }
     return -1;
 }
 
-void ArchivoJugador::leerTodos(Jugador* vector, int cantidadRegistros) {
+void ArchivoJugador::leerTodos(Jugador* vector, int cantidadRegistros)
+{
     FILE* pFile = fopen(_nombreArchivo.c_str(), "rb");
     if (pFile == NULL) return;
 
@@ -90,15 +101,15 @@ bool ArchivoJugador::eliminarRegistroFisico(int dni)
     if (p == NULL || temp == NULL) return false;
 
     while (fread(&jugador, sizeof(jugador), 1, p))
-{
-    if (jugador.getDni() != dni)
     {
-        fwrite(&jugador, sizeof(Jugador), 1, temp);
+        if (jugador.getDni() != dni)
+        {
+            fwrite(&jugador, sizeof(Jugador), 1, temp);
+        }
     }
-}
-fclose(p);
-fclose(temp);
-remove("jugadores.dat");
-rename("temp.dat", "jugadores.dat");
-return true;
+    fclose(p);
+    fclose(temp);
+    remove("jugadores.dat");
+    rename("temp.dat", "jugadores.dat");
+    return true;
 }

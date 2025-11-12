@@ -7,7 +7,7 @@
 class ArchivoTorneo{
     private:
         std::string _nombreArchivo;
-        
+
     public:
         ArchivoTorneo(std::string nombreArchivo);
         bool Guardar(Torneo torneo);
@@ -16,5 +16,6 @@ class ArchivoTorneo{
         Torneo Leer(int posicion);
         int CantidadRegistros();
         void Leer(int cantidadRegistros, Torneo *vector);
+        void crearFixture(int idTorneo = 1);
 };
 #endif // ARCHIVOTORNEO_H

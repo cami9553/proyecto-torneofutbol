@@ -12,16 +12,22 @@ private:
 
 public:
     ArchivoGol(const std::string& nombreArchivo);
-   bool guardarRegistro(const Gol& gol);
-   Gol leerRegistro(int posicion);
-   int getCantidadRegistros();
    ~ArchivoGol();
 
+    //Getters
     int getCantidad() const;
+    int getCantidadRegistros();
+
+    //Operaciones principales
+    bool guardarRegistro(const Gol& gol);
+    Gol leerRegistro(int posicion);
+
     void agregarGol(const Gol& g);
-    void buscarPorPartido(int idPartido);
     void cargarDesdeArchivo();
     void guardarEnArchivo();
+
+    //Funcion de busqueda
+    void buscarPorPartido(int idPartido);
 };
 
 #endif

@@ -5,6 +5,8 @@
 #include "Jugador.h"
 #include "ArchivoJugador.h"
 #include "ArchivoClub.h"
+#include "ArchivoTorneo.h"
+
 using namespace std;
 
 
@@ -30,7 +32,7 @@ void menuAdministrativo()
         cout << "7.Editar Jugador\n";
         cout << "8.Eliminar Jugador\n";
         cout << "9.Listar Jugadores\n";
-
+        cout << "10.Crear Fixture\n";
         cout << "0.Salir\n";
         cout << "Seleccione una opcion:";
         cin >> opcion;
@@ -107,12 +109,12 @@ void menuAdministrativo()
             cout << "No se encontró el club con ese ID. \n";
         }
         else
-        { 
+        {
             Club c = archivoClubes.leerRegistro(pos);
             cout << "\nClub encontrado:\n";
             c.mostrar();
 
-            char confirm; 
+            char confirm;
             cout << "\n¿Desea eliminar este club? (S/N):";
             cin >> confirm;
 
@@ -131,7 +133,7 @@ void menuAdministrativo()
         cin.ignore();
         cin.get();
         break;
-    }
+    }}
 
         case 4:
         {
@@ -220,9 +222,9 @@ void menuAdministrativo()
             int dni;
             cout << "Ingrese el DNI del jugador a eliminar:";
             cin >> dni;
-        
+
             int pos = archivoJugadores.buscarPorId(dni);
-            
+
             if (pos == -1)
         {
             cout << "Jugador no encontrado. \n";
@@ -257,15 +259,23 @@ void menuAdministrativo()
           cin.get();
           break;
     }
-          cin.ignore();
-          cin.get();
-          break;
-    }
+
 
         case 9:
+        {
+            archivoJugadores.listarRegistros();
+            cin.ignore();
+            cin.get();
             break;
-        
-       
+        }
+
+        case 10:{
+            ArchivoTorneo archTorneo("torneos.dat");
+            archTorneo.crearFixture(1);
+            cin.get();
+            break;
+        }
+
         case 0:
             cout << "\nSaliendo del sistema...\n";
             break;

@@ -3,7 +3,7 @@
 #include "ArchivoGol.h"
 using namespace std;
 
-ArchivoGol::ArchivoGol(const std::string& nombreArchivo) {
+ArchivoGol::ArchivoGol(const std::string& nombreArchivo = "goles.dat") {
     _nombreArchivo = nombreArchivo;
     _goles = nullptr;
     _cantidadGoles = 0;
@@ -51,4 +51,16 @@ void ArchivoGol::guardarEnArchivo() {
 
     fwrite(_goles, sizeof(Gol), _cantidadGoles, pFile);
     fclose(pFile);
+}
+
+Gol ArchivoGol::leerRegistro(int posicion){
+    Gol gol;
+    FILE* pFile = fopen("goles.dat", "rb");
+    if (pFile == NULL) return gol;
+
+    fseek(pFile, posicion * sizeof(Gol), SEEK_SET);
+    fread(&gol, sizeof(Gol), 1, pFile);
+    fclose(pFile);
+
+    return gol;
 }

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdio>
 #include "Archivoasistencia.h"
+#include "Asistencia.h"
 using namespace std;
 
 Archivoasistencia::Archivoasistencia(const std::string& nombreArchivo) {

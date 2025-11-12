@@ -10,9 +10,10 @@ Partido::Partido() {
     _idClubVisitante = 0;
     _golesLocal = 0;
     _golesVisitante = 0;
+    bool _jugado = false;
 }
 
-Partido::Partido(int nroPartido, Fecha fecha, int idTorneo, int idClubLocal, int idClubVisitante, int golesLocal, int golesVisitante) {
+Partido::Partido(int nroPartido, Fecha fecha, int idTorneo, int idClubLocal, int idClubVisitante, int golesLocal, int golesVisitante, bool j) {
     _nroPartido = nroPartido;
     _fecha = fecha;
     _idTorneo = idTorneo;
@@ -20,6 +21,7 @@ Partido::Partido(int nroPartido, Fecha fecha, int idTorneo, int idClubLocal, int
     _idClubVisitante = idClubVisitante;
     _golesLocal = golesLocal;
     _golesVisitante = golesVisitante;
+    _jugado = j;
 }
 
 void Partido::setNroPartido(int nro){
@@ -50,6 +52,10 @@ void Partido::setGolesVisitante(int goles){
 	_golesVisitante = goles;
 }
 
+void Partido::setJugado(bool j){
+	_jugado = j;
+}
+
 
 int Partido::getNroPartido(){
 	return _nroPartido;
@@ -77,6 +83,10 @@ int Partido::getGolesLocal(){
 
 int Partido::getGolesVisitante(){
 	return _golesVisitante;
+}
+
+bool Partido::getJugado(){
+	return _jugado;
 }
 
 void Partido::cargar() {

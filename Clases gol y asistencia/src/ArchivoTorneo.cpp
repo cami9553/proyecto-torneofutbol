@@ -1,5 +1,7 @@
 #include "Fecha.h"
 #include "ArchivoTorneo.h"
+#include "ArchivoClub.h"
+#include "ArchivoPartido.h"
 
 ArchivoTorneo::ArchivoTorneo(std::string nombreArchivo){
     _nombreArchivo = nombreArchivo;
@@ -77,3 +79,53 @@ void ArchivoTorneo::Leer(int cantidadRegistros, Torneo *vector){
     }
     fclose(pArchivo);
 }
+
+/* *********************** Creador de fiture ********************************/
+
+void ArchivoTorneo::crearFixture(int idTorneo) {
+    ArchivoClub archClub;
+    ArchivoPartido archPartido("partidos.dat");
+
+    int cantClubes = archClub.cantidadRegistros();
+    if (cantClubes < 2) {
+        std::cout << "Se necesitan al menos 2 clubes para crear el fixture." << std::endl;
+        return;
+    }
+
+    Club c1, c2;
+    Partido p;
+    Fecha f;
+    int nroPartido = 1;
+    int nroFecha = 1;
+    int partidosPorFecha = cantClubes / 2; // ver si podemos dividir por jornadas (misma fecha)
+    int contadorPartidosFecha = 0;
+
+    for (int i = 0; i < cantClubes; i++) {
+        c1 = archClub.leerRegistro(i);
+
+        for (int j = i + 1; j < cantClubes; j++) {
+            c2 = archClub.leerRegistro(j);
+
+            p.setNroPartido(nroPartido++);
+            p.setIdTorneo(idTorneo);
+            p.setIdClubLocal(c1.getIdClub());
+            p.setIdClubVisitante(c2.getIdClub());
+            p.setGolesLocal(0);
+            p.setGolesVisitante(0);
+            p.setFecha(f);
+            p.setJugado(false);
+
+            archPartido.guardarRegistro(p);
+
+            contadorPartidosFecha++;
+            if (contadorPartidosFecha >= partidosPorFecha) {
+                nroFecha++;
+                contadorPartidosFecha = 0;
+            }
+        }
+    }
+
+    std::cout << "\nFixture creado con exito." << std::endl;
+    std::cout << "Se generaron " << (nroPartido - 1) << " partidos"<< std::endl;
+}
+
