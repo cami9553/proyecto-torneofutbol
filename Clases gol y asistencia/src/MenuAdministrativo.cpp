@@ -35,27 +35,29 @@ void menuAdministrativo()
         cout << "10.Crear Fixture\n";
         cout << "0.Salir\n";
         cout << "Seleccione una opcion:";
-        cin >> opcion;  // lee la opcion elegida
-        cin.ignore();   // limpia el buffer del teclado
-        system("cls");  // limpia la pantalla 
+        cin >> opcion;
+        cin.ignore();
+        system("cls");
         switch(opcion)
         {
 
-        //CRUD CLUB (1 AL 5)
         case 1:
         {
             cout << "\n=== REGISTRO DE CLUB ===\n";
             Club C;
             ArchivoClub archivoClubes("clubes.dat");
-
             C.cargar();
-            if(archivoClubes.guardar(C))
-            {
-                cout << "Club registrado exitosamente.\n";
-            }
-            else
-            {
-                cout << "Error al guardar el Club.\n";
+
+            //registro de clubes hasta id = 0
+            while(C.getIdClub() != 0){
+                if(archivoClubes.guardar(C)){
+                    cout << "Club registrado exitosamente.\n\n";
+                    cin.get();
+                    system("cls");
+                }
+                else
+                    cout << "Error al guardar el Club.\n";
+                C.cargar();
             }
             cin.get();
             break;
@@ -175,14 +177,17 @@ void menuAdministrativo()
             cout << "\n=== REGISTRO DE JUGADOR ===\n";
             Jugador J;
             J.cargar();
-            if(archivoJugadores.guardarRegistro(J))
-            {
-                cout << "jugador registrado exitosamente.\n";
-            }
-            else
-            {
-                cout << "Error al guardar el jugador.\n";
-            }
+            while(J.getDni() != 0){
+                if(archivoJugadores.guardarRegistro(J)){
+                    cout << "jugador registrado exitosamente.\n";
+                    cin.get();
+                    system("cls");
+                }
+                else
+                    cout << "Error al guardar el jugador.\n";
+                J.cargar();
+        }
+            cin.get();
             break;
         }
 

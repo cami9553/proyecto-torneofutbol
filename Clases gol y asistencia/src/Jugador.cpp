@@ -34,8 +34,9 @@ int Jugador::getIdClub(){
 
 //Otros metodos
 void Jugador::cargar() {
-    Persona::cargar();
-    cout << "Club (Elige ID): "<<endl; //aca habria que traer lista de clubes, cargarlo de archivo y mostrar lista para que elija una opcion de clubes ya creados.
+    bool flag = Persona::cargar();
+    if(flag == false) return;
+    cout << "\nClub (Elige ID): "<<endl;
 
     //Muestro lista de clubes creados
     ArchivoClub archivo("clubes.dat");
@@ -44,9 +45,9 @@ void Jugador::cargar() {
     for (int i = 0; i < archivo.cantidadRegistros(); i++) {
         cout << lista[i].getIdClub() << "- " << lista[i].getNombre() << endl;
     }
-
+    cout << "\nSu eleccion de Club: ";
     cin >> _idClub;
-    cout << "Posición (Defensor:1/Mediocampista:2/Delantero:3):  "<<endl;
+    cout << "\nPosicion (Defensor:1/Mediocampista:2/Delantero:3): ";
     cin.ignore();
     cin >> _posicion;
 }

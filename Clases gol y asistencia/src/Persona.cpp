@@ -76,25 +76,28 @@ Fecha Persona::getFechaNacimiento() {
 
 
 //Otros metodos
-void Persona::cargar() {
-    cout << "DNI: " << endl;
+bool Persona::cargar() {
+    cout << "DNI (0 para terminar): ";
     cin >> _dni;
+    if(_dni == 0) return false;
     cin.ignore();
 
-    cout << "Nombre: "<< endl;
+    cout << "Nombre: ";
     cin.getline(_nombre, 30);
 
-    cout << "Apellido: "<< endl;
+    cout << "Apellido: ";
     cin.getline(_apellido, 30);
 
-    cout << "Telefono: "<< endl;
+    cout << "Telefono: ";
     cin.getline(_telefono, 15);
 
-    cout << "Email: "<< endl;
+    cout << "Email: ";
     cin.getline(_email, 30);
 
-    cout << "Fecha de nacimiento:" << endl;
+    cout << "Fecha de nacimiento: \n";
     _fechaNacimiento.cargar();
+
+    return true;
 }
 
 void Persona::mostrar() {

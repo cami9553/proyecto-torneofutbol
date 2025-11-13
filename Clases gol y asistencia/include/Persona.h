@@ -32,7 +32,7 @@ class Persona
         Fecha getFechaNacimiento();
 
         //Otros metodos
-        void cargar();
+        bool cargar();
         void mostrar();
 };
 #endif // PERSONA_H

@@ -46,11 +46,13 @@ std::string Fecha::toString(){
 
 //Otros metodos
 void Fecha::cargar(){
-    cout << "Dia: " << endl;
+    cout << "Dia: ";
     cin >> _dia;
-    cout << "Mes: " << endl;
+
+    cout << "Mes: ";
     cin >> _mes;
-    cout << "Anio: " << endl;
+
+    cout << "Anio:";
     cin >> _anio;
 
 }

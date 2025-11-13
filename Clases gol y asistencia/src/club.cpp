@@ -25,8 +25,9 @@ const char *Club::getCiudad(){ return _ciudad;}
 void Club::cargar()
 {
     string nombre, presidente, ciudad;
-    cout << "Iingrese ID del club:";
+    cout << "Ingrese ID del club (0 para terminar):";
     cin >> _idClub;
+    if (_idClub == 0) return;
     cin.ignore();
 
     cout << "Ingrese nombre del club:";
@@ -37,7 +38,6 @@ void Club::cargar()
 
     cout << "Ingrese Ciudad:";
     cin.getline(_ciudad, 30);
-
 }
 
 void Club::mostrar(){
