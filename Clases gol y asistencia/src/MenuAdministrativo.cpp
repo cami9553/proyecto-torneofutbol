@@ -35,9 +35,9 @@ void menuAdministrativo()
         cout << "10.Crear Fixture\n";
         cout << "0.Salir\n";
         cout << "Seleccione una opcion:";
-        cin >> opcion;
-        cin.ignore();
-        system("cls");
+        cin >> opcion;  // lee la opcion elegida
+        cin.ignore();   // limpia el buffer del teclado
+        system("cls");  // limpia la pantalla 
         switch(opcion)
         {
 
@@ -95,16 +95,16 @@ void menuAdministrativo()
             cin.get();
             break;
         }
-        case 3:
-        {
-            cout << "\n==== ELIMINAR CLUB ====\n";
-            int id;
-            cout << "ingrese el ID del club a eliminar:";
-            cin >> id;
+    case 3:
+    {
+        cout << "\n==== ELIMINAR CLUB ====\n";
+        int id;
+        cout << "ingrese el ID del club a eliminar:";
+        cin >> id;
 
-            int pos = archivoClubes.buscar(id);
+        int pos = archivoClubes.buscar(id);
 
-            if (pos == -1)
+        if (pos == -1)
         {
             cout << "No se encontró el club con ese ID. \n";
         }
@@ -119,21 +119,22 @@ void menuAdministrativo()
             cin >> confirm;
 
             if (confirm == 'S' || confirm == 's')
-        {
-            if (archivoClubes.eliminarRegistroFisico(id))
             {
-                cout << "Club eliminado correctamente. \n";
-            }
-            else
-            {
-                cout << "Operación cancelada. \n";
+                if (archivoClubes.eliminarRegistroFisico(id))
+                {
+                    cout << "Club eliminado correctamente. \n";
+                }
+                else
+                {
+                    cout << "Operación cancelada. \n";
+                }
             }
         }
 
         cin.ignore();
         cin.get();
         break;
-    }}
+    }
 
         case 4:
         {
