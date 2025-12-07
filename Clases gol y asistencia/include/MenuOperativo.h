@@ -1,7 +1,7 @@
-#ifndef MENUOPERATIVO_H
-#define MENUOPERATIVO_H
+#ifndef MENU_OPERATIVO_H
+#define MENU_OPERATIVO_H
 
 
 void menuOperativo();
 
-#endif // MENUOPERATIVO_H
+#endif // MENU_OPERATIVO_H
