@@ -116,10 +116,9 @@ void menuAdministrativo()
 
                     char confirm;
                     cout << "\n¿Desea eliminar este club? (S/N): ";
-                    cin >> confirm;
-                    cin.ignore();
-
-                    if (confirm == 'S' || confirm == 's') {
+                    char confirm = leerOpcionSN(); 
+              
+                    if (confirm == 'S') {
                         if (archivoClubes.eliminarRegistroFisico(id))
                             cout << "Club eliminado correctamente.\n";
                         else
@@ -220,10 +219,9 @@ void menuAdministrativo()
 
                     char confirm;
                     cout << "\n¿Desea eliminar este jugador? (S/N): ";
-                    cin >> confirm;
-                    cin.ignore();
-
-                    if (confirm == 'S' || confirm == 's') {
+                    char confirm = leerOpcionSN();
+                   
+                    if (confirm == 'S') {
                         if (archivoJugadores.eliminarRegistroFisico(dni))
                             cout << "Jugador eliminado correctamente.\n";
                         else
