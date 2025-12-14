@@ -8,6 +8,7 @@
 #include "ArchivoClub.h"
 #include "ArchivoTorneo.h"
 #include "Validaciones.h"
+#include "Torneo.h"
 
 using namespace std;
 
@@ -33,6 +34,7 @@ void menuAdministrativo()
         cout << "8. Eliminar Jugador\n";
         cout << "9. Listar Jugadores\n";
         cout << "10. Crear Fixture\n";
+        cout << "11. Registrar Torneo\n";
         cout << "0. Salir\n";
         cout << "Seleccione una opcion: ";
         
@@ -250,13 +252,24 @@ void menuAdministrativo()
                 break;
             }
 
+            case 11: {
+                Torneo t;
+                t.cargar();
+                t.mostrar();
+                break;
+
+            }
+
             case 0:
                 cout << "\nSaliendo del sistema...\n";
                 break;
 
             default:
                 cout << "Opción inválida, intente nuevamente.\n";
-        }
+            }
+
+            
+
 
     } while(opcion != 0);
 }

@@ -24,7 +24,12 @@ void Torneo::setNombre(const char* nombre) {
 }
 
 void Torneo::setAnio(int anio) {
-    _anio = anio;
+    if (anio >= 1900 && anio <= 2100) {
+        _anio = anio;
+    } else {
+        cout << "Anio invalido. Se guarda como 0 ." << endl;
+        _anio = 0; 
+    }
 }
 
 int Torneo::getIdTorneo() {
@@ -42,15 +47,20 @@ int Torneo::getAnio() {
 void Torneo::cargar() {
     cout << "ID Torneo: ";
     cin >> _idTorneo;
+
     cout << "Nombre: ";
     cin.ignore();
     cin.getline(_nombre, 30);
-    cout << "Año: ";
-    cin >> _anio;
+
+    
+    int anio;
+    cout << "Anio:";
+    cin >> anio;
+    setAnio(anio);
 }
 
 void Torneo::mostrar() {
     cout << "ID Torneo: " << _idTorneo << endl;
     cout << "Nombre: " << _nombre << endl;
-    cout << "Año: " << _anio << endl;
+    cout << "Anio: " << _anio << endl;
 }
