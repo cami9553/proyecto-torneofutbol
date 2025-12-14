@@ -1,4 +1,5 @@
 #include "Persona.h"
+#include "Validaciones.h" 
 #include <cstring>
 #include <iostream>
 #include <iomanip>
@@ -86,11 +87,8 @@ bool Persona::cargar() {
     }
     cin.ignore();
 
-    cout << "Nombre: ";
-    cin.getline(_nombre, 30);
-
-    cout << "Apellido: ";
-    cin.getline(_apellido, 30);
+    leerNombreApellido(_nombre, 30, "Nombre: ");
+    leerNombreApellido(_apellido, 30, "Apellido: ");
 
     cout << "Telefono: ";
     cin.getline(_telefono, 15);
