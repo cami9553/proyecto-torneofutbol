@@ -51,3 +51,39 @@ char leerOpcionSN() {
         cout << "Error: Debe ingresar 'S' o 'N'. Intente nuevamente: ";
     }
 }
+//validacion string
+bool validarSoloLetrasEspacios(const char* texto) {
+    for(int i = 0; texto[i] != '\0'; i++) {
+        char c = texto[i];
+        // si no es letra, no es espacio, no es punto o apostrofe
+        if(!((c >= 'A' && c <= 'Z') || 
+             (c >= 'a' && c <= 'z') || 
+             c == ' ' || 
+             c == '.' || 
+             c == '\'')) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// validacion nombre y apellido
+void leerNombreApellido(char* campo, int tamano, const char* mensaje) {
+    cout << mensaje;
+    while(true) {
+        cin.getline(campo, tamano);
+        
+        // Verificar si está vacío
+        if(campo[0] == '\0') {
+            cout << "Error: No puede estar vacio. Ingrese " << mensaje;
+            continue;
+        }
+        
+        // verificar que solo sea letras y espacios
+        if(validarSoloLetrasEspacios(campo)) {
+            break;
+        } else {
+            cout << "Error: Solo puede contener letras y espacios. Ingrese " << mensaje;
+        }
+    }
+}
