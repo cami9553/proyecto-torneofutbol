@@ -79,12 +79,20 @@ Fecha Persona::getFechaNacimiento() {
 //Otros metodos
 bool Persona::cargar() {
     cout << "DNI (0 para terminar): ";
-    _dni = leerEntero();
-    if(_dni == 0) return false;
-	if(_dni < 1000000 || _dni > 99999999) {
-		cout << "Error: DNI debe tener entre 7 y 8 digitos\n";
-        return false;
+    
+    // pedir DNI hasta que sea valido o 0
+    while(true) {
+        _dni = leerEntero();
+        
+        if(_dni == 0) return false;  // Termina si es 0
+        
+        if(_dni >= 1000000 && _dni <= 99999999) {
+            break;  // DNI válido, sale del while
+        }
+        
+        cout << "Error: DNI debe tener entre 7 y 8 digitos. Ingrese nuevamente (0 para terminar): ";
     }
+    
     cin.ignore();
 
     leerNombreApellido(_nombre, 30, "Nombre: ");
