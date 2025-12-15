@@ -8,12 +8,14 @@
 class Persona
 {
     private:
+        int _idPersona;
         int _dni;
         char _apellido[30];
         char _nombre[30];
         char _telefono[30];
         char _email[30];
         Fecha _fechaNacimiento;
+        static int _ultimoId;
 
     public:
         Persona();
@@ -32,6 +34,9 @@ class Persona
         Fecha getFechaNacimiento();
 
         //Otros metodos
+        static void setUltimoId(int ultimoId);
+        void generarNuevoId();
+
         bool cargar();
         void mostrar();
 };

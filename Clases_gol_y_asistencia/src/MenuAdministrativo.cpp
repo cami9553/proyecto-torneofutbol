@@ -160,19 +160,21 @@ void menuAdministrativo()
             {
                 cout << "\n=== REGISTRO DE JUGADOR ===\n";
                 Jugador J;
-                J.cargar();
+                char confirm;
+                do{
+                    J.generarNuevoId();
+                    J.cargar();
 
-                while(J.getDni() != 0){
                     if(archivoJugadores.guardarRegistro(J)){
-                        cout << "Jugador registrado exitosamente.\n";
+                        cout << "Club registrado exitosamente.\n\n";
                         cin.get();
                         system("cls");
                     }
-                    else
-                        cout << "Error al guardar el jugador.\n";
-                    J.cargar();
-                }
-                cin.get();
+                    else cout << "Error al guardar el Club.\n";
+                    cout << "Desea cargar otro Club? (S/N): " << endl;
+                    confirm = leerOpcionSN();
+                    system("cls");
+                }while(confirm == 'S');
                 break;
             }
 

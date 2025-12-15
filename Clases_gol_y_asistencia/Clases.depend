@@ -826,7 +826,7 @@
 	"Persona.h"
 	<string>
 
-1765824869 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\persona.h
+1765833646 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\persona.h
 	"Fecha.h"
 	<iostream>
 	<string>
@@ -881,7 +881,7 @@
 	"ArchivoClub.h"
 	<iomanip>
 
-1765832848 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\menuadministrativo.cpp
+1765833895 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\menuadministrativo.cpp
 	"MenuAdministrativo.h"
 	<iostream>
 	<limits>
@@ -910,7 +910,7 @@
 	"Partido.h"
 	<iostream>
 
-1765824869 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\persona.cpp
+1765834026 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\persona.cpp
 	"Persona.h"
 	"Validaciones.h"
 	<cstring>

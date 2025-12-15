@@ -1,12 +1,14 @@
 #include "Persona.h"
-#include "Validaciones.h" 
+#include "Validaciones.h"
 #include <cstring>
 #include <iostream>
 #include <iomanip>
 using namespace std;
+int Persona::_ultimoId = 0;
 
 Persona::Persona()
 {
+    _idPersona = 0;
     _dni = 0;
     strcpy(_apellido, "");
     strcpy(_nombre, "");
@@ -17,6 +19,7 @@ Persona::Persona()
 }
 
 Persona::Persona(int dni, const char* apellido, const char* nombre, const char* telefono, const char* email, Fecha fechaNacimiento) {
+    _idPersona = 0;
     _dni = dni;
     strcpy(_apellido, apellido);
     strcpy(_nombre, nombre);
@@ -24,6 +27,9 @@ Persona::Persona(int dni, const char* apellido, const char* nombre, const char* 
     strcpy(_email, email);
     _fechaNacimiento = fechaNacimiento;
 }
+
+void Persona::setUltimoId(int ultimoId) {_ultimoId = ultimoId;}
+void Persona::generarNuevoId() {_idPersona = ++_ultimoId;}
 
 //Setters
 void Persona::setDni(int dni){
@@ -78,21 +84,22 @@ Fecha Persona::getFechaNacimiento() {
 
 //Otros metodos
 bool Persona::cargar() {
-    cout << "DNI (0 para terminar): ";
-    
+     cout << "ID: " << _idPersona << endl;
+    cout << "DNI: ";
+
     // pedir DNI hasta que sea valido o 0
     while(true) {
         _dni = leerEntero();
-        
+
         if(_dni == 0) return false;  // Termina si es 0
-        
+
         if(_dni >= 1000000 && _dni <= 99999999) {
             break;  // DNI válido, sale del while
         }
-        
+
         cout << "Error: DNI debe tener entre 7 y 8 digitos. Ingrese nuevamente (0 para terminar): ";
     }
-    
+
     cin.ignore();
 
     leerNombreApellido(_nombre, 30, "Nombre: ");
