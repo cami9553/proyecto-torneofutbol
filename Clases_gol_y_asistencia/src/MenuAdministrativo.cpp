@@ -37,10 +37,10 @@ void menuAdministrativo()
         cout << "11. Registrar Torneo\n";
         cout << "0. Salir\n";
         cout << "Seleccione una opcion: ";
-        
+
         opcion = leerEntero();
 
-        
+
         system("cls");
 
         switch(opcion)
@@ -49,19 +49,21 @@ void menuAdministrativo()
             {
                 cout << "\n=== REGISTRO DE CLUB ===\n";
                 Club C;
-                C.cargar();
+                char confirm;
+                do{
+                    C.generarNuevoId();
+                    C.cargar();
 
-                while(C.getIdClub() != 0){
                     if(archivoClubes.guardar(C)){
                         cout << "Club registrado exitosamente.\n\n";
                         cin.get();
                         system("cls");
                     }
-                    else
-                        cout << "Error al guardar el Club.\n";
-                    C.cargar();
-                }
-                cin.get();
+                    else cout << "Error al guardar el Club.\n";
+                    cout << "Desea cargar otro Club? (S/N): " << endl;
+                    confirm = leerOpcionSN();
+                    system("cls");
+                }while(confirm == 'S');
                 break;
             }
 
@@ -70,7 +72,7 @@ void menuAdministrativo()
                 cout << "\n=== EDITAR CLUB ===\n";
                 int cantidad = archivoClubes.cantidadRegistros();
                 for(int x = 0; x < cantidad; x++){
-                    cout << archivoClubes.leerRegistro(x).getIdClub() << "- " 
+                    cout << archivoClubes.leerRegistro(x).getIdClub() << "- "
                          << archivoClubes.leerRegistro(x).getNombre() << endl;
                 }
 
@@ -116,8 +118,8 @@ void menuAdministrativo()
 
                     char confirm;
                     cout << "\n¿Desea eliminar este club? (S/N): ";
-                    char confirm = leerOpcionSN(); 
-              
+                    confirm = leerOpcionSN();
+
                     if (confirm == 'S') {
                         if (archivoClubes.eliminarRegistroFisico(id))
                             cout << "Club eliminado correctamente.\n";
@@ -219,8 +221,8 @@ void menuAdministrativo()
 
                     char confirm;
                     cout << "\n¿Desea eliminar este jugador? (S/N): ";
-                    char confirm = leerOpcionSN();
-                   
+                    confirm = leerOpcionSN();
+
                     if (confirm == 'S') {
                         if (archivoJugadores.eliminarRegistroFisico(dni))
                             cout << "Jugador eliminado correctamente.\n";
@@ -266,7 +268,7 @@ void menuAdministrativo()
                 cout << "Opción inválida, intente nuevamente.\n";
             }
 
-            
+
 
 
     } while(opcion != 0);

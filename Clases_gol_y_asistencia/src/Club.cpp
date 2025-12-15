@@ -2,10 +2,10 @@
 #include <iostream>
 #include "Club.h"
 #include <limits>
-#include "Validaciones.h"
 
 
 using namespace std;
+int Club::_ultimoId = 0;
 
 Club::Club() {
     _idClub = 0;
@@ -13,6 +13,10 @@ Club::Club() {
     strcpy(_presidente, "");
     strcpy(_ciudad, "");
 }
+
+void Club::setUltimoId(int ultimoId) {_ultimoId = ultimoId;}
+int Club::getUltimoId() {return _ultimoId;}
+void Club::generarNuevoId() {_idClub = ++_ultimoId;}
 
 void Club::setIdClub(int idClub){ _idClub = idClub;}
 void Club::setNombre(std::string nombre){strcpy(_nombre, nombre.c_str());}
@@ -27,10 +31,7 @@ const char *Club::getCiudad(){ return _ciudad;}
 
 void Club::cargar()
 {
-    cout << "Ingrese ID del club (0 para terminar):";
-    _idClub = leerEntero();
-
-    if (_idClub == 0) return;
+    cout << "ID del nuevo Club: " << _idClub << endl;
 
     cout << "Ingrese nombre del club:";
     cin.getline(_nombre, 30);

@@ -20,6 +20,7 @@ void ArchivoClub::cargarDesdeArchivo() {
     if (pFile == NULL) {
         cantidadClubes = 0;
         clubes = nullptr;
+        Club::setUltimoId(0);
         return;
     }
 
@@ -33,6 +34,15 @@ void ArchivoClub::cargarDesdeArchivo() {
     fread(clubes, sizeof(Club), cantidadClubes, pFile);
 
     fclose(pFile);
+
+    int maxId = 0;
+    for (int i = 0; i < cantidadClubes; i++) {
+        if (clubes[i].getIdClub() > maxId) {
+            maxId = clubes[i].getIdClub();
+        }
+    }
+
+    Club::setUltimoId(maxId);
 }
 
 

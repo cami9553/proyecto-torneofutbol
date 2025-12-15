@@ -10,8 +10,14 @@ class Club {
     char _presidente[30];
     char _ciudad[30];
 
+    static int _ultimoId;
+
     public:
     Club();
+
+    static int getUltimoId();
+    static void setUltimoId(int ultimoId);
+    void generarNuevoId();
 
     void setIdClub(int id);
     void setNombre(std::string nombre);

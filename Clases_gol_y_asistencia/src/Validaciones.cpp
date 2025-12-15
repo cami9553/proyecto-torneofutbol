@@ -17,9 +17,9 @@ int leerEntero() {
         } else {
           cin.ignore(numeric_limits<streamsize>::max(), '\n');
           return num;
-        }  
+        }
       }
-}  
+}
 
 
 // validacion para leer un entero en un rango dado
@@ -38,10 +38,10 @@ int leerEnteroEnRango(int min, int max) {
 char leerOpcionSN() {
     char opcion;
     string entrada;
-    
+
     while (true) {
         getline(cin, entrada);
-        
+
         if (entrada.length() == 1) {
             opcion = toupper(entrada[0]);
             if (opcion == 'S' || opcion == 'N') {
@@ -56,10 +56,10 @@ bool validarSoloLetrasEspacios(const char* texto) {
     for(int i = 0; texto[i] != '\0'; i++) {
         char c = texto[i];
         // si no es letra, no es espacio, no es punto o apostrofe
-        if(!((c >= 'A' && c <= 'Z') || 
-             (c >= 'a' && c <= 'z') || 
-             c == ' ' || 
-             c == '.' || 
+        if(!((c >= 'A' && c <= 'Z') ||
+             (c >= 'a' && c <= 'z') ||
+             c == ' ' ||
+             c == '.' ||
              c == '\'')) {
             return false;
         }
@@ -72,13 +72,13 @@ void leerNombreApellido(char* campo, int tamano, const char* mensaje) {
     cout << mensaje;
     while(true) {
         cin.getline(campo, tamano);
-        
+
         // Verificar si está vacío
         if(campo[0] == '\0') {
             cout << "Error: No puede estar vacio. Ingrese " << mensaje;
             continue;
         }
-        
+
         // verificar que solo sea letras y espacios
         if(validarSoloLetrasEspacios(campo)) {
             break;

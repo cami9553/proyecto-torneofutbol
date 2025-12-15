@@ -765,3 +765,180 @@
 	"ArchivoClub.h"
 	"ArchivoTorneo.h"
 
+1765824869 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\archivoasistencia.cpp
+	<iostream>
+	<cstdio>
+	"Archivoasistencia.h"
+	"Asistencia.h"
+
+1765824868 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\archivoasistencia.h
+	<string>
+	"Asistencia.h"
+
+1765824868 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\asistencia.h
+
+1765826293 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\archivoclub.cpp
+	"Fecha.h"
+	"Club.h"
+	"ArchivoClub.h"
+	"Validaciones.h"
+
+1765824868 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\fecha.h
+	<string>
+
+1765832154 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\club.h
+	<string>
+
+1765824868 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\archivoclub.h
+	<string>
+	"Club.h"
+	"Torneo.h"
+
+1765824869 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\torneo.h
+	<iostream>
+
+1765824869 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\validaciones.h
+
+1765824869 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\archivogol.cpp
+	<iostream>
+	<cstdio>
+	"ArchivoGol.h"
+
+1765824868 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\archivogol.h
+	<string>
+	"Gol.h"
+
+1765824868 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\gol.h
+	<string>
+
+1765824869 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\archivojugador.cpp
+	"ArchivoJugador.h"
+	"Validaciones.h"
+	<cstdio>
+	<iostream>
+	<cstdlib>
+
+1765824868 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\archivojugador.h
+	<string>
+	"Jugador.h"
+
+1765824868 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\jugador.h
+	"Persona.h"
+	<string>
+
+1765824869 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\persona.h
+	"Fecha.h"
+	<iostream>
+	<string>
+
+1765824869 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\archivopartido.cpp
+	"ArchivoPartido.h"
+	"ArchivoClub.h"
+	"ArchivoGol.h"
+	"Gol.h"
+	"Validaciones.h"
+	<cstdio>
+	<iostream>
+
+1765824868 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\archivopartido.h
+	"Partido.h"
+	<string>
+
+1765824869 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\partido.h
+	"Fecha.h"
+
+1765824869 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\archivotorneo.cpp
+	"Fecha.h"
+	"ArchivoTorneo.h"
+	"ArchivoClub.h"
+	"ArchivoPartido.h"
+	"Validaciones.h"
+
+1765824868 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\archivotorneo.h
+	<string>
+	"Torneo.h"
+
+1765824869 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\asistencia.cpp
+	"Asistencia.h"
+	<iostream>
+
+1765831990 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\club.cpp
+	<cstring>
+	<iostream>
+	"Club.h"
+	<limits>
+
+1765824869 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\fecha.cpp
+	"Fecha.h"
+	"Validaciones.h"
+	<iostream>
+
+1765824869 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\gol.cpp
+	"Gol.h"
+
+1765824869 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\jugador.cpp
+	"Jugador.h"
+	"ArchivoClub.h"
+	<iomanip>
+
+1765832848 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\menuadministrativo.cpp
+	"MenuAdministrativo.h"
+	<iostream>
+	<limits>
+	"Club.h"
+	"Jugador.h"
+	"ArchivoJugador.h"
+	"ArchivoClub.h"
+	"ArchivoTorneo.h"
+	"Validaciones.h"
+	"Torneo.h"
+
+1765824868 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\menuadministrativo.h
+
+1765824869 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\menuoperativo.cpp
+	"MenuAdministrativo.h"
+	"Archivoasistencia.h"
+	"Asistencia.h"
+	"ArchivoGol.h"
+	"ArchivoJugador.h"
+	"ArchivoPartido.h"
+	"Validaciones.h"
+	<iostream>
+	<iomanip>
+
+1765824869 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\partido.cpp
+	"Partido.h"
+	<iostream>
+
+1765824869 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\persona.cpp
+	"Persona.h"
+	"Validaciones.h"
+	<cstring>
+	<iostream>
+	<iomanip>
+
+1765824869 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\posicion.cpp
+	"Posicion.h"
+	<cstring>
+
+1765824869 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\posicion.h
+
+1765824869 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\torneo.cpp
+	"Torneo.h"
+	<iostream>
+	<cstring>
+
+1765824869 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\main.cpp
+	<iostream>
+	"../include/MenuOperativo.h"
+	"../include/MenuAdministrativo.h"
+	"../include/Validaciones.h"
+
+1765824869 c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\include\menuoperativo.h
+
+1765827625 source:c:\users\ibani\onedrive\desktop\diciembr\proyecto-torneofutbol\clases_gol_y_asistencia\src\validaciones.cpp
+	<iostream>
+	"Validaciones.h"
+	<limits>
+	<string>
+
