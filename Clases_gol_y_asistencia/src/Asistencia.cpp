@@ -1,4 +1,5 @@
 #include "Asistencia.h"
+#include "Validaciones.h"
 #include <iostream>
 using namespace std;
 
