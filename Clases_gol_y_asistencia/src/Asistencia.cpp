@@ -19,9 +19,24 @@ void Asistencia::setNroPartido(int nro) {
 void Asistencia::setDniJugador(int dni) {
     _dniJugador = dni;
 }
- void Asistencia::cargar() {
-    cout << "Ingrese DNI del jugador:";
-    cin >> _dniJugador;
-    cout << "Ingrese número del partido:";
-    cin >> _nroPartido;
- }
+void Asistencia::cargar() {
+    // dni con validacion
+    cout << "Ingrese DNI del jugador: ";
+    while(true) {
+        _dniJugador = leerEntero();
+        if(_dniJugador >= 1000000 && _dniJugador <= 99999999) {
+            break;  // DNI válido
+        }
+        cout << "Error: DNI debe tener entre 7 y 8 digitos. Ingrese nuevamente: ";
+    }
+    
+    // num de partido con validacion
+    cout << "Ingrese número del partido: ";
+    while(true) {
+        _nroPartido = leerEntero();
+        if(_nroPartido > 0) {
+            break;  // Número válido
+        }
+        cout << "Error: Número de partido debe ser positivo. Ingrese nuevamente: ";
+    }
+}
