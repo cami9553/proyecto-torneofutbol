@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// comentario
 int leerEntero() {
     int num;
        while (true) {
