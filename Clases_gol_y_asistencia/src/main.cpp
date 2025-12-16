@@ -21,10 +21,22 @@ int main()
         cout << "1. Menu Administrativo\n";
         cout << "2. Menu Operativo\n";
         cout << "0. Salir\n";
-        cout << "Seleccione una opcion: ";
-        
-        opcion = leerEntero();
 
+        bool valido = false;
+        while (!valido) {
+            cout << "Seleccione una opcion: ";
+            opcion = leerEnteroConIntentos(3);
+
+            if(opcion == -1) {
+                cout << "Se alcanzo el maximo de intentos. Volviendo al menu...\n";
+                break;
+            }
+            if(opcion >= 0 && opcion <= 2) {
+                valido = true;
+            } else {
+                cout << "Opcion invalida. Intente de nuevo.\n";
+            }
+        }
         switch (opcion) {
             case 1: {
             menuAdministrativo();
@@ -36,5 +48,7 @@ int main()
             }
         }
     } while (opcion != 0);
+
+    cout << "Saliendo del programa..." << endl;
 }
 

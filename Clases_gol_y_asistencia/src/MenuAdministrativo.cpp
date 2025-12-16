@@ -38,7 +38,7 @@ void menuAdministrativo()
         cout << "0. Salir\n";
         cout << "Seleccione una opcion: ";
 
-        opcion = leerEntero();
+        opcion = leerEnteroConIntentos(3);
 
 
         system("cls");
@@ -77,12 +77,12 @@ void menuAdministrativo()
                 }
 
                 cout << "\nIngrese el ID del club a editar: ";
-                int id = leerEntero();
+                int id = leerEnteroConIntentos(3);
 
                 int pos = archivoClubes.buscar(id);
                 Club findClub = archivoClubes.leerRegistro(pos);
                 if (findClub.getIdClub() == 0) {
-                    cout << "No se encontró el club con ese ID.\n";
+                    cout << "No se encontro el club con ese ID.\n";
                 } else {
                     cout << "\nDatos actuales del club:\n";
                     findClub.mostrar();
@@ -105,12 +105,12 @@ void menuAdministrativo()
             {
                 cout << "\n==== ELIMINAR CLUB ====\n";
                 cout << "Ingrese el ID del club a eliminar: ";
-                int id = leerEntero();
+                int id = leerEnteroConIntentos(3);
 
                 int pos = archivoClubes.buscar(id);
 
                 if (pos == -1)
-                    cout << "No se encontró el club con ese ID.\n";
+                    cout << "No se encontro el club con ese ID.\n";
                 else {
                     Club c = archivoClubes.leerRegistro(pos);
                     cout << "\nClub encontrado:\n";
@@ -135,7 +135,7 @@ void menuAdministrativo()
             case 4:
             {
                 cout << "Ingrese ID del club: ";
-                int id = leerEntero();
+                int id = leerEnteroConIntentos(3);
 
                 Club* c = archivoClubes.buscarPorId(id);
 
@@ -182,7 +182,7 @@ void menuAdministrativo()
             {
                 cout << "\n=== EDITAR JUGADOR ===\n";
                 cout << "Ingrese el DNI del jugador a editar: ";
-                int dni = leerEntero();
+                int dni = leerEnteroConIntentos(3);
 
                 int pos = archivoJugadores.buscarPorId(dni);
 
@@ -210,7 +210,7 @@ void menuAdministrativo()
             {
                 cout << "\n==== ELIMINAR JUGADOR ====\n";
                 cout << "Ingrese el DNI del jugador a eliminar: ";
-                int dni = leerEntero();
+                int dni = leerEnteroConIntentos(3);
 
                 int pos = archivoJugadores.buscarPorId(dni);
 

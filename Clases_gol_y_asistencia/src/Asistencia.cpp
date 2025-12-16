@@ -24,7 +24,7 @@ void Asistencia::cargar() {
     // dni con validacion
     cout << "Ingrese DNI del jugador: ";
     while(true) {
-        _dniJugador = leerEntero();
+        _dniJugador = leerEnteroConIntentos(3);
         if(_dniJugador >= 1000000 && _dniJugador <= 99999999) {
             break;  // DNI válido
         }
@@ -34,7 +34,7 @@ void Asistencia::cargar() {
     // num de partido con validacion
     cout << "Ingrese número del partido: ";
     while(true) {
-        _nroPartido = leerEntero();
+        _nroPartido = leerEnteroConIntentos(3);
         if(_nroPartido > 0) {
             break;  // Número válido
         }

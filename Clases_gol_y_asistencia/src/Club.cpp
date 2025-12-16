@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Club.h"
 #include <limits>
+#include "Validaciones.h"
 
 
 using namespace std;
@@ -33,14 +34,11 @@ void Club::cargar()
 {
     cout << "ID del nuevo Club: " << _idClub << endl;
 
-    cout << "Ingrese nombre del club:";
-    cin.getline(_nombre, 30);
+    leerNombreApellido(_nombre, 30, "Ingrese nombre del club:"); 
 
-    cout << "Ingrese Presidente:";
-    cin.getline(_presidente, 30);
+    leerNombreApellido(_presidente, 30, "Ingrese Presidente:");
 
-    cout << "Ingrese Ciudad:";
-    cin.getline(_ciudad, 30);
+    leerNombreApellido(_ciudad, 30, "Ingrese Ciudad:");
 }
 
 void Club::mostrar(){
