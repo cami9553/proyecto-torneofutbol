@@ -89,7 +89,7 @@ bool Persona::cargar() {
 
     // pedir DNI hasta que sea valido o 0
     while(true) {
-        _dni = leerEntero();
+        _dni = leerEnteroConIntentos(3);
 
         if(_dni == 0) return false;  // Termina si es 0
 

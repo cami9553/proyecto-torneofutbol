@@ -5,29 +5,33 @@
 
 using namespace std;
 
-// comentario
-int leerEntero() {
+int leerEnteroConIntentos(int maxIntentos) {
     int num;
-       while (true) {
-        cin >> num;
+    int intentos = 0;
 
+    while (intentos < maxIntentos) {
+        cin >> num;
+    
         if (cin.fail()) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Error: debe ingresar un número. Intente de nuevo: ";
+            intentos++;
+            cout << "Error: debe ingresar un numero. Intente de nuevo: ";
         } else {
           cin.ignore(numeric_limits<streamsize>::max(), '\n');
           return num;
         }
       }
+      cout << "Se alcanzo el maximo de intentos." << endl;
+      return -1;
 }
 
 
-// validacion para leer un entero en un rango dado
 int leerEnteroEnRango(int min, int max) {
     int valor;
     do {
-        valor = leerEntero();
+        valor = leerEnteroConIntentos(3);
+        if (valor == -1) return -1;
         if (valor < min || valor > max) {
             cout << "Error: El valor debe estar entre " << min << " y " << max << ". Intente nuevamente: ";
         }
@@ -52,11 +56,11 @@ char leerOpcionSN() {
         cout << "Error: Debe ingresar 'S' o 'N'. Intente nuevamente: ";
     }
 }
-//validacion string
+
 bool validarSoloLetrasEspacios(const char* texto) {
     for(int i = 0; texto[i] != '\0'; i++) {
         char c = texto[i];
-        // si no es letra, no es espacio, no es punto o apostrofe
+        
         if(!((c >= 'A' && c <= 'Z') ||
              (c >= 'a' && c <= 'z') ||
              c == ' ' ||
@@ -68,7 +72,7 @@ bool validarSoloLetrasEspacios(const char* texto) {
     return true;
 }
 
-// validacion nombre y apellido
+
 void leerNombreApellido(char* campo, int tamano, const char* mensaje) {
     cout << mensaje;
     while(true) {
@@ -87,4 +91,23 @@ void leerNombreApellido(char* campo, int tamano, const char* mensaje) {
             cout << "Error: Solo puede contener letras y espacios. Ingrese " << mensaje;
         }
     }
+}
+  
+void leerTextoValido(char* campo, int tamano, const char* mensaje) {
+    cout << mensaje;
+    while (true) { 
+        cin.getline(campo, tamano);
+
+        if (campo[0] == '\0') {
+            cout << "Error: no puede estar vacio." << mensaje;
+            continue;
+        }
+
+        if (validarSoloLetrasEspacios(campo)) {
+            break;
+        } else {
+            cout << "Error: Solo puede contener letras y espacios. Ingrese " << mensaje;
+        }
+    }
+
 }
