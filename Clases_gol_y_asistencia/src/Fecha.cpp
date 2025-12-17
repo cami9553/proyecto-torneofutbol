@@ -1,5 +1,5 @@
 #include "Fecha.h"
-#include "Validaciones.h" 
+#include "Validaciones.h"
 #include <iostream>
 using namespace std;
 
@@ -48,13 +48,13 @@ std::string Fecha::toString(){
 //Otros metodos
 void Fecha::cargar(){
     cout << "Dia: ";
-    cin >> _dia;
+     _dia = leerEnteroEnRango(1,31);
 
     cout << "Mes: ";
-    cin >> _mes;
+    _mes = leerEnteroEnRango(1,12);
 
     cout << "Anio:";
-    cin >> _anio;
+    _anio = leerEnteroEnRango(1950,2025);
 
 }
 
