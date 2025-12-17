@@ -106,14 +106,14 @@ void ArchivoJugador::listarRegistros()
     }
 }
 
-int ArchivoJugador::buscarPorId(int dni)
+int ArchivoJugador::buscarPorId(int id)
 {
     Jugador j;
     int cantidad = getCantidadRegistros();
     for (int i = 0; i < cantidad; i++)
     {
         j = leerRegistro(i);
-        if (j.getDni() == dni) return i;
+        if (j.getId() == id) return i;
     }
     return -1;
 }

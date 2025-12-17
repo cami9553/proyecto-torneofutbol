@@ -32,7 +32,7 @@ const char *Club::getCiudad(){ return _ciudad;}
 
 void Club::cargar()
 {
-    cout << "ID del nuevo Club: " << _idClub << endl;
+    cout << "ID Club: " << _idClub << endl;
 
     leerNombreApellido(_nombre, 30, "nombre del club:");
 

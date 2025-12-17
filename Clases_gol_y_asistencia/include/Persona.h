@@ -35,6 +35,7 @@ class Persona
         Fecha getFechaNacimiento();
 
         //Otros metodos
+        static int getUltimoId();
         static void setUltimoId(int ultimoId);
         void generarNuevoId();
 

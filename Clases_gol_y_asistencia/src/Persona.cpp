@@ -28,6 +28,7 @@ Persona::Persona(int dni, const char* apellido, const char* nombre, const char* 
     _fechaNacimiento = fechaNacimiento;
 }
 
+int Persona::getUltimoId(){return _ultimoId;}
 void Persona::setUltimoId(int ultimoId) {_ultimoId = ultimoId;}
 void Persona::generarNuevoId() {_idPersona = ++_ultimoId;}
 

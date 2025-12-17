@@ -185,10 +185,11 @@ void menuAdministrativo()
             case 7:
             {
                 cout << "\n=== EDITAR JUGADOR ===\n";
-                cout << "Ingrese el DNI del jugador a editar: ";
-                int dni = leerEnteroConIntentos(3);
+                archivoJugadores.listarRegistros();
+                cout << "\nIngrese el ID del jugador a editar: ";
+                int id = leerEnteroEnRango(1, Jugador::getUltimoId());
 
-                int pos = archivoJugadores.buscarPorId(dni);
+                int pos = archivoJugadores.buscarPorId(id);
 
                 if (pos == -1) {
                     cout << "Jugador no encontrado.\n";
