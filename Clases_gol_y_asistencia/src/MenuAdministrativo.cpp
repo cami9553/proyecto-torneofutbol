@@ -77,7 +77,7 @@ void menuAdministrativo()
                 }
 
                 cout << "\nIngrese el ID del club a editar: ";
-                int id = leerEnteroConIntentos(3);
+                int id = leerEnteroEnRango(1, Club::getUltimoId());
 
                 int pos = archivoClubes.buscar(id);
                 Club findClub = archivoClubes.leerRegistro(pos);
