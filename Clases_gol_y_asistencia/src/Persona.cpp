@@ -132,3 +132,8 @@ void Persona::mostrar() {
     cout << left << setw(20) << "Fecha Nacimiento:" << _fechaNacimiento.toString() << endl;
 }
 
+void Persona::mostrarNombreApellido() {
+    cout << _idPersona << "- ";
+    cout << _apellido << " " << _nombre << endl;
+}
+

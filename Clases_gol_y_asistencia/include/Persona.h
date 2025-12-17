@@ -41,5 +41,6 @@ class Persona
 
         bool cargar();
         void mostrar();
+        void mostrarNombreApellido();
 };
 #endif // PERSONA_H

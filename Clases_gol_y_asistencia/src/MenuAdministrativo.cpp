@@ -185,7 +185,7 @@ void menuAdministrativo()
             case 7:
             {
                 cout << "\n=== EDITAR JUGADOR ===\n";
-                archivoJugadores.listarRegistros();
+                archivoJugadores.listarNombreApellido();
                 cout << "\nIngrese el ID del jugador a editar: ";
                 int id = leerEnteroEnRango(1, Jugador::getUltimoId());
 

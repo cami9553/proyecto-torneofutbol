@@ -106,6 +106,33 @@ void ArchivoJugador::listarRegistros()
     }
 }
 
+
+
+void ArchivoJugador::listarNombreApellido()
+{
+    int cantidad = getCantidadRegistros();
+    if (cantidad == 0)
+    {
+        std::cout << "No hay jugadores registrados.\n";
+        return;
+    }
+
+    Jugador J;
+    for (int i = 0; i < cantidad; i++)
+    {
+        J = leerRegistro(i);
+        J.mostrarNombreApellido();
+    }
+}
+
+
+
+
+
+
+
+
+
 int ArchivoJugador::buscarPorId(int id)
 {
     Jugador j;
