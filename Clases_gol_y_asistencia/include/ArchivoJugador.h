@@ -11,6 +11,7 @@ private:
 public:
     ArchivoJugador(const std::string& nombreArchivo);
 
+    void inicializarUltimoId();
     int getCantidadRegistros();
     Jugador leerRegistro(int posicion);
     bool guardarRegistro(const Jugador& jugador);

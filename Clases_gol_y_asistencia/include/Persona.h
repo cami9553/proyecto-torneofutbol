@@ -27,6 +27,7 @@ class Persona
         void setTelefono(std::string telefono);
         void setEmail(std::string email);
         void setFechaNacimiento(Fecha f);
+        int getId();
         const char *getNombre();
         const char *getApellido();
         const char *getTelefono();

@@ -2,7 +2,7 @@
 #define JUGADOR_H
 
 #include "Persona.h"
-#include <string> 
+#include <string>
 
 
 
@@ -21,7 +21,7 @@ class Jugador: public Persona
         void setPosicion(int posicion);
         void setIdClub(int idClub);
         //Otros metodos
-        void cargar();
+        bool cargar();
         void mostrar();
 
 };

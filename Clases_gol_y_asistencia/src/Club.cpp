@@ -34,11 +34,11 @@ void Club::cargar()
 {
     cout << "ID del nuevo Club: " << _idClub << endl;
 
-    leerNombreApellido(_nombre, 30, "Ingrese nombre del club:"); 
+    leerNombreApellido(_nombre, 30, "nombre del club:");
 
-    leerNombreApellido(_presidente, 30, "Ingrese Presidente:");
+    leerNombreApellido(_presidente, 30, "Presidente:");
 
-    leerNombreApellido(_ciudad, 30, "Ingrese Ciudad:");
+    leerNombreApellido(_ciudad, 30, "Ciudad:");
 }
 
 void Club::mostrar(){

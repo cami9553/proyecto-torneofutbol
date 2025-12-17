@@ -9,7 +9,33 @@ using namespace std;
 ArchivoJugador::ArchivoJugador(const std::string& nombreArchivo)
 {
     _nombreArchivo = nombreArchivo;
+    inicializarUltimoId();
 }
+
+void ArchivoJugador::inicializarUltimoId()
+{
+    FILE* pFile = fopen(_nombreArchivo.c_str(), "rb");
+    if (pFile == NULL)
+    {
+        Persona::setUltimoId(0);
+        return;
+    }
+
+    Jugador j;
+    int maxId = 0;
+
+    while (fread(&j, sizeof(Jugador), 1, pFile))
+    {
+        if (j.getId() > maxId)
+        {
+            maxId = j.getId();
+        }
+    }
+
+    fclose(pFile);
+    Persona::setUltimoId(maxId);
+}
+
 
 int ArchivoJugador::getCantidadRegistros()
 {
@@ -27,9 +53,9 @@ Jugador ArchivoJugador::leerRegistro(int posicion) {
     Jugador jugador;
     FILE* pFile = fopen(_nombreArchivo.c_str(), "rb");
 
-    if (pFile == NULL) { 
+    if (pFile == NULL) {
         return jugador;
-    } 
+    }
 
     fseek(pFile, posicion * sizeof(Jugador), SEEK_SET);
     fread(&jugador, sizeof(Jugador), 1, pFile);
@@ -106,7 +132,7 @@ bool ArchivoJugador::eliminarRegistroFisico(int dni)
     Jugador jugador;
     FILE *p = fopen(_nombreArchivo.c_str(), "rb");
     FILE *temp = fopen("temp.dat", "wb");
-    
+
     if (p == NULL || temp == NULL) {
         return false;
     }
@@ -118,7 +144,7 @@ bool ArchivoJugador::eliminarRegistroFisico(int dni)
             fwrite(&jugador, sizeof(Jugador), 1, temp);
         }
     }
-    
+
     fclose(p);
     fclose(temp);
     remove(_nombreArchivo.c_str());

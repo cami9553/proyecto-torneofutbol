@@ -57,6 +57,11 @@ void Persona::setFechaNacimiento(Fecha f) {
 }
 
 //Getters
+
+int Persona::getId(){
+    return _idPersona;
+}
+
 int Persona::getDni(){
 	return _dni;
 }
@@ -106,7 +111,7 @@ bool Persona::cargar() {
     leerNombreApellido(_apellido, 30, "Apellido: ");
 
     cout << "Telefono: ";
-    cin.getline(_telefono, 15);
+    leerTelefono(_telefono, 15, 7, 15);
 
     cout << "Email: ";
     cin.getline(_email, 30);
@@ -118,6 +123,7 @@ bool Persona::cargar() {
 }
 
 void Persona::mostrar() {
+    cout << left << setw(20) << "ID: "           << _idPersona << endl;
     cout << left << setw(20) << "Nombre:"           << _nombre << " " << _apellido << endl;
     cout << left << setw(20) << "DNI:"              << _dni << endl;
     cout << left << setw(20) << "Telefono:"         << _telefono << endl;
