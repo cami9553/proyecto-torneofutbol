@@ -1055,7 +1055,7 @@
 1765933524 source:c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\src\gol.cpp
 	"Gol.h"
 
-1765945515 source:c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\src\jugador.cpp
+1765946118 source:c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\src\jugador.cpp
 	"Jugador.h"
 	"ArchivoClub.h"
 	"Validaciones.h"
@@ -1099,7 +1099,7 @@
 	"Partido.h"
 	<iostream>
 
-1765942288 source:c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\src\persona.cpp
+1765946683 source:c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\src\persona.cpp
 	"Persona.h"
 	"Validaciones.h"
 	<cstring>

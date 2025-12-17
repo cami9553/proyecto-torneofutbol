@@ -105,7 +105,7 @@ bool Persona::cargar() {
         cout << "Error: DNI debe tener entre 7 y 8 digitos. Ingrese nuevamente (0 para terminar): ";
     }
 
-    cin.ignore();
+
 
     leerNombreApellido(_nombre, 30, "Nombre: ");
     leerNombreApellido(_apellido, 30, "Apellido: ");

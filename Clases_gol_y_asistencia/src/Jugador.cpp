@@ -55,9 +55,7 @@ bool Jugador::cargar() {
     _idClub = leerEnteroEnRango(1, Club::getUltimoId());
 
     cout << "\nPosicion (Defensor:1/Mediocampista:2/Delantero:3): ";
-
-    cin >> _posicion;
-    cin.ignore();
+    _posicion = leerEnteroEnRango(1,3);
 
     return true;
 }
