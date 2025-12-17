@@ -1,5 +1,7 @@
 #include "Jugador.h"
 #include "ArchivoClub.h"
+#include "Validaciones.h"
+#include "Club.h"
 #include <iomanip>
 using namespace std;
 
@@ -49,12 +51,13 @@ bool Jugador::cargar() {
     for (int i = 0; i < archivo.cantidadRegistros(); i++) {
         cout << lista[i].getIdClub() << "- " << lista[i].getNombre() << endl;
     }
-
     cout << "\nSu eleccion de Club: ";
-    cin >> _idClub;
+    _idClub = leerEnteroEnRango(1, Club::getUltimoId());
+
     cout << "\nPosicion (Defensor:1/Mediocampista:2/Delantero:3): ";
-    cin.ignore();
+
     cin >> _posicion;
+    cin.ignore();
 
     return true;
 }
