@@ -56,7 +56,6 @@ void menuAdministrativo()
 
                     if(archivoClubes.guardar(C)){
                         cout << "Club registrado exitosamente.\n\n";
-                        cin.get();
                         system("cls");
                     }
                     else cout << "Error al guardar el Club.\n";
@@ -117,7 +116,7 @@ void menuAdministrativo()
                     c.mostrar();
 
                     char confirm;
-                    cout << "\n¿Desea eliminar este club? (S/N): ";
+                    cout << "\nDesea eliminar este club? (S/N): ";
                     confirm = leerOpcionSN();
 
                     if (confirm == 'S') {
@@ -166,7 +165,6 @@ void menuAdministrativo()
                     if(J.cargar()){
                         if(archivoJugadores.guardarRegistro(J)){
                             cout << "Jugador registrado exitosamente.\n\n";
-                            cin.get();
                             system("cls");
                         }
                         else {cout << "Error al guardar el Jugador.\n";}

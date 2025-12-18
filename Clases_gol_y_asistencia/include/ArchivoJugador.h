@@ -18,8 +18,10 @@ public:
     bool modificarRegistro(const Jugador& jugador, int posicion);
     void leerTodos(Jugador* vector, int cantidadRegistros);
     void listarNombreApellido();
+    void listarJugadorPorClub(int idClub);
     void listarRegistros();
     int buscarPorId(int dni);
+    int obtenerDni(int idJugador);
     bool eliminarRegistroFisico(int id);
 
 };

@@ -988,14 +988,14 @@
 1765933524 c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\include\gol.h
 	<string>
 
-1765950004 source:c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\src\archivojugador.cpp
+1766016982 source:c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\src\archivojugador.cpp
 	"ArchivoJugador.h"
 	"Validaciones.h"
 	<cstdio>
 	<iostream>
 	<cstdlib>
 
-1765950030 c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\include\archivojugador.h
+1766017014 c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\include\archivojugador.h
 	<string>
 	"Jugador.h"
 
@@ -1008,10 +1008,11 @@
 	<iostream>
 	<string>
 
-1765933524 source:c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\src\archivopartido.cpp
+1766017179 source:c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\src\archivopartido.cpp
 	"ArchivoPartido.h"
 	"ArchivoClub.h"
 	"ArchivoGol.h"
+	"ArchivoJugador.h"
 	"Gol.h"
 	"Validaciones.h"
 	<cstdio>
@@ -1055,7 +1056,7 @@
 1765933524 source:c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\src\gol.cpp
 	"Gol.h"
 
-1765950011 source:c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\src\jugador.cpp
+1766015707 source:c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\src\jugador.cpp
 	"Jugador.h"
 	"ArchivoClub.h"
 	"Validaciones.h"
@@ -1072,7 +1073,7 @@
 
 1765933524 c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\include\menuadministrativo.h
 
-1765950064 source:c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\src\menuadministrativo.cpp
+1766012739 source:c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\src\menuadministrativo.cpp
 	"MenuAdministrativo.h"
 	<iostream>
 	<limits>
@@ -1099,7 +1100,7 @@
 	"Partido.h"
 	<iostream>
 
-1765949959 source:c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\src\persona.cpp
+1765950170 source:c:\users\ibani\onedrive\desktop\diciembre\proyecto-torneofutbol\clases_gol_y_asistencia\src\persona.cpp
 	"Persona.h"
 	"Validaciones.h"
 	<cstring>

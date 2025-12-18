@@ -61,7 +61,7 @@ bool Jugador::cargar() {
 }
 
 void Jugador::mostrar() {
-    ArchivoClub archivo("clubes.dat");
+    ArchivoClub archivoClub("clubes.dat");
     string nombrePosicion;
 
     if(_posicion == 1)
@@ -72,7 +72,7 @@ void Jugador::mostrar() {
         nombrePosicion = "Delantero";
 
     Persona::mostrar();
-    cout << left << setw(20) << "Club:"      << archivo.buscarPorId(_idClub)->getNombre() << endl;
+    cout << left << setw(20) << "Club:"      << archivoClub.buscarPorId(_idClub)->getNombre() << endl;
     cout << left << setw(20) << "Posicion:"  << nombrePosicion << endl;
     cout << "====================================================\n\n" << endl;
 }

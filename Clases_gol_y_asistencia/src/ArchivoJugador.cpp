@@ -125,6 +125,23 @@ void ArchivoJugador::listarNombreApellido()
     }
 }
 
+void ArchivoJugador::listarJugadorPorClub(int idClub)
+{
+    int cantidad = getCantidadRegistros();
+    if (cantidad == 0)
+    {
+        std::cout << "No hay jugadores registrados.\n";
+        return;
+    }
+
+    Jugador J;
+    for (int i = 0; i < cantidad; i++)
+    {
+            J = leerRegistro(i);
+            if(J.getIdClub() == idClub)
+                J.mostrarNombreApellido();
+    }
+}
 
 
 
@@ -144,6 +161,20 @@ int ArchivoJugador::buscarPorId(int id)
     }
     return -1;
 }
+
+
+int ArchivoJugador::obtenerDni(int idJugador)
+{
+    Jugador j;
+    int cantidad = getCantidadRegistros();
+    for (int i = 0; i < cantidad; i++)
+    {
+        j = leerRegistro(i);
+        if (j.getId() == idJugador) return j.getDni();
+    }
+    return -1;
+}
+
 
 void ArchivoJugador::leerTodos(Jugador* vector, int cantidadRegistros)
 {
