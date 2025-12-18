@@ -106,6 +106,21 @@ void ArchivoJugador::listarRegistros()
     }
 }
 
+int ArchivoJugador::buscarPorDni(int dni)
+{
+    Jugador J;
+    int cantidad = getCantidadRegistros();
+
+    for (int i = 0; i < cantidad; i++)
+    {
+        J = leerRegistro(i);
+        if (J.getDni() == dni)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
 
 
 void ArchivoJugador::listarNombreApellido()
@@ -141,25 +156,6 @@ void ArchivoJugador::listarJugadorPorClub(int idClub)
             if(J.getIdClub() == idClub)
                 J.mostrarNombreApellido();
     }
-}
-
-
-
-
-
-
-
-
-int ArchivoJugador::buscarPorId(int id)
-{
-    Jugador j;
-    int cantidad = getCantidadRegistros();
-    for (int i = 0; i < cantidad; i++)
-    {
-        j = leerRegistro(i);
-        if (j.getId() == id) return i;
-    }
-    return -1;
 }
 
 

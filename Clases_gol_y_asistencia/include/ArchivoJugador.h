@@ -20,7 +20,7 @@ public:
     void listarNombreApellido();
     void listarJugadorPorClub(int idClub);
     void listarRegistros();
-    int buscarPorId(int dni);
+    int buscarPorDni(int dni);
     int obtenerDni(int idJugador);
     bool eliminarRegistroFisico(int id);
 

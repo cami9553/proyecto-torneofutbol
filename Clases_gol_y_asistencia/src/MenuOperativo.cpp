@@ -27,8 +27,9 @@ void menuOperativo()
         cout << "5.Ver Fixture\n";
         cout << "0.Salir\n";
         cout << "Seleccione una opcion:";
-        cin >> opcion;
-        cin.ignore();
+        
+        opcion = leerEnteroEnRango(0, 5);
+
         system("cls");
 
 
@@ -305,14 +306,7 @@ void menuOperativo()
             cin.get();
             break;
         }
-        case 6:
-        {
-
-            cin.get();
-            break;
-        }
-
-
+    
         case 0:
             cout << "\nSaliendo del sistema...\n";
             break;
