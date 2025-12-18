@@ -43,11 +43,87 @@ void menuOperativo()
             break;
         }
 
+
         case 2:
         {
+            ArchivoClub archClub("clubes.dat");
+            ArchivoPartido archPartido("partidos.dat");
+        
+            int cantClubes = archClub.getCantidadRegistros();
+            if (cantClubes == 0) {
+                cout << "No hay clubes registrados.\n";
+                cin.get();
+                break;
+            }
+        
+          
+            ClubEnTorneo** tabla = new ClubEnTorneo*[cantClubes];
+            for (int i = 0; i < cantClubes; i++) {
+                Club c = archClub.leerRegistro(i);
+                tabla[i] = new ClubEnTorneo(c.getIdClub(), c.getNombre());
+            }
+        
+            // Actualizar tabla con resultados de partidos
+            int cantPartidos = archPartido.getCantidadRegistros();
+            for (int i = 0; i < cantPartidos; i++) {
+                Partido p = archPartido.leerRegistro(i);
+        
+                // Buscar club local
+                for (int j = 0; j < cantClubes; j++) {
+                    if (tabla[j]->getIdClub() == p.getIdClubLocal()) {
+                        tabla[j]->sumarPartido(p.getGolesLocal(), p.getGolesVisitante());
+                        break;
+                    }
+                }
+                // Buscar club visitante
+                for (int j = 0; j < cantClubes; j++) {
+                    if (tabla[j]->getIdClub() == p.getIdClubVisitante()) {
+                        tabla[j]->sumarPartido(p.getGolesVisitante(), p.getGolesLocal());
+                        break;
+                    }
+                }
+            }
+        
+            // Ordenar tabla por PTS y luego por DG
+            for (int i = 0; i < cantClubes - 1; i++) {
+                for (int j = i + 1; j < cantClubes; j++) {
+                    if (tabla[j]->getPTS() > tabla[i]->getPTS() ||
+                       (tabla[j]->getPTS() == tabla[i]->getPTS() && tabla[j]->getDG() > tabla[i]->getDG())) {
+                        ClubEnTorneo* temp = tabla[i];
+                        tabla[i] = tabla[j];
+                        tabla[j] = temp;
+                    }
+                }
+            }
+        
+            // Mostrar tabla de posiciones
+            cout << "\n=== TABLA DE POSICIONES ===\n";
+            cout << left << setw(4) << "POS" << setw(20) << "CLUB" 
+                 << setw(4) << "PJ" << setw(4) << "G" << setw(4) << "E" << setw(4) << "P"
+                 << setw(4) << "GF" << setw(4) << "GC" << setw(4) << "DG" << setw(4) << "PTS\n";
+        
+            for (int i = 0; i < cantClubes; i++) {
+                cout << left << setw(4) << (i + 1)
+                     << setw(20) << tabla[i]->getNombre()
+                     << setw(4) << tabla[i]->getPJ()
+                     << setw(4) << tabla[i]->getG()
+                     << setw(4) << tabla[i]->getE()
+                     << setw(4) << tabla[i]->getP()
+                     << setw(4) << tabla[i]->getGF()
+                     << setw(4) << tabla[i]->getGC()
+                     << setw(4) << tabla[i]->getDG()
+                     << setw(4) << tabla[i]->getPTS() << endl;
+            }
+        
+            
+            for (int i = 0; i < cantClubes; i++)
+                delete tabla[i];
+            delete[] tabla;
+        
             cin.get();
             break;
         }
+
 
         case 3:
         {
