@@ -80,7 +80,7 @@ void ArchivoJugador::listarRegistros()
     }
 }
 
-int ArchivoJugador::buscarPorId(int dni)
+int ArchivoJugador::buscarPorDni(int dni)
 {
     Jugador j;
     int cantidad = getCantidadRegistros();
