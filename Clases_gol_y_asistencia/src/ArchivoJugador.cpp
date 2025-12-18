@@ -101,12 +101,26 @@ void ArchivoJugador::listarRegistros()
     for (int i = 0; i < cantidad; i++)
     {
         J = leerRegistro(i);
-        std::cout << "\nJugador #" <https://github.com/cami9553/proyecto-torneofutbol/pull/5/conflict?name=Clases_gol_y_asistencia%252Fsrc%252FArchivoJugador.cpp&ancestor_oid=f6d057f47ba29ac3c4ad1a8570d1632c80c3802c&base_oid=6dd16049918c0fc517fa1d1557c2a68c6b520e90&head_oid=4c1afae1c9062d3e9b09b2da4edaf7e80c92fa38< i + 1 << std::endl;
+        std::cout << "\nJugador #" << i + 1 << std::endl;
         J.mostrar();
     }
 }
 
 int ArchivoJugador::buscarPorDni(int dni)
+{
+    Jugador J;
+    int cantidad = getCantidadRegistros();
+
+    for (int i = 0; i < cantidad; i++)
+    {
+        J = leerRegistro(i);
+        if (J.getDni() == dni)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
 
 
 void ArchivoJugador::listarNombreApellido()
@@ -142,25 +156,6 @@ void ArchivoJugador::listarJugadorPorClub(int idClub)
             if(J.getIdClub() == idClub)
                 J.mostrarNombreApellido();
     }
-}
-
-
-
-
-
-
-
-
-int ArchivoJugador::buscarPorId(int id)
-{
-    Jugador j;
-    int cantidad = getCantidadRegistros();
-    for (int i = 0; i < cantidad; i++)
-    {
-        j = leerRegistro(i);
-        if (j.getId() == id) return i;
-    }
-    return -1;
 }
 
 
