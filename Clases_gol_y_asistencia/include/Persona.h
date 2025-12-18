@@ -27,6 +27,7 @@ class Persona
         void setTelefono(std::string telefono);
         void setEmail(std::string email);
         void setFechaNacimiento(Fecha f);
+        int getId();
         const char *getNombre();
         const char *getApellido();
         const char *getTelefono();
@@ -34,10 +35,12 @@ class Persona
         Fecha getFechaNacimiento();
 
         //Otros metodos
+        static int getUltimoId();
         static void setUltimoId(int ultimoId);
         void generarNuevoId();
 
         bool cargar();
         void mostrar();
+        void mostrarNombreApellido();
 };
 #endif // PERSONA_H

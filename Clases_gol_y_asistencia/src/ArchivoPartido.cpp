@@ -1,6 +1,7 @@
 #include "ArchivoPartido.h"
 #include "ArchivoClub.h"
 #include "ArchivoGol.h"
+#include "ArchivoJugador.h"
 #include "Gol.h"
 #include "Validaciones.h"
 #include <cstdio>
@@ -112,6 +113,7 @@ void ArchivoPartido::registrarResultado()
 {
     ArchivoClub archClub("clubes.dat");
     ArchivoGol archGol("goles.dat");
+    ArchivoJugador archivoJug("jugadores.dat");
 
     FILE* pFile = fopen("partidos.dat", "rb+");
     if (pFile == NULL)
@@ -121,7 +123,7 @@ void ArchivoPartido::registrarResultado()
     }
 
     int nroPartido;
-    std::cout << "Ingrese el n�mero de partido que desea registrar: ";
+    std::cout << "Ingrese el numero de partido que desea registrar: ";
     std::cin >> nroPartido;
 
     Partido partido;
@@ -141,7 +143,7 @@ void ArchivoPartido::registrarResultado()
 
             if (posLocal == -1 || posVisitante == -1)
             {
-                std::cout << "Error: no se encontr� uno de los clubes del partido." << std::endl;
+                std::cout << "Error: no se encontro uno de los clubes del partido." << std::endl;
                 fclose(pFile);
                 return;
             }
@@ -157,17 +159,8 @@ void ArchivoPartido::registrarResultado()
             std::cout << "Goles de " << clubVisitante.getNombre() << ": ";
             std::cin >> golesVisitante;
 
-            std::cout << "\nFecha del partido (dd mm aaaa): ";
-            int d, m, a;
-            std::cout << "Dia: ";
-            std::cin >> d;
-            std::cout << "Mes: ";
-            std::cin >> m;
-            std::cout << "Anio: ";
-            std::cin >> a;
-            fechaJugado.setDia(d);
-            fechaJugado.setMes(m);
-            fechaJugado.setAnio(a);
+            std::cout << "\nFecha del partido: ";
+            fechaJugado.cargar();
 
             // Actualizar datos del partido
             partido.setGolesLocal(golesLocal);
@@ -176,17 +169,24 @@ void ArchivoPartido::registrarResultado()
 
             // Registrar los goles en goles.dat
             Gol g;
-            int dniJugador, tipoGol;
+            int dniJugador, idJugadorLocal, idJugadorVisitante, tipoGol;
 
             std::cout << "\n--- Registro de goles ---" << std::endl;
 
-            // Goles del local - Falta agregar validacion de jugadores que juegan en este clubLocal
+            // Goles del local
             for (int i = 0; i < golesLocal; i++) {
                 std::cout << "\nGol #" << (i + 1) << " de " << clubLocal.getNombre() << std::endl;
-                std::cout << "DNI del jugador: ";
-                std::cin >> dniJugador;
+
+                std::cout << "Jugadores de " << clubLocal.getNombre() << std::endl;
+                archivoJug.listarJugadorPorClub(clubLocal.getIdClub());
+
+
+                std::cout << "ID del jugador: ";
+                std::cin >> idJugadorLocal;
+                dniJugador = archivoJug.obtenerDni(idJugadorLocal);
+
                 std::cout << "Tipo de gol (1=Penal, 2=Cabeza, 3=Tiro libre: ";
-                std::cin >> tipoGol;
+                tipoGol = leerEnteroEnRango(1,3);
 
                 g.setNroPartido(nroPartido);
                 g.setDniJugador(dniJugador);
@@ -198,10 +198,15 @@ void ArchivoPartido::registrarResultado()
             // Goles del visitante - Falta agregar validacion de jugadores que juegan en este clubVisitante
             for (int i = 0; i < golesVisitante; i++) {
                 std::cout << "\nGol #" << (i + 1) << " de " << clubVisitante.getNombre() << std::endl;
-                std::cout << "DNI del jugador: ";
-                std::cin >> dniJugador;
-                std::cout << "Tipo de gol (1=Penal, 2=Cabeza, 3=Tiro libre, etc): ";
-                std::cin >> tipoGol;
+                std::cout << "Jugadores de " << clubVisitante.getNombre() << std::endl;
+                archivoJug.listarJugadorPorClub(clubVisitante.getIdClub());
+
+                std::cout << "ID del jugador: ";
+                std::cin >> idJugadorVisitante;
+                dniJugador = archivoJug.obtenerDni(idJugadorVisitante);
+
+                std::cout << "Tipo de gol (1=Penal, 2=Cabeza, 3=Tiro libre: ";
+                tipoGol = leerEnteroEnRango(1,3);
 
                 g.setNroPartido(nroPartido);
                 g.setDniJugador(dniJugador);
@@ -216,7 +221,7 @@ void ArchivoPartido::registrarResultado()
             // Sobrescribir el registro del partido con los datos que ingresamos
             fseek(pFile, -sizeof(Partido), SEEK_CUR);
             fwrite(&partido, sizeof(Partido), 1, pFile);
-            std::cout << "\nPartido y goles registrados con �xito.\n";
+            std::cout << "\nPartido y goles registrados con exito.\n";
 
             break;
         }

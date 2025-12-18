@@ -28,6 +28,7 @@ Persona::Persona(int dni, const char* apellido, const char* nombre, const char* 
     _fechaNacimiento = fechaNacimiento;
 }
 
+int Persona::getUltimoId(){return _ultimoId;}
 void Persona::setUltimoId(int ultimoId) {_ultimoId = ultimoId;}
 void Persona::generarNuevoId() {_idPersona = ++_ultimoId;}
 
@@ -57,6 +58,11 @@ void Persona::setFechaNacimiento(Fecha f) {
 }
 
 //Getters
+
+int Persona::getId(){
+    return _idPersona;
+}
+
 int Persona::getDni(){
 	return _dni;
 }
@@ -100,13 +106,13 @@ bool Persona::cargar() {
         cout << "Error: DNI debe tener entre 7 y 8 digitos. Ingrese nuevamente (0 para terminar): ";
     }
 
-    cin.ignore();
+
 
     leerNombreApellido(_nombre, 30, "Nombre: ");
     leerNombreApellido(_apellido, 30, "Apellido: ");
 
     cout << "Telefono: ";
-    cin.getline(_telefono, 15);
+    leerTelefono(_telefono, 15, 7, 15);
 
     cout << "Email: ";
     cin.getline(_email, 30);
@@ -118,10 +124,16 @@ bool Persona::cargar() {
 }
 
 void Persona::mostrar() {
+    cout << left << setw(20) << "ID: "           << _idPersona << endl;
     cout << left << setw(20) << "Nombre:"           << _nombre << " " << _apellido << endl;
     cout << left << setw(20) << "DNI:"              << _dni << endl;
     cout << left << setw(20) << "Telefono:"         << _telefono << endl;
     cout << left << setw(20) << "Email:"            << _email << endl;
     cout << left << setw(20) << "Fecha Nacimiento:" << _fechaNacimiento.toString() << endl;
+}
+
+void Persona::mostrarNombreApellido() {
+    cout << _idPersona << "- ";
+    cout << _apellido << " " << _nombre << endl;
 }
 

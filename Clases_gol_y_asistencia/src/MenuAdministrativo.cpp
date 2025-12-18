@@ -56,7 +56,6 @@ void menuAdministrativo()
 
                     if(archivoClubes.guardar(C)){
                         cout << "Club registrado exitosamente.\n\n";
-                        cin.get();
                         system("cls");
                     }
                     else cout << "Error al guardar el Club.\n";
@@ -77,7 +76,7 @@ void menuAdministrativo()
                 }
 
                 cout << "\nIngrese el ID del club a editar: ";
-                int id = leerEnteroConIntentos(3);
+                int id = leerEnteroEnRango(1, Club::getUltimoId());
 
                 int pos = archivoClubes.buscar(id);
                 Club findClub = archivoClubes.leerRegistro(pos);
@@ -117,7 +116,7 @@ void menuAdministrativo()
                     c.mostrar();
 
                     char confirm;
-                    cout << "\n¿Desea eliminar este club? (S/N): ";
+                    cout << "\nDesea eliminar este club? (S/N): ";
                     confirm = leerOpcionSN();
 
                     if (confirm == 'S') {
@@ -163,17 +162,20 @@ void menuAdministrativo()
                 char confirm;
                 do{
                     J.generarNuevoId();
-                    J.cargar();
+                    if(J.cargar()){
+                        if(archivoJugadores.guardarRegistro(J)){
+                            cout << "Jugador registrado exitosamente.\n\n";
+                            system("cls");
+                        }
+                        else {cout << "Error al guardar el Jugador.\n";}
+                    }else{
+                         cout << "Carga cancelada o incompleta. No se guardo el jugador.\n";
+                    };
 
-                    if(archivoJugadores.guardarRegistro(J)){
-                        cout << "Club registrado exitosamente.\n\n";
-                        cin.get();
-                        system("cls");
-                    }
-                    else cout << "Error al guardar el Club.\n";
-                    cout << "Desea cargar otro Club? (S/N): " << endl;
+                    cout << "Desea cargar otro Jugador? (S/N): " << endl;
                     confirm = leerOpcionSN();
                     system("cls");
+
                 }while(confirm == 'S');
                 break;
             }
@@ -181,10 +183,11 @@ void menuAdministrativo()
             case 7:
             {
                 cout << "\n=== EDITAR JUGADOR ===\n";
-                cout << "Ingrese el DNI del jugador a editar: ";
-                int dni = leerEnteroConIntentos(3);
+                archivoJugadores.listarNombreApellido();
+                cout << "\nIngrese el ID del jugador a editar: ";
+                int id = leerEnteroEnRango(1, Jugador::getUltimoId());
 
-                int pos = archivoJugadores.buscarPorId(dni);
+                int pos = archivoJugadores.buscarPorId(id);
 
                 if (pos == -1) {
                     cout << "Jugador no encontrado.\n";

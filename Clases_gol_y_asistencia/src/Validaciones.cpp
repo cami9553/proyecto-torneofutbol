@@ -11,7 +11,7 @@ int leerEnteroConIntentos(int maxIntentos) {
 
     while (intentos < maxIntentos) {
         cin >> num;
-    
+
         if (cin.fail()) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -60,7 +60,7 @@ char leerOpcionSN() {
 bool validarSoloLetrasEspacios(const char* texto) {
     for(int i = 0; texto[i] != '\0'; i++) {
         char c = texto[i];
-        
+
         if(!((c >= 'A' && c <= 'Z') ||
              (c >= 'a' && c <= 'z') ||
              c == ' ' ||
@@ -92,10 +92,10 @@ void leerNombreApellido(char* campo, int tamano, const char* mensaje) {
         }
     }
 }
-  
+
 void leerTextoValido(char* campo, int tamano, const char* mensaje) {
     cout << mensaje;
-    while (true) { 
+    while (true) {
         cin.getline(campo, tamano);
 
         if (campo[0] == '\0') {
@@ -110,4 +110,43 @@ void leerTextoValido(char* campo, int tamano, const char* mensaje) {
         }
     }
 
+}
+
+bool validarTelefono(const char* texto, int minDigitos, int maxDigitos) {
+    int i = 0;
+
+    // contar caracteres y validar que sean numeros
+    while (texto[i] != '\0') {
+        if (texto[i] < '0' || texto[i] > '9') { //ASCII
+            return false;
+        }
+        i++;
+    }
+
+    // validar longitud
+    if (i < minDigitos || i > maxDigitos) {
+        return false;
+    }
+
+    return true;
+}
+
+void leerTelefono(char* telefono, int tamanio, int minDigitos, int maxDigitos) {
+    while (true) {
+        cin.getline(telefono, tamanio);
+
+        // Validacion para cuando se excede de digitos
+        if (cin.fail()) {
+            cin.clear(); // limpia el error
+            cin.ignore(1000, '\n'); // descarta lo que sobra
+            cout << "Error: telefono demasiado largo.\nIntente nuevamente: ";
+            continue;
+        }
+
+        if (validarTelefono(telefono, minDigitos, maxDigitos)) {
+            return;
+        }
+
+        cout << "Error: telefono invalido. Solo numeros y entre " << minDigitos << " y " << maxDigitos << " digitos.\nIntente nuevamente: ";
+    }
 }

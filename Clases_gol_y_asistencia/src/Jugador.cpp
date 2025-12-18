@@ -1,5 +1,7 @@
 #include "Jugador.h"
 #include "ArchivoClub.h"
+#include "Validaciones.h"
+#include "Club.h"
 #include <iomanip>
 using namespace std;
 
@@ -33,27 +35,33 @@ int Jugador::getIdClub(){
 }
 
 //Otros metodos
-void Jugador::cargar() {
-    bool flag = Persona::cargar();
-    if(flag == false) return;
+bool Jugador::cargar() {
+    if(Persona::cargar() == false) return false;
     cout << "\nClub (Elige ID): "<<endl;
 
     //Muestro lista de clubes creados
     ArchivoClub archivo("clubes.dat");
     Club* lista = archivo.getClubes();
 
+    if (archivo.cantidadRegistros() == 0) {
+        cout << "No hay clubes cargados.\n";
+        return false;
+    }
+
     for (int i = 0; i < archivo.cantidadRegistros(); i++) {
         cout << lista[i].getIdClub() << "- " << lista[i].getNombre() << endl;
     }
     cout << "\nSu eleccion de Club: ";
-    cin >> _idClub;
+    _idClub = leerEnteroEnRango(1, Club::getUltimoId());
+
     cout << "\nPosicion (Defensor:1/Mediocampista:2/Delantero:3): ";
-    cin.ignore();
-    cin >> _posicion;
+    _posicion = leerEnteroEnRango(1,3);
+
+    return true;
 }
 
 void Jugador::mostrar() {
-    ArchivoClub archivo("clubes.dat");
+    ArchivoClub archivoClub("clubes.dat");
     string nombrePosicion;
 
     if(_posicion == 1)
@@ -64,7 +72,7 @@ void Jugador::mostrar() {
         nombrePosicion = "Delantero";
 
     Persona::mostrar();
-    cout << left << setw(20) << "Club:"      << archivo.buscarPorId(_idClub)->getNombre() << endl;
+    cout << left << setw(20) << "Club:"      << archivoClub.buscarPorId(_idClub)->getNombre() << endl;
     cout << left << setw(20) << "Posicion:"  << nombrePosicion << endl;
     cout << "====================================================\n\n" << endl;
 }
