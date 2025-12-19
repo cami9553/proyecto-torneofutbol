@@ -2,6 +2,7 @@
 #include "Validaciones.h"
 #include <limits>
 #include <string>
+#include <cstring>
 
 using namespace std;
 
@@ -149,4 +150,33 @@ void leerTelefono(char* telefono, int tamanio, int minDigitos, int maxDigitos) {
 
         cout << "Error: telefono invalido. Solo numeros y entre " << minDigitos << " y " << maxDigitos << " digitos.\nIntente nuevamente: ";
     }
+}
+
+
+bool validarEmail(const std::string& email)
+{
+    int posArroba = -1;
+
+    for (int i = 0; i < email.size(); i++)
+    {
+        if (email[i] == ' ')
+        return false;
+
+        if (email[i] == '@') 
+        {
+
+            if (posArroba != -1) return false;
+            posArroba = i;
+        }
+    }
+
+    if (posArroba <= 0 || posArroba == email.size() - 1)
+    return false;
+
+    for (int i = posArroba + 1; i< email.size(); i++)
+    {
+        if (email[i] == '.')
+        return true;
+    }
+    return false;
 }
