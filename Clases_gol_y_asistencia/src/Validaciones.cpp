@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Validaciones.h"
+#include "ArchivoJugador.h"
 #include <limits>
 #include <string>
 #include <cstring>
@@ -162,7 +163,7 @@ bool validarEmail(const std::string& email)
         if (email[i] == ' ')
         return false;
 
-        if (email[i] == '@') 
+        if (email[i] == '@')
         {
 
             if (posArroba != -1) return false;
@@ -179,4 +180,10 @@ bool validarEmail(const std::string& email)
         return true;
     }
     return false;
+}
+
+bool validarJugadoryClub(int idJugador, int idClub){
+    ArchivoJugador archivoJug("jugadores.dat");
+
+    return archivoJug.verificarClub(idJugador, idClub);
 }

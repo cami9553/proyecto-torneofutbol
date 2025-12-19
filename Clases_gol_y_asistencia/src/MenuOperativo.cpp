@@ -4,6 +4,8 @@
 #include "ArchivoGol.h"
 #include "ArchivoJugador.h"
 #include "ArchivoPartido.h"
+#include "ArchivoClub.h"
+#include "ClubEnTorneo.h"
 #include "Validaciones.h"
 #include <iostream>
 #include <iomanip>
@@ -27,7 +29,7 @@ void menuOperativo()
         cout << "5.Ver Fixture\n";
         cout << "0.Salir\n";
         cout << "Seleccione una opcion:";
-        
+
         opcion = leerEnteroEnRango(0, 5);
 
         system("cls");
@@ -49,26 +51,26 @@ void menuOperativo()
         {
             ArchivoClub archClub("clubes.dat");
             ArchivoPartido archPartido("partidos.dat");
-        
-            int cantClubes = archClub.getCantidadRegistros();
+
+            int cantClubes = archClub.cantidadRegistros();
             if (cantClubes == 0) {
                 cout << "No hay clubes registrados.\n";
                 cin.get();
                 break;
             }
-        
-          
+
+
             ClubEnTorneo** tabla = new ClubEnTorneo*[cantClubes];
             for (int i = 0; i < cantClubes; i++) {
                 Club c = archClub.leerRegistro(i);
                 tabla[i] = new ClubEnTorneo(c.getIdClub(), c.getNombre());
             }
-        
+
             // Actualizar tabla con resultados de partidos
             int cantPartidos = archPartido.getCantidadRegistros();
             for (int i = 0; i < cantPartidos; i++) {
                 Partido p = archPartido.leerRegistro(i);
-        
+
                 // Buscar club local
                 for (int j = 0; j < cantClubes; j++) {
                     if (tabla[j]->getIdClub() == p.getIdClubLocal()) {
@@ -84,7 +86,7 @@ void menuOperativo()
                     }
                 }
             }
-        
+
             // Ordenar tabla por PTS y luego por DG
             for (int i = 0; i < cantClubes - 1; i++) {
                 for (int j = i + 1; j < cantClubes; j++) {
@@ -96,13 +98,13 @@ void menuOperativo()
                     }
                 }
             }
-        
+
             // Mostrar tabla de posiciones
             cout << "\n=== TABLA DE POSICIONES ===\n";
-            cout << left << setw(4) << "POS" << setw(20) << "CLUB" 
+            cout << left << setw(4) << "POS" << setw(20) << "CLUB"
                  << setw(4) << "PJ" << setw(4) << "G" << setw(4) << "E" << setw(4) << "P"
                  << setw(4) << "GF" << setw(4) << "GC" << setw(4) << "DG" << setw(4) << "PTS\n";
-        
+
             for (int i = 0; i < cantClubes; i++) {
                 cout << left << setw(4) << (i + 1)
                      << setw(20) << tabla[i]->getNombre()
@@ -115,12 +117,12 @@ void menuOperativo()
                      << setw(4) << tabla[i]->getDG()
                      << setw(4) << tabla[i]->getPTS() << endl;
             }
-        
-            
+
+
             for (int i = 0; i < cantClubes; i++)
                 delete tabla[i];
             delete[] tabla;
-        
+
             cin.get();
             break;
         }
@@ -306,7 +308,7 @@ void menuOperativo()
             cin.get();
             break;
         }
-    
+
         case 0:
             cout << "\nSaliendo del sistema...\n";
             break;

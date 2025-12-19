@@ -122,6 +122,18 @@ int ArchivoJugador::buscarPorDni(int dni)
     return -1;
 }
 
+int ArchivoJugador::buscarPorId(int id)
+{
+    Jugador j;
+    int cantidad = getCantidadRegistros();
+    for (int i = 0; i < cantidad; i++)
+    {
+        j = leerRegistro(i);
+        if (j.getId() == id) return i;
+    }
+    return -1;
+}
+
 
 void ArchivoJugador::listarNombreApellido()
 {
@@ -153,8 +165,11 @@ void ArchivoJugador::listarJugadorPorClub(int idClub)
     for (int i = 0; i < cantidad; i++)
     {
             J = leerRegistro(i);
-            if(J.getIdClub() == idClub)
+            if(J.getIdClub() == idClub){
+                cout <<"- ";
                 J.mostrarNombreApellido();
+            }
+
     }
 }
 
@@ -204,4 +219,28 @@ bool ArchivoJugador::eliminarRegistroFisico(int dni)
     remove(_nombreArchivo.c_str());
     rename("temp.dat", _nombreArchivo.c_str());
     return true;
+}
+
+bool ArchivoJugador::verificarClub(int idJugador, int idClub){
+    bool flag = false;
+    int cantidad = getCantidadRegistros();
+    if (cantidad == 0)
+    {
+        std::cout << "No hay jugadores registrados.\n";
+        return flag;
+    }
+
+    Jugador J;
+    for (int i = 0; i < cantidad; i++)
+    {
+            J = leerRegistro(i);
+            if(J.getId() == idJugador)
+                    if(J.getIdClub() == idClub)
+                        return true;
+                    else{
+                        std::cout << "Error: ID incorrecto.";
+                        return flag;
+                    }
+    }
+    return flag;
 }
