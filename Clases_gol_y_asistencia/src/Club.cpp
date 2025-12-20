@@ -30,16 +30,22 @@ const char *Club::getPresidente(){ return _presidente;}
 const char *Club::getCiudad(){ return _ciudad;}
 
 
-void Club::cargar()
+bool Club::cargar()
 {
     cout << "ID Club: " << _idClub << endl;
 
-    leerNombreApellido(_nombre, 30, "nombre del club:");
+    if (!leerNombreApellido(_nombre, 30, "Nombre del club"))
+        return false;
 
-    leerNombreApellido(_presidente, 30, "Presidente:");
+    if (!leerNombreApellido(_presidente, 30, "Presidente"))
+        return false;
 
-    leerNombreApellido(_ciudad, 30, "Ciudad:");
+    if (!leerNombreApellido(_ciudad, 30, "Ciudad"))
+        return false;
+
+    return true; // ← solo si todo salió bien
 }
+
 
 void Club::mostrar(){
     cout << "ID Club: " << _idClub << endl;
