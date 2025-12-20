@@ -112,8 +112,9 @@ bool ArchivoPartido::listarRegistros()
 void ArchivoPartido::registrarResultado()
 {
     ArchivoClub archClub("clubes.dat");
-    ArchivoGol archGol("goles.dat");
     ArchivoJugador archivoJug("jugadores.dat");
+    ArchivoGol archGol("goles.dat");
+    archGol.cargarDesdeArchivo();
 
     FILE* pFile = fopen("partidos.dat", "rb+");
     if (pFile == NULL)
@@ -170,16 +171,18 @@ void ArchivoPartido::registrarResultado()
             // Registrar los goles en goles.dat
             Gol g;
             int dniJugador, idJugadorLocal, idJugadorVisitante, tipoGol;
+            system("cls");
 
-            std::cout << "\n--- Registro de goles ---" << std::endl;
+            std::cout << "\n====================================\n";
+            std::cout << "CARGA DE GOLES - " << clubLocal.getNombre() << "\n";
+            std::cout << "====================================\n";
 
             // Goles del local
+            std::cout << "Jugadores de " << clubLocal.getNombre() << std::endl;
+            archivoJug.listarJugadorPorClub(clubLocal.getIdClub());
+
             for (int i = 0; i < golesLocal; i++) {
-
-                std::cout << "Jugadores de " << clubLocal.getNombre() << std::endl;
-                archivoJug.listarJugadorPorClub(clubLocal.getIdClub());
-
-                std::cout << "\nGol #" << (i + 1) << " de " << clubLocal.getNombre() << "(ID del jugador): ";
+                std::cout << "\nGol " << (i + 1) << " de " << golesLocal << " (ID del jugador): ";
                 bool flag = true;
                 while(flag){
                     std::cin >> idJugadorLocal;
@@ -202,10 +205,14 @@ void ArchivoPartido::registrarResultado()
             }
 
             // Goles del visitante - Falta agregar validacion de jugadores que juegan en este clubVisitante
+            std::cout << "\n====================================\n";
+            std::cout << "CARGA DE GOLES - " << clubVisitante.getNombre() << "\n";
+            std::cout << "====================================\n";
             std::cout << "Jugadores de " << clubVisitante.getNombre() << std::endl;
+
             archivoJug.listarJugadorPorClub(clubVisitante.getIdClub());
             for (int i = 0; i < golesVisitante; i++) {
-                std::cout << "\nGol #" << (i + 1) << " de " << clubVisitante.getNombre() << "(ID del jugador): ";
+                std::cout << "\nGol " << (i + 1) << " de " << golesVisitante << " (ID del jugador): ";
                 bool flag = true;
                 while(flag){
                     std::cin >> idJugadorVisitante;
@@ -217,7 +224,7 @@ void ArchivoPartido::registrarResultado()
                         std::cout << "\nIngrese nuevamente el ID: ";
                 }
 
-                std::cout << "Tipo de gol (1=Penal, 2=Cabeza, 3=Tiro libre: ";
+                std::cout << "Tipo de gol 1=Penal, 2=Cabeza, 3=Tiro libre: ";
                 tipoGol = leerEnteroEnRango(1,3);
 
                 g.setNroPartido(nroPartido);

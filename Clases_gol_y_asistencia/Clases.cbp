@@ -42,6 +42,7 @@
 		<Unit filename="include/ArchivoTorneo.h" />
 		<Unit filename="include/Asistencia.h" />
 		<Unit filename="include/Club.h" />
+		<Unit filename="include/ClubEnTorneo.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/GestionClub.h" />
 		<Unit filename="include/Gol.h" />
@@ -61,6 +62,7 @@
 		<Unit filename="src/ArchivoTorneo.cpp" />
 		<Unit filename="src/Asistencia.cpp" />
 		<Unit filename="src/Club.cpp" />
+		<Unit filename="src/ClubEnTorneo.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Gol.cpp" />
 		<Unit filename="src/Jugador.cpp" />
