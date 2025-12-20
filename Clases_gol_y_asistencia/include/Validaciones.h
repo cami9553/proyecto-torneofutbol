@@ -12,4 +12,6 @@ bool validarTelefono(const char* texto, int minDigitos, int maxDigitos);
 void leerTelefono(char* telefono, int tamano, int minDigitos, int maxDigitos);
 bool validarEmail(const std::string&email);
 bool validarJugadoryClub(int idJugador, int idClub);
+bool volverAtras(const char* texto);
+
 #endif
