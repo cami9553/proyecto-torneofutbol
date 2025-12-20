@@ -1,7 +1,5 @@
-#include "MenuAdministrativo.h"
 #include <iostream>
 #include <limits>
-
 #include "Club.h"
 #include "Jugador.h"
 #include "ArchivoJugador.h"
@@ -87,7 +85,7 @@ void menuAdministrativo()
                         } else {
                             cout << "\n Error al guardar el club. \n";
                         }
-                        
+
                          cout << "\n¿Desea cargar otro Club? (S/N):";
                          confirm = leerOpcionSN();
                          system("cls");
