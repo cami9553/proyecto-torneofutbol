@@ -1,7 +1,5 @@
-#include "MenuAdministrativo.h"
 #include <iostream>
 #include <limits>
-
 #include "Club.h"
 #include "Jugador.h"
 #include "ArchivoJugador.h"
@@ -40,38 +38,68 @@ void menuAdministrativo()
 
         opcion = leerEnteroConIntentos(3);
 
+        if (opcion == -1) {
+            cout << "Volviendo al menu...\n";
+            cin.get();
+            continue;
+        }
+        
 
         system("cls");
 
         switch(opcion)
         {
-            case 1:
-            {
-                cout << "\n=== REGISTRO DE CLUB ===\n";
-                Club C;
-                char confirm;
-                do{
-                    C.generarNuevoId();
-                    
-                    string nombre;
-                    cin.ignore();
-                    cout << "Ingrese nombre del club: ";
+         case 1:
+         {
+           cout << "\n=== REGISTRO DE CLUB ===\n";
+           char confirm = 'N';
+
+            do{
+
+              Club C;
+              C.generarNuevoId();
+                
+                string nombre;
+                int intentos = 0;
+                bool nombreValido = false;
+
+                while (intentos <3) {
+                    cout << "Ingrese nombre del club (solo letras y espacios): ";
                     getline(cin, nombre);
 
-                    C.setNombre(nombre);
+                    if (validarSoloLetrasEspacios(nombre.c_str())) {
+                        nombreValido = true;
+                        break;
 
-                    if(archivoClubes.guardar(C)){
-                        cout << "Club registrado exitosamente.\n\n";
-                        system("cls");
-                    }
-                    else cout << "Error al guardar el Club.\n";
-                   
-                    cout << "Desea cargar otro Club? (S/N): " << endl;
-                    confirm = leerOpcionSN();
-                    system("cls");
-                }while(confirm == 'S');
-                break;
-            }
+                        } else {
+                            intentos++;
+                            cout << "Nombre invalido. Intento "
+                                << intentos << " de 3. \n";
+                            }
+                        }
+                        if (!nombreValido) {
+                            cout << "\n Se superaron los 3 intentos. Volviendo al menu... \n";
+                            cin.get();
+                            break;
+                        }
+
+                        C.setNombre(nombre);
+
+                        if (archivoClubes.guardar(C)) {
+                            cout << "\n Club registrado exitosamente. \n";
+                        } else {
+                            cout << "\n Error al guardar el club. \n";
+                        }
+
+                         cout << "\n¿Desea cargar otro Club? (S/N):";
+                         confirm = leerOpcionSN();
+                         system("cls");
+
+            } while (confirm == 'S');
+
+            break;
+        }
+
 
             case 2:
             {
