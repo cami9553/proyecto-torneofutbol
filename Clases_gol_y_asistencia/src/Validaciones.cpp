@@ -187,3 +187,13 @@ bool validarJugadoryClub(int idJugador, int idClub){
 
     return archivoJug.verificarClub(idJugador, idClub);
 }
+
+
+bool volverAtras(const char* texto)
+{
+    if (texto == nullptr) return false;
+
+    // Si el usuario escribe solo *
+    return strcmp(texto, "*") == 0;
+}
+
