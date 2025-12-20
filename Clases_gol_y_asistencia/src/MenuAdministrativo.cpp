@@ -37,8 +37,13 @@ void menuAdministrativo()
         cout << "Seleccione una opcion: ";
 
         opcion = leerEnteroConIntentos(3);
-         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+        if (opcion == -1) {
+            cout << "Volviendo al menu...\n";
+            cin.get();
+            continue;
+        }
+        
 
         system("cls");
 
