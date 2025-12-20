@@ -15,7 +15,7 @@ class ArchivoTorneo{
         int Buscar(int idTorneo);
         Torneo Leer(int posicion);
         int CantidadRegistros();
-        void Leer(int cantidadRegistros, Torneo *vector);
+        void Leer(int CantidadRegistros, Torneo *vector);
         void crearFixture(int idTorneo = 1);
 };
 #endif // ARCHIVOTORNEO_H

@@ -58,12 +58,12 @@ bool ArchivoPartido::modificarRegistro(const Partido& partido, int posicion)
     return ok;
 }
 
-void ArchivoPartido::leerTodos(Partido* vector, int cantidadRegistros)
+void ArchivoPartido::leerTodos(Partido* vector, int CantidadRegistros)
 {
     FILE* pFile = fopen(_nombreArchivo.c_str(), "rb");
     if (pFile == NULL) return;
 
-    fread(vector, sizeof(Partido), cantidadRegistros, pFile);
+    fread(vector, sizeof(Partido), CantidadRegistros, pFile);
     fclose(pFile);
 }
 

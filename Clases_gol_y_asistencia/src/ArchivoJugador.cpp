@@ -172,12 +172,12 @@ int ArchivoJugador::obtenerDni(int idJugador)
 }
 
 
-void ArchivoJugador::leerTodos(Jugador* vector, int cantidadRegistros)
+void ArchivoJugador::leerTodos(Jugador* vector, int CantidadRegistros)
 {
     FILE* pFile = fopen(_nombreArchivo.c_str(), "rb");
     if (pFile == NULL) return;
 
-    fread(vector, sizeof(Jugador), cantidadRegistros, pFile);
+    fread(vector, sizeof(Jugador), CantidadRegistros, pFile);
     fclose(pFile);
 }
 

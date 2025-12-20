@@ -43,12 +43,12 @@ bool Jugador::cargar() {
     ArchivoClub archivo("clubes.dat");
     Club* lista = archivo.getClubes();
 
-    if (archivo.cantidadRegistros() == 0) {
+    if (archivo.CantidadRegistros() == 0) {
         cout << "No hay clubes cargados.\n";
         return false;
     }
 
-    for (int i = 0; i < archivo.cantidadRegistros(); i++) {
+    for (int i = 0; i < archivo.CantidadRegistros(); i++) {
         cout << lista[i].getIdClub() << "- " << lista[i].getNombre() << endl;
     }
     cout << "\nSu eleccion de Club: ";

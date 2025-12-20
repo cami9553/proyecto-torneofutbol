@@ -65,17 +65,17 @@ int ArchivoTorneo::CantidadRegistros(){
         return 0;
     }
     fseek(pArchivo, 0, SEEK_END);
-    int cantidadRegistros = ftell(pArchivo) / sizeof(Torneo);
+    int CantidadRegistros = ftell(pArchivo) / sizeof(Torneo);
     fclose(pArchivo);
-    return cantidadRegistros;
+    return CantidadRegistros;
 }
 
-void ArchivoTorneo::Leer(int cantidadRegistros, Torneo *vector){
+void ArchivoTorneo::Leer(int CantidadRegistros, Torneo *vector){
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb");
     if(pArchivo == NULL){
         return;
     }
-    for(int i = 0; i < cantidadRegistros; i++){
+    for(int i = 0; i < CantidadRegistros; i++){
         fread(&vector[i], sizeof(Torneo), 1, pArchivo);
     }
     fclose(pArchivo);
@@ -87,7 +87,7 @@ void ArchivoTorneo::crearFixture(int idTorneo) {
     ArchivoClub archClub;
     ArchivoPartido archPartido("partidos.dat");
 
-    int cantClubes = archClub.cantidadRegistros();
+    int cantClubes = archClub.CantidadRegistros();
     if (cantClubes < 2) {
         std::cout << "Se necesitan al menos 2 clubes para crear el fixture." << std::endl;
         return;

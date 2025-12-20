@@ -19,8 +19,8 @@ class ArchivoClub{
         bool actualizar(Club club, int posicion);
         int buscar(int idClub);
         Torneo leer(int posicion);
-        int cantidadRegistros();
-        void leer(int cantidadRegistros, Club *vector);
+        int CantidadRegistros();
+        void leer(int CantidadRegistros, Club *vector);
         void listarRegistros();
         bool modificarRegistro(const Club& club, int posicion);
         Club leerRegistro(int posicion);
