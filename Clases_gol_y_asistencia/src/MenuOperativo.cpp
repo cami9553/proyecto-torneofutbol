@@ -2,13 +2,14 @@
 #include "Archivoasistencia.h"
 #include "Asistencia.h"
 #include "ArchivoGol.h"
+#include "ArchivoClub.h"
 #include "ArchivoJugador.h"
 #include "ArchivoPartido.h"
-#include "ArchivoClub.h"
-#include "ClubEnTorneo.h"
 #include "Validaciones.h"
+#include "ClubEnTorneo.h"
 #include <iostream>
 #include <iomanip>
+#include <string>
 
 using namespace std;
 
@@ -52,7 +53,9 @@ void menuOperativo()
             ArchivoClub archClub("clubes.dat");
             ArchivoPartido archPartido("partidos.dat");
 
-            int cantClubes = archClub.cantidadRegistros();
+        
+            int cantClubes = archClub.CantidadRegistros();
+
             if (cantClubes == 0) {
                 cout << "No hay clubes registrados.\n";
                 cin.get();

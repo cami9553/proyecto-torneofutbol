@@ -3,6 +3,7 @@
 #include "ArchivoClub.h"
 #include "Validaciones.h"
 
+
 ArchivoClub::ArchivoClub(const std::string& nombreArchivo){
     _nombreArchivo = nombreArchivo;
     clubes = nullptr;
@@ -112,30 +113,30 @@ Club ArchivoClub::leerRegistro(int posicion){
     return club;
 }
 
-int ArchivoClub::cantidadRegistros(){
+int ArchivoClub::CantidadRegistros(){
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb");
     if(pArchivo == NULL){
         return 0;
     }
     fseek(pArchivo, 0, SEEK_END);
-    int cantidadRegistros = ftell(pArchivo) / sizeof(Club);
+    int CantidadRegistros = ftell(pArchivo) / sizeof(Club);
     fclose(pArchivo);
-    return cantidadRegistros;
+    return CantidadRegistros;
 }
 
-void ArchivoClub::leer(int cantidadRegistros, Club *vector){
+void ArchivoClub::leer(int CantidadRegistros, Club *vector){
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb");
     if(pArchivo == NULL){
         return;
     }
-    for(int i = 0; i < cantidadRegistros; i++){
+    for(int i = 0; i < CantidadRegistros; i++){
         fread(&vector[i], sizeof(Club), 1, pArchivo);
     }
     fclose(pArchivo);
 }
 
 void ArchivoClub::listarRegistros() {
-    int cantidad = cantidadRegistros();
+    int cantidad = CantidadRegistros();
     if (cantidad == 0) {
         std::cout << "No hay clubes registrados.\n";
         return;

@@ -15,7 +15,7 @@ public:
     Partido leerRegistro(int posicion);
     bool guardarRegistro(const Partido& partido);
     bool modificarRegistro(const Partido& partido, int posicion);
-    void leerTodos(Partido* vector, int cantidadRegistros);
+    void leerTodos(Partido* vector, int CantidadRegistros);
     bool listarRegistros();
     void registrarResultado();
 };

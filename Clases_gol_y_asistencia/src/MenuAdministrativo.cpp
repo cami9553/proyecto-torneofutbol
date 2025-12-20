@@ -52,13 +52,20 @@ void menuAdministrativo()
                 char confirm;
                 do{
                     C.generarNuevoId();
-                    C.cargar();
+                    
+                    string nombre;
+                    cin.ignore();
+                    cout << "Ingrese nombre del club: ";
+                    getline(cin, nombre);
+
+                    C.setNombre(nombre);
 
                     if(archivoClubes.guardar(C)){
                         cout << "Club registrado exitosamente.\n\n";
                         system("cls");
                     }
                     else cout << "Error al guardar el Club.\n";
+                   
                     cout << "Desea cargar otro Club? (S/N): " << endl;
                     confirm = leerOpcionSN();
                     system("cls");
@@ -69,7 +76,7 @@ void menuAdministrativo()
             case 2:
             {
                 cout << "\n=== EDITAR CLUB ===\n";
-                int cantidad = archivoClubes.cantidadRegistros();
+                int cantidad = archivoClubes.CantidadRegistros();
                 for(int x = 0; x < cantidad; x++){
                     cout << archivoClubes.leerRegistro(x).getIdClub() << "- "
                          << archivoClubes.leerRegistro(x).getNombre() << endl;
@@ -184,10 +191,11 @@ void menuAdministrativo()
             {
                 cout << "\n=== EDITAR JUGADOR ===\n";
                 archivoJugadores.listarNombreApellido();
-                cout << "\nIngrese el ID del jugador a editar: ";
-                int id = leerEnteroEnRango(1, Jugador::getUltimoId());
 
-                int pos = archivoJugadores.buscarPorId(id);
+                cout << "\nIngrese el ID del jugador a editar: ";
+                int dni = leerEnteroEnRango(1, 99999999);
+
+                int pos = archivoJugadores.buscarPorDni(dni);
 
                 if (pos == -1) {
                     cout << "Jugador no encontrado.\n";
@@ -215,7 +223,7 @@ void menuAdministrativo()
                 cout << "Ingrese el DNI del jugador a eliminar: ";
                 int dni = leerEnteroConIntentos(3);
 
-                int pos = archivoJugadores.buscarPorId(dni);
+                int pos = archivoJugadores.buscarPorDni(dni);
 
                 if (pos == -1) {
                     cout << "Jugador no encontrado.\n";

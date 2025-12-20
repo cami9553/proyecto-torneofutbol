@@ -16,14 +16,14 @@ public:
     Jugador leerRegistro(int posicion);
     bool guardarRegistro(const Jugador& jugador);
     bool modificarRegistro(const Jugador& jugador, int posicion);
-    void leerTodos(Jugador* vector, int cantidadRegistros);
+    void leerTodos(Jugador* vector, int CantidadRegistros);
     void listarNombreApellido();
     void listarJugadorPorClub(int idClub);
     void listarRegistros();
     int buscarPorDni(int dni);
     int buscarPorId(int id);
     int obtenerDni(int idJugador);
-    bool eliminarRegistroFisico(int id);
+    bool eliminarRegistroFisico(int dni);
     bool verificarClub(int idJugador, int idClub);
 
 };
