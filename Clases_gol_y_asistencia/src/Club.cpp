@@ -33,6 +33,7 @@ const char *Club::getCiudad(){ return _ciudad;}
 bool Club::cargar()
 {
     cout << "ID Club: " << _idClub << endl;
+    cout << "Ingrese * en cualquier campo para cancelar.\n\n";
 
     if (!leerNombreApellido(_nombre, 30, "Nombre del club"))
         return false;
@@ -43,7 +44,7 @@ bool Club::cargar()
     if (!leerNombreApellido(_ciudad, 30, "Ciudad"))
         return false;
 
-    return true; // ← solo si todo salió bien
+    return true;
 }
 
 
