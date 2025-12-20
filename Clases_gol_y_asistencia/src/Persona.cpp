@@ -133,7 +133,6 @@ void Persona::mostrar() {
 }
 
 void Persona::mostrarNombreApellido() {
-    cout << _idPersona << "- ";
-    cout << _apellido << " " << _nombre << endl;
+    cout << _apellido << " " << _nombre << " (ID:" << _idPersona << ")" << endl;
 }
 
