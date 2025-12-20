@@ -90,38 +90,67 @@ Fecha Persona::getFechaNacimiento() {
 
 //Otros metodos
 bool Persona::cargar() {
-     cout << "ID: " << _idPersona << endl;
-    cout << "DNI: ";
+    cout << "ID: " << _idPersona << endl;
 
-    // pedir DNI hasta que sea valido o 0
-    while(true) {
+    // === DNI ===
+    cout << "DNI (* para volver): ";
+
+    while (true) {
         _dni = leerEnteroConIntentos(3);
 
-        if(_dni == 0) return false;  // Termina si es 0
+        if (_dni == -1) return false;   
+        if (_dni == 0) return false;    
 
-        if(_dni >= 1000000 && _dni <= 99999999) {
-            break;  // DNI válido, sale del while
+        if (_dni >= 1000000 && _dni <= 99999999) {
+            break;
         }
 
-        cout << "Error: DNI debe tener entre 7 y 8 digitos. Ingrese nuevamente (0 para terminar): ";
+        cout << "Error: DNI debe tener entre 7 y 8 digitos. Ingrese nuevamente: ";
     }
 
+    // === NOMBRE ===
+    if (!leerNombreApellido(_nombre, 30, "Nombre")) {
+        return false;
+    }
 
+    // === APELLIDO ===
+    if (!leerNombreApellido(_apellido, 30, "Apellido")) {
+        return false;
+    }
 
-    leerNombreApellido(_nombre, 30, "Nombre: ");
-    leerNombreApellido(_apellido, 30, "Apellido: ");
+    // === TELEFONO ===
+    cout << "Telefono (* para volver): ";
+    cin.getline(_telefono, 15);
+    if (volverAtras(_telefono)) {
+        return false;
+    }
+    while (!validarTelefono(_telefono, 7, 15)) {
+        cout << "Error: telefono invalido. Ingrese nuevamente (* para volver): ";
+        cin.getline(_telefono, 15);
+        if (volverAtras(_telefono)) return false;
+    }
 
-    cout << "Telefono: ";
-    leerTelefono(_telefono, 15, 7, 15);
-
-    cout << "Email: ";
+    // === EMAIL ===
+    cout << "Email (* para volver): ";
     cin.getline(_email, 30);
+    if (volverAtras(_email)) {
+        return false;
+    }
+    while (!validarEmail(_email)) {
+        cout << "Error: email invalido. Ingrese nuevamente (* para volver): ";
+        cin.getline(_email, 30);
+        if (volverAtras(_email)) return false;
+    }
 
-    cout << "Fecha de nacimiento: \n";
-    _fechaNacimiento.cargar();
+    // === FECHA ===
+    cout << "Fecha de nacimiento (* para volver): \n";
+    if (!_fechaNacimiento.cargar()) {   
+        return false;
+    }
 
     return true;
 }
+
 
 void Persona::mostrar() {
     cout << left << setw(20) << "ID: "           << _idPersona << endl;
