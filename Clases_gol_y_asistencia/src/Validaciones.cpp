@@ -45,8 +45,10 @@ int leerEnteroEnRango(int min, int max) {
 char leerOpcionSN() {
     char opcion;
     string entrada;
+    int intentos = 0;
 
-    while (true) {
+
+    while (intentos < 3) {
         getline(cin, entrada);
 
         if (entrada.length() == 1) {
@@ -55,8 +57,13 @@ char leerOpcionSN() {
                 return opcion;
             }
         }
-        cout << "Error: Debe ingresar 'S' o 'N'. Intente nuevamente: ";
+
+        intentos++;
+        cout << "Error: Debe ingresar 'S' o 'N'. Intente nuevamente: "
+             << intentos << " de 3: ";
     }
+       cout << "\nSe superaron los 3 intentos. Volviendo... \n";
+       return 'N';
 }
 
 bool validarSoloLetrasEspacios(const char* texto) {

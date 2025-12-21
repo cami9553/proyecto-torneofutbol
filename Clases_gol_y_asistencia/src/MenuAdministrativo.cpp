@@ -12,8 +12,7 @@ using namespace std;
 
 
 
-void menuAdministrativo()
-{
+void menuAdministrativo() {
     ArchivoJugador archivoJugadores("jugadores.dat");
     ArchivoClub archivoClubes("clubes.dat");
     int opcion;
@@ -47,9 +46,9 @@ void menuAdministrativo()
 
         system("cls");
 
-        switch(opcion)
-        {
-         case 1:
+        switch(opcion) {
+
+        case 1:
          {
             int op;
 
@@ -79,7 +78,9 @@ void menuAdministrativo()
                             string nombre;
                             int intentos = 0;
                             bool nombreValido = false;
-                            
+
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
                         while (intentos <3) {
                             cout << "Ingrese nombre del club (solo letras y espacios): ";
                             getline(cin, nombre);
@@ -110,7 +111,7 @@ void menuAdministrativo()
                             cout << "Error al guardar el club. \n";
                         
 
-                         cout << "¿Desea cargar otro Club? (S/N):";
+                         cout << "Desea cargar otro Club? (S/N):";
                          confirm = leerOpcionSN();
                          
 
@@ -120,19 +121,22 @@ void menuAdministrativo()
         }
 
         case 0:
-          return;
+          op = 0;
+          break;
         
         default:
           cout << "Opcion invalida.\n";
+          cin.ignore(numeric_limits<streamsize>::max(), '\n');
           cin.get();
+          
        }
-    } while (true);
+    } while (op != 0);
     
+    break;
+
  }
-
-
-
-
+ 
+  
             case 2:
             {
                 cout << "\n=== EDITAR CLUB ===\n";
