@@ -202,4 +202,21 @@ bool volverAtras(const char* texto)
     // Si el usuario escribe solo *
     return strcmp(texto, "*") == 0;
 }
+bool esNumero(const char* texto) {
+    if (texto == nullptr || texto[0] == '\0') return false;
+
+    for (int i = 0; texto[i] != '\0'; i++) {
+        if (texto[i] < '0' || texto[i] > '9')
+            return false;
+    }
+    return true;
+}
+
+int convertirEntero(const char* texto) {
+    int numero = 0;
+    for (int i = 0; texto[i] != '\0'; i++) {
+        numero = numero * 10 + (texto[i] - '0');
+    }
+    return numero;
+}
 
