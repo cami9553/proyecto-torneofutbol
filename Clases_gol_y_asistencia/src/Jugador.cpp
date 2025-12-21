@@ -51,6 +51,8 @@ bool Jugador::cargar() {
     for (int i = 0; i < archivo.CantidadRegistros(); i++) {
         cout << lista[i].getIdClub() << "- " << lista[i].getNombre() << endl;
     }
+	delete[] lista;
+
     cout << "\nSu eleccion de Club (* para volver): ";
 	_idClub = leerEnteroConIntentos(3);
 	if (_idClub == -1) return false;
