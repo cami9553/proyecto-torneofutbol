@@ -135,119 +135,125 @@ void ArchivoPartido::registrarResultado()
         if (partido.getNroPartido() == nroPartido)
         {
             encontrado = true;
+            if(!partido.getJugado()){
+                int golesLocal, golesVisitante;
+                Fecha fechaJugado;
 
-            int golesLocal, golesVisitante;
-            Fecha fechaJugado;
+                int posLocal = archClub.buscar(partido.getIdClubLocal());
+                int posVisitante = archClub.buscar(partido.getIdClubVisitante());
 
-            int posLocal = archClub.buscar(partido.getIdClubLocal());
-            int posVisitante = archClub.buscar(partido.getIdClubVisitante());
-
-            if (posLocal == -1 || posVisitante == -1)
-            {
-                std::cout << "Error: no se encontro uno de los clubes del partido." << std::endl;
-                fclose(pFile);
-                return;
-            }
-
-            Club clubLocal = archClub.leerRegistro(posLocal);
-            Club clubVisitante = archClub.leerRegistro(posVisitante);
-
-            std::cout << "\nRegistrando resultado para: "
-                      << clubLocal.getNombre() << " vs " << clubVisitante.getNombre() << std::endl;
-
-            std::cout << "Goles de " << clubLocal.getNombre() << ": ";
-            std::cin >> golesLocal;
-            std::cout << "Goles de " << clubVisitante.getNombre() << ": ";
-            std::cin >> golesVisitante;
-
-            std::cout << "\nFecha del partido:\n";
-            fechaJugado.cargar();
-
-            // Actualizar datos del partido
-            partido.setGolesLocal(golesLocal);
-            partido.setGolesVisitante(golesVisitante);
-            partido.setFecha(fechaJugado);
-
-            // Registrar los goles en goles.dat
-            Gol g;
-            int dniJugador, idJugadorLocal, idJugadorVisitante, tipoGol;
-            system("cls");
-
-            std::cout << "\n====================================\n";
-            std::cout << "CARGA DE GOLES - " << clubLocal.getNombre() << "\n";
-            std::cout << "====================================\n";
-
-            // Goles del local
-            std::cout << "Jugadores de " << clubLocal.getNombre() << std::endl;
-            archivoJug.listarJugadorPorClub(clubLocal.getIdClub());
-
-            for (int i = 0; i < golesLocal; i++) {
-                std::cout << "\nGol " << (i + 1) << " de " << golesLocal << " (ID del jugador): ";
-                bool flag = true;
-                while(flag){
-                    std::cin >> idJugadorLocal;
-                    if( validarJugadoryClub(idJugadorLocal, clubLocal.getIdClub()) ){
-                        dniJugador = archivoJug.obtenerDni(idJugadorLocal);
-                        flag = false;
-                    }
-                    else
-                        std::cout << "\nIngrese nuevamente el ID: ";
+                if (posLocal == -1 || posVisitante == -1)
+                {
+                    std::cout << "Error: no se encontro uno de los clubes del partido." << std::endl;
+                    fclose(pFile);
+                    return;
                 }
 
-                std::cout << "Tipo de gol 1=Penal, 2=Cabeza, 3=Tiro libre: ";
-                tipoGol = leerEnteroEnRango(1,3);
+                Club clubLocal = archClub.leerRegistro(posLocal);
+                Club clubVisitante = archClub.leerRegistro(posVisitante);
 
-                g.setNroPartido(nroPartido);
-                g.setDniJugador(dniJugador);
-                g.setTipoGol(tipoGol);
+                std::cout << "\nRegistrando resultado para: "
+                          << clubLocal.getNombre() << " vs " << clubVisitante.getNombre() << std::endl;
 
-                archGol.agregarGol(g);
-            }
+                std::cout << "Goles de " << clubLocal.getNombre() << ": ";
+                std::cin >> golesLocal;
+                std::cout << "Goles de " << clubVisitante.getNombre() << ": ";
+                std::cin >> golesVisitante;
 
-            // Goles del visitante - Falta agregar validacion de jugadores que juegan en este clubVisitante
-            std::cout << "\n====================================\n";
-            std::cout << "CARGA DE GOLES - " << clubVisitante.getNombre() << "\n";
-            std::cout << "====================================\n";
-            std::cout << "Jugadores de " << clubVisitante.getNombre() << std::endl;
+                std::cout << "\nFecha del partido:\n";
+                fechaJugado.cargar();
 
-            archivoJug.listarJugadorPorClub(clubVisitante.getIdClub());
-            for (int i = 0; i < golesVisitante; i++) {
-                std::cout << "\nGol " << (i + 1) << " de " << golesVisitante << " (ID del jugador): ";
-                bool flag = true;
-                while(flag){
-                    std::cin >> idJugadorVisitante;
-                    if( validarJugadoryClub(idJugadorVisitante, clubVisitante.getIdClub()) ){
-                        dniJugador = archivoJug.obtenerDni(idJugadorVisitante);
-                        flag = false;
+                // Actualizar datos del partido
+                partido.setGolesLocal(golesLocal);
+                partido.setGolesVisitante(golesVisitante);
+                partido.setFecha(fechaJugado);
+                partido.setJugado(true);
+
+                // Registrar los goles en goles.dat
+                Gol g;
+                int dniJugador, idJugadorLocal, idJugadorVisitante, tipoGol;
+                system("cls");
+
+                std::cout << "\n====================================\n";
+                std::cout << "CARGA DE GOLES - " << clubLocal.getNombre() << "\n";
+                std::cout << "====================================\n";
+
+                // Goles del local
+                std::cout << "Jugadores de " << clubLocal.getNombre() << std::endl;
+                archivoJug.listarJugadorPorClub(clubLocal.getIdClub());
+
+                for (int i = 0; i < golesLocal; i++) {
+                    std::cout << "\nGol " << (i + 1) << " de " << golesLocal << " (ID del jugador): ";
+                    bool flag = true;
+                    while(flag){
+                        std::cin >> idJugadorLocal;
+                        if( validarJugadoryClub(idJugadorLocal, clubLocal.getIdClub()) ){
+                            dniJugador = archivoJug.obtenerDni(idJugadorLocal);
+                            flag = false;
+                        }
+                        else
+                            std::cout << "\nIngrese nuevamente el ID: ";
                     }
-                    else
-                        std::cout << "\nIngrese nuevamente el ID: ";
+
+                    std::cout << "Tipo de gol 1=Penal, 2=Cabeza, 3=Tiro libre: ";
+                    tipoGol = leerEnteroEnRango(1,3);
+
+                    g.setNroPartido(nroPartido);
+                    g.setDniJugador(dniJugador);
+                    g.setTipoGol(tipoGol);
+
+                    archGol.agregarGol(g);
                 }
 
-                std::cout << "Tipo de gol 1=Penal, 2=Cabeza, 3=Tiro libre: ";
-                tipoGol = leerEnteroEnRango(1,3);
+                // Goles del visitante - Falta agregar validacion de jugadores que juegan en este clubVisitante
+                std::cout << "\n====================================\n";
+                std::cout << "CARGA DE GOLES - " << clubVisitante.getNombre() << "\n";
+                std::cout << "====================================\n";
+                std::cout << "Jugadores de " << clubVisitante.getNombre() << std::endl;
 
-                g.setNroPartido(nroPartido);
-                g.setDniJugador(dniJugador);
-                g.setTipoGol(tipoGol);
+                archivoJug.listarJugadorPorClub(clubVisitante.getIdClub());
+                for (int i = 0; i < golesVisitante; i++) {
+                    std::cout << "\nGol " << (i + 1) << " de " << golesVisitante << " (ID del jugador): ";
+                    bool flag = true;
+                    while(flag){
+                        std::cin >> idJugadorVisitante;
+                        if( validarJugadoryClub(idJugadorVisitante, clubVisitante.getIdClub()) ){
+                            dniJugador = archivoJug.obtenerDni(idJugadorVisitante);
+                            flag = false;
+                        }
+                        else
+                            std::cout << "\nIngrese nuevamente el ID: ";
+                    }
 
-                archGol.agregarGol(g);
+                    std::cout << "Tipo de gol 1=Penal, 2=Cabeza, 3=Tiro libre: ";
+                    tipoGol = leerEnteroEnRango(1,3);
+
+                    g.setNroPartido(nroPartido);
+                    g.setDniJugador(dniJugador);
+                    g.setTipoGol(tipoGol);
+
+                    archGol.agregarGol(g);
+                }
+
+                // Guardar todos los goles al archivo
+                archGol.guardarEnArchivo();
+
+                // Sobrescribir el registro del partido con los datos que ingresamos
+                fseek(pFile, -sizeof(Partido), SEEK_CUR);
+                fwrite(&partido, sizeof(Partido), 1, pFile);
+                std::cout << "\nPartido y goles registrados con exito.\n";
+
+                break;
+            }else{
+                std::cout << "Este partido ya fue registrado.\n";
+                std::cin.get();
+                break;
             }
-
-            // Guardar todos los goles al archivo
-            archGol.guardarEnArchivo();
-
-            // Sobrescribir el registro del partido con los datos que ingresamos
-            fseek(pFile, -sizeof(Partido), SEEK_CUR);
-            fwrite(&partido, sizeof(Partido), 1, pFile);
-            std::cout << "\nPartido y goles registrados con exito.\n";
-
-            break;
         }
     }
 
     if (!encontrado)
-        std::cout << "No se encontr� el partido con el n�mero ingresado.\n";
+        std::cout << "No se encontro el partido con el numero ingresado.\n";
 
     fclose(pFile);
 }

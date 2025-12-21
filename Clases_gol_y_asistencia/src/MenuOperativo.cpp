@@ -53,8 +53,9 @@ void menuOperativo()
             ArchivoClub archClub("clubes.dat");
             ArchivoPartido archPartido("partidos.dat");
 
-        
+
             int cantClubes = archClub.CantidadRegistros();
+
 
             if (cantClubes == 0) {
                 cout << "No hay clubes registrados.\n";
@@ -74,18 +75,21 @@ void menuOperativo()
             for (int i = 0; i < cantPartidos; i++) {
                 Partido p = archPartido.leerRegistro(i);
 
-                // Buscar club local
-                for (int j = 0; j < cantClubes; j++) {
-                    if (tabla[j]->getIdClub() == p.getIdClubLocal()) {
-                        tabla[j]->sumarPartido(p.getGolesLocal(), p.getGolesVisitante());
-                        break;
+                if(p.getJugado()){
+
+                    // Buscar club local
+                    for (int j = 0; j < cantClubes; j++) {
+                        if (tabla[j]->getIdClub() == p.getIdClubLocal()) {
+                            tabla[j]->sumarPartido(p.getGolesLocal(), p.getGolesVisitante());
+                            break;
+                        }
                     }
-                }
-                // Buscar club visitante
-                for (int j = 0; j < cantClubes; j++) {
-                    if (tabla[j]->getIdClub() == p.getIdClubVisitante()) {
-                        tabla[j]->sumarPartido(p.getGolesVisitante(), p.getGolesLocal());
-                        break;
+                    // Buscar club visitante
+                    for (int j = 0; j < cantClubes; j++) {
+                        if (tabla[j]->getIdClub() == p.getIdClubVisitante()) {
+                            tabla[j]->sumarPartido(p.getGolesVisitante(), p.getGolesLocal());
+                            break;
+                        }
                     }
                 }
             }
