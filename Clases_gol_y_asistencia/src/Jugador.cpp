@@ -51,13 +51,13 @@ bool Jugador::cargar() {
     for (int i = 0; i < archivo.CantidadRegistros(); i++) {
         cout << lista[i].getIdClub() << "- " << lista[i].getNombre() << endl;
     }
-    cout << "\nSu eleccion de Club: ";
-    _idClub = leerEnteroEnRango(1, Club::getUltimoId());
+    cout << "\nSu eleccion de Club (* para volver): ";
+	_idClub = leerEnteroConIntentos(3);
+	if (_idClub == -1) return false;
 
-    cout << "\nPosicion (Defensor:1/Mediocampista:2/Delantero:3): ";
-    _posicion = leerEnteroEnRango(1,3);
-
-    return true;
+	cout << "\nPosicion (Defensor:1/Mediocampista:2/Delantero:3) (* para volver): ";
+	_posicion = leerEnteroConIntentos(3);
+	if (_posicion == -1) return false;
 }
 
 void Jugador::mostrar() {
