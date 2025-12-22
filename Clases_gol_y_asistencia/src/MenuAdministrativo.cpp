@@ -48,93 +48,52 @@ void menuAdministrativo() {
 
         switch(opcion) {
 
-        case 1:
-         {
-            int op;
-
-            do{
+         case 1:
+        {
+            int op = -1;
+    
+            do {
                 system("cls");
-                 cout << "\n=== REGISTRO DE CLUB ===\n";
-                 cout << "1. Cargar club\n";
-                 cout << "0. Volver atras\n";
-                 cout << "Seleccione una opcion:";
-
+                cout << "\n=== REGISTRO DE CLUB ===\n";
+                cout << "1. Cargar club\n";
+                cout << "0. Volver atras\n";
+                cout << "Seleccione una opcion: ";
+    
                 op = leerEnteroConIntentos(3);
-
+    
                 if (op == -1) {
-                    cout << "Volviendo...\n";
+                    cout << "\nOperacion cancelada. Volviendo...\n";
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cin.get();
-                    continue;
+                    return;
                 }
-
-                switch (op) {
-                    case 1:
-                    {
-                        char confirm = 'N';
-                        do{
-                            Club C;
-                            C.generarNuevoId();
-
-                            string nombre;
-                            int intentos = 0;
-                            bool nombreValido = false;
-
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-                        while (intentos <3) {
-                            cout << "Ingrese nombre del club (solo letras y espacios): ";
-                            getline(cin, nombre);
-
-                       if (validarSoloLetrasEspacios(nombre.c_str())) {
-                           nombreValido = true;
-                           break;
-
-                        } else {
-                            intentos++;
-                            cout << "Nombre invalido. Intento "
-                                << intentos << " de 3. \n";
-                            }
-                        }
-
-                        if (!nombreValido) {
-                            cout << "\n Se superaron los 3 intentos. Volviendo al menu... \n";
-                            cin.get();
-                            break;
-                        }
-
-                        C.setNombre(nombre);
-
-                        if (archivoClubes.guardar(C)) 
-                            cout << "Club registrado exitosamente. \n";
-                        
-                        else 
-                            cout << "Error al guardar el club. \n";
-                        
-
-                         cout << "Desea cargar otro Club? (S/N):";
-                         confirm = leerOpcionSN();
-                         
-
-            } while (confirm == 'S');
-
+    
+                if (op == 0) {
+                    return;             }
+    
+                if (op == 1) {
+                    char confirm = 'N';
+    
+                    do {
+                        Club C;
+                        C.generarNuevoId();
+                        C.cargar();
+    
+                        if (archivoClubes.guardar(C))
+                            cout << "\nClub registrado correctamente.\n";
+                        else
+                            cout << "\nError al guardar el club.\n";
+    
+                        cout << "\nDesea cargar otro club? (S/N): ";
+                        confirm = leerOpcionSN();
+    
+                    } while (confirm == 'S');
+                }
+    
+            } while (true);
+    
             break;
         }
-
-        case 0:
-          op = 0;
-          break;
-        
-        default:
-          cout << "Opcion invalida.\n";
-          cin.ignore(numeric_limits<streamsize>::max(), '\n');
-          cin.get();
-          
-       }
-    } while (op != 0);
-    
-    break;
-
-    }
  
   
     case 2: {
