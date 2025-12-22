@@ -1136,7 +1136,7 @@
 
 1766438201 c:\users\ibani\onedrive\desktop\proyecto\proyecto-torneofutbol\clases_gol_y_asistencia\include\asistencia.h
 
-1766440868 source:c:\users\ibani\onedrive\desktop\proyecto\proyecto-torneofutbol\clases_gol_y_asistencia\src\archivoclub.cpp
+1766441400 source:c:\users\ibani\onedrive\desktop\proyecto\proyecto-torneofutbol\clases_gol_y_asistencia\src\archivoclub.cpp
 	"Fecha.h"
 	"Club.h"
 	"ArchivoClub.h"
@@ -1171,7 +1171,7 @@
 1766438201 c:\users\ibani\onedrive\desktop\proyecto\proyecto-torneofutbol\clases_gol_y_asistencia\include\gol.h
 	<string>
 
-1766438202 source:c:\users\ibani\onedrive\desktop\proyecto\proyecto-torneofutbol\clases_gol_y_asistencia\src\archivojugador.cpp
+1766442231 source:c:\users\ibani\onedrive\desktop\proyecto\proyecto-torneofutbol\clases_gol_y_asistencia\src\archivojugador.cpp
 	"ArchivoJugador.h"
 	"Validaciones.h"
 	<cstdio>
@@ -1256,7 +1256,7 @@
 
 1766438201 c:\users\ibani\onedrive\desktop\proyecto\proyecto-torneofutbol\clases_gol_y_asistencia\include\menuadministrativo.h
 
-1766440946 source:c:\users\ibani\onedrive\desktop\proyecto\proyecto-torneofutbol\clases_gol_y_asistencia\src\menuadministrativo.cpp
+1766442358 source:c:\users\ibani\onedrive\desktop\proyecto\proyecto-torneofutbol\clases_gol_y_asistencia\src\menuadministrativo.cpp
 	<iostream>
 	<limits>
 	"Club.h"

@@ -256,10 +256,10 @@ void menuAdministrativo() {
                 archivoJugadores.listarNombreApellido();
 
                 cout << "\nIngrese el ID del jugador a editar (0 para volver): ";
-                int dni = leerEnteroEnRango(0, 99999999);
-                if (dni == 0) break;
+                int id = leerEnteroEnRango(0, 99999999);
+                if (id == 0) break;
 
-                int pos = archivoJugadores.buscarPorDni(dni);
+                int pos = archivoJugadores.buscarPorId(id);
                 if (pos == -1) {
                     cout << "Jugador no encontrado.\n";
                     cin.get();
@@ -287,10 +287,19 @@ void menuAdministrativo() {
             case 8:
             {
                 cout << "\n==== ELIMINAR JUGADOR ====\n";
-                cout << "Ingrese el DNI del jugador a eliminar: ";
-                int dni = leerEnteroConIntentos(3);
+                int cantidad = archivoJugadores.getCantidadRegistros();
+                if (cantidad == 0) {
+                    cout << "No hay jugadores registrados. \n";
+                    cin.get();
+                    break;
+                }
+                archivoJugadores.listarNombreApellido();
 
-                int pos = archivoJugadores.buscarPorDni(dni);
+                cout << "\nIngrese el ID del jugador a eliminar (0 para volver): ";
+                int id = leerEnteroConIntentos(3);
+                if(id == 0) break;
+
+                int pos = archivoJugadores.buscarPorId(id);
 
                 if (pos == -1) {
                     cout << "Jugador no encontrado.\n";
@@ -304,7 +313,7 @@ void menuAdministrativo() {
                     confirm = leerOpcionSN();
 
                     if (confirm == 'S') {
-                        if (archivoJugadores.eliminarRegistroFisico(dni))
+                        if (archivoJugadores.eliminarRegistroFisico(id))
                             cout << "Jugador eliminado correctamente.\n";
                         else
                             cout << "Error al eliminar el jugador.\n";
