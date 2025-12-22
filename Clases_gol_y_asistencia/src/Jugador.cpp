@@ -57,6 +57,11 @@ bool Jugador::cargar() {
 	_idClub = leerEnteroConIntentos(3);
 	if (_idClub == -1) return false;
 
+	if (archivo.buscarPorId(_idClub) == nullptr) {
+    	cout << "Club inexistente.\n";
+        return false;
+    }
+
 	cout << "\nPosicion (Defensor:1/Mediocampista:2/Delantero:3) (* para volver): ";
 	_posicion = leerEnteroConIntentos(3);
 	if (_posicion == -1) return false;
