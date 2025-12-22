@@ -206,19 +206,19 @@ void menuAdministrativo() {
                     cout << "Club modificado correctamente.\n";
             }
 
-            cout << "\nPresione ENTER para volver...\n";
+            cout << "\nPresione doble ENTER para volver...\n";
             cin.get();
             break;
         }
     
 
-            case 3: {
-                int cantidad = archivoClubes.CantidadRegistros();
-                if (cantidad == 0) {
+        case 3: {
+            int cantidad = archivoClubes.CantidadRegistros();
+            if (cantidad == 0) {
                     cout << "No hay clubes registrados.\n";
                     cin.get();
                     break;
-                }
+               }
 
                 system("cls");
                 cout << "\n==== ELIMINAR CLUB ====\n";
@@ -277,7 +277,7 @@ void menuAdministrativo() {
                     cout << "Club no encontrado.\n";
                 }
 
-                cout << "\nPresione ENTER para volver...\n";
+                cout << "\nPresione doble ENTER para volver...\n";
                 cin.get();
                 break;
             }
@@ -293,7 +293,7 @@ void menuAdministrativo() {
                     archivoClubes.listarRegistros();
                 }
 
-                cout << "\nPrecione ENTER para volver al menu...";
+                cout << "\nPrecione doble ENTER para volver al menu...";
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cin.get();
 
@@ -365,63 +365,125 @@ void menuAdministrativo() {
             } else {
                 cout << "Edicion cancelada. No se modifico el jugador.\n";
             }
-                cout << "\nPrecione ENTER para volver...\n";
+                cout << "\nPrecione doble ENTER para volver...\n";
                 cin.get();
                 break;
             }
 
-            case 8:
-            {
+            case 8: {
+
+                system("cls");
                 cout << "\n==== ELIMINAR JUGADOR ====\n";
-                cout << "Ingrese el DNI del jugador a eliminar: ";
+
+                int cantidad = archivoJugadores.getCantidadRegistros();
+                if (cantidad == 0) {
+                    cout << "No hay jugadores registrados.\n";
+                    cin.get();
+                    break;
+                }
+
+                cout << "Ingrese el DNI del jugador a eliminar (0 para volver): ";
                 int dni = leerEnteroConIntentos(3);
+                if (dni == 0) break;
 
                 int pos = archivoJugadores.buscarPorDni(dni);
-
                 if (pos == -1) {
                     cout << "Jugador no encontrado.\n";
-                } else {
+                    cin.get();
+                    break;
+
+                } 
                     Jugador J = archivoJugadores.leerRegistro(pos);
                     cout << "\nJugador encontrado:\n";
                     J.mostrar();
 
-                    char confirm;
-                    cout << "\n¿Desea eliminar este jugador? (S/N): ";
-                    confirm = leerOpcionSN();
+                    cout << "\n¿Desea eliminar este jugador? (S/N):";
+                    char confirm = leerOpcionSN();
 
-                    if (confirm == 'S') {
-                        if (archivoJugadores.eliminarRegistroFisico(dni))
-                            cout << "Jugador eliminado correctamente.\n";
-                        else
-                            cout << "Error al eliminar el jugador.\n";
-                    } else {
-                        cout << "Operación cancelada.\n";
+                    if (confirm != 'S') {
+                        cout << "Eliminacion cancelada. Volviendo al menu...\n";
+                        cin.get();
+                        break;
                     }
+
+                    if (archivoJugadores.eliminarRegistroFisico(dni)) {
+                            cout << "Jugador eliminado correctamente.\n";
+                    } else {
+                            cout << "Error al eliminar el jugador.\n";
+                    }
+                    cout << "\nPresione doble ENTER para volver...\n";
+                    cin.get();
+                    break;
+            
+            }
+
+          case 9: { 
+          system("cls");
+          cout << "\n=== LISTA DE JUGADORES ===\n";
+
+           int cantidad = archivoJugadores.getCantidadRegistros();
+           if (cantidad == 0) {
+               cout << "No hay jugadores registrados.\n";
+            } else {
+             archivoJugadores.listarRegistros();
+            }
+
+          cout << "\nPresione doble ENTER para volver al menu...";
+          cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+          cin.get();
+
+        break;
+    } 
+
+
+            case 10: {
+                system("cls");
+                cout << "\n=== CREAR FIXTURE ===\n";
+
+                ArchivoTorneo archTorneo("torneos.dat");
+
+                int cantidad = archTorneo.CantidadRegistros();
+                if (cantidad == 0) {
+                    cout << "No hay torneos registrados.\n";
+                    cout << "\nPrecione doble ENTER para volver al menu...";
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cin.get();
+                    break;
                 }
 
-                cin.get();
-                break;
-            }
+                cout << "¿Desea crear el fixture del torneo? (S/N):";
+                char confirm = leerOpcionSN();
 
-            case 9:
-            {
-                archivoJugadores.listarRegistros();
-                cin.get();
-                break;
-            }
+                if (confirm != 'S') {
+                    cout << "Operacion cancelada. Volviendo al menu...\n";
+                    cin.get();
+                    break;
+                }
 
-            case 10:
-            {
-                ArchivoTorneo archTorneo("torneos.dat");
                 archTorneo.crearFixture(1);
+
+                cout << "\nFixture creado correctamente.\n";
+                cout << "\nPrecione doble ENTER para volver al menu...";
                 cin.get();
+
                 break;
             }
 
             case 11: {
+
+                system("cls");
+                cout << "\n=== REGISTRAR TORNEO ===\n";
+
                 Torneo t;
                 t.cargar();
+
+                cout << "\nTorneo cargado correctamente:\n";
                 t.mostrar();
+
+                cout << "\nPrecione doble ENTER para volver al menu...";
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cin.get();
+
                 break;
 
             }
