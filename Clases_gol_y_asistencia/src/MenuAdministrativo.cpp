@@ -110,43 +110,48 @@ void menuAdministrativo()
                     break;
                 }
 
-            case 2:
-            {
-                cout << "\n=== EDITAR CLUB ===\n";
-                int cantidad = archivoClubes.CantidadRegistros();
-                for(int x = 0; x < cantidad; x++){
-                    cout << archivoClubes.leerRegistro(x).getIdClub() << "- "
-                         << archivoClubes.leerRegistro(x).getNombre() << endl;
-                }
-
-                cout << "\nIngrese el ID del club a editar: ";
-                int id = leerEnteroEnRango(1, Club::getUltimoId());
-
-                int pos = archivoClubes.buscar(id);
-                Club findClub = archivoClubes.leerRegistro(pos);
-                if (findClub.getIdClub() == 0) {
-                    cout << "No se encontro el club con ese ID.\n";
-                } else {
-                    cout << "\nDatos actuales del club:\n";
-                    findClub.mostrar();
-
-                    cout << "\nIngrese los nuevos datos del club:\n";
-
-                    if (!findClub.cargar()) {
-                        cout << "\nEdición cancelada. No se realizaron cambios.\n";
-                        cin.get();
-                        break;
-                }
-
-                    if (archivoClubes.modificarRegistro(findClub, pos)) {
-                        cout << "Club modificado correctamente.\n";
-                    } else {
-                        cout << "Error al modificar el registro.\n";
-                    }
-
-                    cin.get();
-                    break;
+           case 2:
+        {
+            cout << "\n=== EDITAR CLUB ===\n";
+            int cantidad = archivoClubes.CantidadRegistros();
+            for (int x = 0; x < cantidad; x++) {
+                cout << archivoClubes.leerRegistro(x).getIdClub() << "- "
+                     << archivoClubes.leerRegistro(x).getNombre() << endl;
             }
+        
+            cout << "\nIngrese el ID del club a editar: ";
+            int id = leerEnteroEnRango(1, Club::getUltimoId());
+        
+            int pos = archivoClubes.buscar(id);
+            Club findClub = archivoClubes.leerRegistro(pos);
+        
+            if (findClub.getIdClub() == 0) {
+                cout << "No se encontro el club con ese ID.\n";
+                cin.get();
+                break;
+            }
+        
+            cout << "\nDatos actuales del club:\n";
+            findClub.mostrar();
+        
+            cout << "\nIngrese los nuevos datos del club:\n";
+        
+            if (!findClub.cargar()) {
+                cout << "\nEdición cancelada. No se realizaron cambios.\n";
+                cin.get();
+                break;
+            }
+        
+            if (archivoClubes.modificarRegistro(findClub, pos)) {
+                cout << "Club modificado correctamente.\n";
+            } else {
+                cout << "Error al modificar el registro.\n";
+            }
+        
+            cin.get();
+            break;
+        }
+
 
             case 3:
             {
