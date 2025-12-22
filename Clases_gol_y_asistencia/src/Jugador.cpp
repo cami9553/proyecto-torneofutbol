@@ -60,6 +60,7 @@ bool Jugador::cargar() {
 	cout << "\nPosicion (Defensor:1/Mediocampista:2/Delantero:3) (* para volver): ";
 	_posicion = leerEnteroConIntentos(3);
 	if (_posicion == -1) return false;
+	return true;
 }
 
 void Jugador::mostrar() {
