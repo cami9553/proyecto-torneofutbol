@@ -43,7 +43,6 @@ int leerEnteroEnRango(int min, int max) {
 
 // validacion para opcion si o no (S/N)
 char leerOpcionSN() {
-    char opcion;
     string entrada;
     int intentos = 0;
 
@@ -52,9 +51,9 @@ char leerOpcionSN() {
         getline(cin, entrada);
 
         if (entrada.length() == 1) {
-            opcion = toupper(entrada[0]);
-            if (opcion == 'S' || opcion == 'N') {
-                return opcion;
+            char op = toupper(entrada[0]);
+            if (op == 'S' || op == 'N') {
+                return op;
             }
         }
 
