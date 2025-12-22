@@ -104,6 +104,12 @@ void menuAdministrativo() {
 
                         C.setNombre(nombre);
 
+                        if (archivoClubes.existeClubPorNombre(nombre)) {
+                            cout << "Error, el club ya esta registrado.\n";
+                            cout << "Precione doble ENTER para continuar...\n";
+                            cin.get();
+                            continue;
+                        }
                         if (archivoClubes.guardar(C)) 
                             cout << "Club registrado exitosamente. \n";
                         
@@ -304,29 +310,29 @@ void menuAdministrativo() {
                 system("cls");
                 cout << "\n=== REGISTRO DE JUGADOR ===\n";
 
-                Jugador J;
-                char confirm;
+               char confirm;
 
                 do{
-                    J.generarNuevoId();
+                    Jugador J;
 
-                    if(J.cargar()){
-                        if(archivoJugadores.guardarRegistro(J)){
+                    if(!J.cargar()) {
+                        cout << "Carga cancelada o incompleta. No se guardo el jugador.\n";
+                        cin.get();
+                        break;
+                    }
+                        if (archivoJugadores.guardarRegistro(J)) {
                             cout << "Jugador registrado exitosamente.\n\n";
-                        } else { 
-                            cout << "Error al guardar el Jugador.\n";
+                        } else {
+                            cout << "Error al guardar el jugador.\n";
                         }
 
-                    }else {
-                         cout << "Carga cancelada o incompleta. No se guardo el jugador.\n";
-                    }
+                        cout << "Desea cargar otro jugador?: (S/N):";
+                        confirm = leerOpcionSN();
 
-                    cout << "Desea cargar otro Jugador? (S/N): " << endl;
-                    confirm = leerOpcionSN();
+                    } while (confirm == 'S');
 
-                }while(confirm == 'S');
-                break;
-            }
+                   break;
+                }
 
             case 7: {
                 system("cls");

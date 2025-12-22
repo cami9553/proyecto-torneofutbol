@@ -81,25 +81,27 @@ bool validarSoloLetrasEspacios(const char* texto) {
 }
 
 
-void leerNombreApellido(char* campo, int tamano, const char* mensaje) {
-    cout << mensaje;
+void leerNombreApellido(char* campo, int tamanio, const char* mensaje) {
+    
     while(true) {
-        cin.getline(campo, tamano);
+        cout << mensaje;
+        cin.getline(campo, tamanio);
 
-        // Verificar si está vacío
-        if(campo[0] == '\0') {
-            cout << "Error: No puede estar vacio. Ingrese " << mensaje;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Error: texto demasiado largo. \n";
             continue;
         }
 
-        // verificar que solo sea letras y espacios
-        if(validarSoloLetrasEspacios(campo)) {
-            break;
-        } else {
-            cout << "Error: Solo puede contener letras y espacios. Ingrese " << mensaje;
+        if (validarSoloLetrasEspacios(campo)) {
+            return;
         }
-    }
+
+        cout << "Error: Solo letras y espacios. \n";
+        }
 }
+
 
 void leerTextoValido(char* campo, int tamano, const char* mensaje) {
     cout << mensaje;

@@ -3,7 +3,11 @@
 #include <cstring>
 #include <iostream>
 #include <iomanip>
+#include <limits>
+#include "ArchivoJugador.h"
 using namespace std;
+
+
 int Persona::_ultimoId = 0;
 
 Persona::Persona()
@@ -90,23 +94,26 @@ Fecha Persona::getFechaNacimiento() {
 
 //Otros metodos
 bool Persona::cargar() {
-     cout << "ID: " << _idPersona << endl;
+    cout << "ID: " << _idPersona << endl;
     cout << "DNI: ";
 
-    // pedir DNI hasta que sea valido o 0
-    while(true) {
+    ArchivoJugador archivo("jugadores.dat");
+
+    while (true) {
         _dni = leerEnteroConIntentos(3);
 
-        if(_dni == 0) return false;  // Termina si es 0
+        if (_dni == 0) return false;
 
-        if(_dni >= 1000000 && _dni <= 99999999) {
-            break;  // DNI válido, sale del while
+        if (_dni < 1000000 || _dni > 99999999) {
+            cout << "Error: DNI debe tener entre 7 y 8 digitos. Ingrese nuevamente (0 para terminar):";
+            continue;
         }
-
-        cout << "Error: DNI debe tener entre 7 y 8 digitos. Ingrese nuevamente (0 para terminar): ";
+        if (archivo.existeJugadorPorDni(_dni)) {
+            cout << "Error: ya existe un jugador con ese DNI. Ingrese nuevamente (0 para terminar):";
+            continue;
+        }
+        break;
     }
-
-
 
     leerNombreApellido(_nombre, 30, "Nombre: ");
     leerNombreApellido(_apellido, 30, "Apellido: ");
@@ -114,8 +121,31 @@ bool Persona::cargar() {
     cout << "Telefono: ";
     leerTelefono(_telefono, 15, 7, 15);
 
-    cout << "Email: ";
-    cin.getline(_email, 30);
+   string email;
+   int intentos = 0;
+   bool emailValido = false;
+
+   while (intentos < 3) {
+    cout << "Email:";
+    getline(cin, email);
+
+    if (validarEmail(email.c_str())) {
+        emailValido = true;
+        break;
+    } else {
+        intentos++;
+        cout << "Error: Email invalido. Intente nuevamente. \n";
+    }
+
+   }
+
+   if (!emailValido) {
+    cout << "Carga cancelada por email invalido. \n";
+    return false;
+
+   }
+
+   setEmail(email);
 
     cout << "Fecha de nacimiento: \n";
     _fechaNacimiento.cargar();

@@ -244,3 +244,14 @@ bool ArchivoJugador::verificarClub(int idJugador, int idClub){
     }
     return flag;
 }
+
+bool ArchivoJugador::existeJugadorPorDni(int dni) {
+    int cantidad = getCantidadRegistros();
+    for (int i = 0; i < cantidad; i++) {
+        Jugador J = leerRegistro(i);
+        if (J.getDni() == dni) {
+            return true;
+        }
+    }
+    return false;
+}
