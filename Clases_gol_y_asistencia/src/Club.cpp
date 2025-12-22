@@ -32,9 +32,9 @@ const char *Club::getCiudad(){ return _ciudad;}
 
 void Club::cargar()
 {
-    cout << "ID Club: " << _idClub << endl;
+    //cout << "ID Club: " << _idClub << endl;
 
-    leerNombreApellido(_nombre, 30, "nombre del club:");
+    leerNombreApellido(_nombre, 30, "Nombre del Club:");
 
     leerNombreApellido(_presidente, 30, "Presidente:");
 

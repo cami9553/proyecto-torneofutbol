@@ -162,6 +162,7 @@ bool ArchivoClub::modificarRegistro(const Club& club, int posicion) {
 }
 
 Club* ArchivoClub::buscarPorId(int id) {
+    cargarDesdeArchivo();
     for (int i = 0; i < cantidadClubes; i++) {
         if (clubes[i].getIdClub() == id) {
             return &clubes[i];
