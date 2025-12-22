@@ -79,18 +79,20 @@ bool leerNombreApellido(char* campo, int tamano, const char* mensaje)
 {
     int intentos = 0;
 
+    cout << mensaje << " (* para volver): ";
+
     while (intentos < 3) {
-        cout << mensaje << " (* para cancelar): ";
         cin.getline(campo, tamano);
 
-        // CANCELAR 
-        if (strcmp(campo, "*") == 0) {
+        // CANCELAR
+        if (volverAtras(campo)) {
             return false;
         }
 
         if (campo[0] == '\0') {
-            cout << "Error: No puede estar vacio.\n";
             intentos++;
+            cout << "Error: No puede estar vacío. "
+                 << "Ingrese " << mensaje << " (* para volver): ";
             continue;
         }
 
@@ -101,11 +103,13 @@ bool leerNombreApellido(char* campo, int tamano, const char* mensaje)
         intentos++;
         cout << "Error: Solo letras y espacios. Intento "
              << intentos << " de 3.\n";
+        cout << "Ingrese " << mensaje << " (* para volver): ";
     }
 
-    cout << "Se superaron los 3 intentos.\n";
+    cout << "\nSe superaron los 3 intentos.\n";
     return false;
 }
+
 
 
 
