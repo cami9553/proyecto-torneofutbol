@@ -131,17 +131,21 @@ void menuAdministrativo()
                     findClub.mostrar();
 
                     cout << "\nIngrese los nuevos datos del club:\n";
-                    findClub.cargar();
+
+                    if (!findClub.cargar()) {
+                        cout << "\nEdición cancelada. No se realizaron cambios.\n";
+                        cin.get();
+                        break;
+                }
 
                     if (archivoClubes.modificarRegistro(findClub, pos)) {
                         cout << "Club modificado correctamente.\n";
                     } else {
                         cout << "Error al modificar el registro.\n";
                     }
-                }
 
-                cin.get();
-                break;
+                    cin.get();
+                    break;
             }
 
             case 3:
