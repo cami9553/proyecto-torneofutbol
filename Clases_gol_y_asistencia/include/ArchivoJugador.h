@@ -25,6 +25,7 @@ public:
     int obtenerDni(int idJugador);
     bool eliminarRegistroFisico(int dni);
     bool verificarClub(int idJugador, int idClub);
+    bool existeJugadorPorDni(int dni);
 
 };
 

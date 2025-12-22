@@ -27,6 +27,7 @@ class ArchivoClub{
         Club* buscarPorId(int id);
         Club* getClubes()const;
         bool eliminarRegistroFisico(int id);
+        bool existeClubPorNombre(const std::string& nombre);
 
 
 };

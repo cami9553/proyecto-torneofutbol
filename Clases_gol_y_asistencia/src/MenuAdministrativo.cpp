@@ -42,103 +42,189 @@ void menuAdministrativo() {
             cin.get();
             continue;
         }
-
+        
 
         system("cls");
 
         switch(opcion) {
 
-         case 1:
-        {
-            int op = -1;
+        case 1:
+         {
+            int op;
 
-            do {
+            do{
                 system("cls");
-                cout << "\n=== REGISTRO DE CLUB ===\n";
-                cout << "1. Cargar club\n";
-                cout << "0. Volver atras\n";
-                cout << "Seleccione una opcion: ";
+                 cout << "\n=== REGISTRO DE CLUB ===\n";
+                 cout << "1. Cargar club\n";
+                 cout << "0. Volver atras\n";
+                 cout << "Seleccione una opcion:";
 
                 op = leerEnteroConIntentos(3);
-                system("cls");
 
                 if (op == -1) {
-                    cout << "\nOperacion cancelada. Volviendo...\n";
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Volviendo...\n";
                     cin.get();
-                    return;
+                    continue;
                 }
 
-                if (op == 0) {
-                    return;}
+                switch (op) {
+                    case 1:
+                    {
+                        char confirm = 'N';
+                        do{
+                            Club C;
+                            C.generarNuevoId();
 
-                if (op == 1) {
-                    char confirm = 'N';
+                            string nombre;
+                            int intentos = 0;
+                            bool nombreValido = false;
 
-                    do {
-                        Club C;
-                        C.generarNuevoId();
-                        C.cargar();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-                        if (archivoClubes.guardar(C))
-                            cout << "\nClub registrado correctamente.\n";
-                        else
-                            cout << "\nError al guardar el club.\n";
+                        while (intentos <3) {
+                            cout << "Ingrese nombre del club (solo letras y espacios): ";
+                            getline(cin, nombre);
 
-                        cout << "\nDesea cargar otro club? (S/N): ";
-                        confirm = leerOpcionSN();
-                        system("cls");
+                       if (validarSoloLetrasEspacios(nombre.c_str())) {
+                           nombreValido = true;
+                           break;
 
-                    } while (confirm == 'S');
-                }
+                        } else {
+                            intentos++;
+                            cout << "Nombre invalido. Intento "
+                                << intentos << " de 3. \n";
+                            }
+                        }
 
-            } while (true);
+                        if (!nombreValido) {
+                            cout << "\n Se superaron los 3 intentos. Volviendo al menu... \n";
+                            cin.get();
+                            break;
+                        }
+
+                        C.setNombre(nombre);
+
+                        if (archivoClubes.existeClubPorNombre(nombre)) {
+                            cout << "Error, el club ya esta registrado.\n";
+                            cout << "Precione doble ENTER para continuar...\n";
+                            cin.get();
+                            continue;
+                        }
+                        if (archivoClubes.guardar(C)) 
+                            cout << "Club registrado exitosamente. \n";
+                        
+                        else 
+                            cout << "Error al guardar el club. \n";
+                        
+
+                         cout << "Desea cargar otro Club? (S/N):";
+                         confirm = leerOpcionSN();
+                         
+
+            } while (confirm == 'S');
 
             break;
         }
 
+        case 0:
+          op = 0;
+          break;
+        
+        default:
+          cout << "Opcion invalida.\n";
+          cin.ignore(numeric_limits<streamsize>::max(), '\n');
+          cin.get();
+          
+       }
+    } while (op != 0);
+    
+    break;
 
+    }
+ 
+  
     case 2: {
-         cout << "\n=== EDITAR CLUB ===\n";
-                int cantidad = archivoClubes.CantidadRegistros();
-                for(int x = 0; x < cantidad; x++){
-                    cout << archivoClubes.leerRegistro(x).getIdClub() << "- "
-                         << archivoClubes.leerRegistro(x).getNombre() << endl;
-                }
+        ArchivoClub archivoClubes("clubes.dat");
 
-                cout << "\nIngrese el ID del club a editar: ";
-                int id = leerEnteroEnRango(1, Club::getUltimoId());
 
-                int pos = archivoClubes.buscar(id);
-                Club findClub = archivoClubes.leerRegistro(pos);
-                if (findClub.getIdClub() == 0) {
-                    cout << "No se encontro el club con ese ID.\n";
-                } else {
-                    cout << "\nDatos actuales del club:\n";
-                    findClub.mostrar();
+        int cantidad = archivoClubes.CantidadRegistros();
+        if (cantidad == 0) {
+            cout << "No hay clubes registrados.\n";
+            cin.get();
+            break;
+        }
+        
+        system("cls");
+        cout << "\n=== EDITAR CLUB ===\n";
 
-                    cout << "\nIngrese los nuevos datos del club:\n";
-                    findClub.cargar();
-
-                    if (archivoClubes.modificarRegistro(findClub, pos)) {
-                        cout << "Club modificado correctamente.\n";
-                    } else {
-                        cout << "Error al modificar el registro.\n";
-                    }
-                }
-
-                cin.get();
-                break;
+        for (int x = 0; x < cantidad; x++) {
+            cout << archivoClubes.leerRegistro(x).getIdClub() << "- "
+                 << archivoClubes.leerRegistro(x).getNombre() << endl;
         }
 
+        cout << "\nIngrese el ID del club a editar (0 para volver):";
+        int id = leerEnteroConIntentos(3);
+        if (id == 0) break;
 
-            case 3: {
-                int cantidad = archivoClubes.CantidadRegistros();
-                if (cantidad == 0) {
-                    cout << "No hay clubes registrados.\n";
+        int pos = archivoClubes.buscar(id);
+        if (pos == -1) {
+            cout << "No se encontro el club con ese ID..\n";
+            cin.get();
+            break;
+        }
+
+        Club findClub = archivoClubes.leerRegistro(pos);
+        cout << "\nDatos actuales del club:\n";
+        findClub.mostrar();
+
+        cout << "\nDesea editar el nombre del club? (S/N):";
+        char editar = leerOpcionSN();
+        if (editar != 'S') break;
+
+
+            string nuevoNombre;
+            bool nombreValido = false;
+            int intentos = 0;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            while (intentos < 3) {
+                cout << "Ingrese nuevo nombre (solo letras y espacios) o 0 para cancelar:";
+                getline(cin, nuevoNombre);
+
+                if (nuevoNombre == "0") {
+                    cout << "Edicion cancelada. Volviendo al menu...\n";
                     cin.get();
                     break;
                 }
+
+                if (validarSoloLetrasEspacios(nuevoNombre.c_str())) {
+                    nombreValido = true;
+                    break;
+                } else {
+                    intentos++;
+                    cout << "Nombre invalido. intento" << intentos << " de 3. \n";
+                }
+            }
+
+            if (nombreValido) {
+                findClub.setNombre(nuevoNombre);
+                if (archivoClubes.modificarRegistro(findClub, pos))
+                    cout << "Club modificado correctamente.\n";
+            }
+
+            cout << "\nPresione doble ENTER para volver...\n";
+            cin.get();
+            break;
+        }
+    
+
+        case 3: {
+            int cantidad = archivoClubes.CantidadRegistros();
+            if (cantidad == 0) {
+                    cout << "No hay clubes registrados.\n";
+                    cin.get();
+                    break;
+               }
 
                 system("cls");
                 cout << "\n==== ELIMINAR CLUB ====\n";
@@ -156,7 +242,7 @@ void menuAdministrativo() {
                 if (pos == -1) {
                     cout << "No se encontro el club con ese ID.\n";
                     cin.get();
-                    break;
+                    break; 
                 }
 
                 Club c = archivoClubes.leerRegistro(pos);
@@ -197,7 +283,7 @@ void menuAdministrativo() {
                     cout << "Club no encontrado.\n";
                 }
 
-                cout << "\nPresione ENTER para volver...\n";
+                cout << "\nPresione doble ENTER para volver...\n";
                 cin.get();
                 break;
             }
@@ -205,9 +291,15 @@ void menuAdministrativo() {
             case 5: {
                 system("cls");
                 cout << "\n=== LISTA DE CLUBES ===\n";
-                archivoClubes.listarRegistros();
 
-                cout << "\nPresione ENTER para volver al menu...";
+                int cantidad = archivoClubes.CantidadRegistros();
+                if (cantidad == 0) {
+                    cout << "No hay clubes registrados.\n";
+                } else {
+                    archivoClubes.listarRegistros();
+                }
+
+                cout << "\nPrecione doble ENTER para volver al menu...";
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cin.get();
 
@@ -218,29 +310,29 @@ void menuAdministrativo() {
                 system("cls");
                 cout << "\n=== REGISTRO DE JUGADOR ===\n";
 
-                Jugador J;
-                char confirm;
+               char confirm;
 
                 do{
-                    J.generarNuevoId();
+                    Jugador J;
 
-                    if(J.cargar()){
-                        if(archivoJugadores.guardarRegistro(J)){
+                    if(!J.cargar()) {
+                        cout << "Carga cancelada o incompleta. No se guardo el jugador.\n";
+                        cin.get();
+                        break;
+                    }
+                        if (archivoJugadores.guardarRegistro(J)) {
                             cout << "Jugador registrado exitosamente.\n\n";
                         } else {
-                            cout << "Error al guardar el Jugador.\n";
+                            cout << "Error al guardar el jugador.\n";
                         }
 
-                    }else {
-                         cout << "Carga cancelada o incompleta. No se guardo el jugador.\n";
-                    }
+                        cout << "Desea cargar otro jugador?: (S/N):";
+                        confirm = leerOpcionSN();
 
-                    cout << "Desea cargar otro Jugador? (S/N): " << endl;
-                    confirm = leerOpcionSN();
+                    } while (confirm == 'S');
 
-                }while(confirm == 'S');
-                break;
-            }
+                   break;
+                }
 
             case 7: {
                 system("cls");
@@ -256,10 +348,10 @@ void menuAdministrativo() {
                 archivoJugadores.listarNombreApellido();
 
                 cout << "\nIngrese el ID del jugador a editar (0 para volver): ";
-                int id = leerEnteroEnRango(0, 99999999);
-                if (id == 0) break;
+                int dni = leerEnteroEnRango(0, 99999999);
+                if (dni == 0) break;
 
-                int pos = archivoJugadores.buscarPorId(id);
+                int pos = archivoJugadores.buscarPorDni(dni);
                 if (pos == -1) {
                     cout << "Jugador no encontrado.\n";
                     cin.get();
@@ -279,72 +371,125 @@ void menuAdministrativo() {
             } else {
                 cout << "Edicion cancelada. No se modifico el jugador.\n";
             }
-                cout << "\nPrecione ENTER para volver...\n";
+                cout << "\nPrecione doble ENTER para volver...\n";
                 cin.get();
                 break;
             }
 
-            case 8:
-            {
+            case 8: {
+
+                system("cls");
                 cout << "\n==== ELIMINAR JUGADOR ====\n";
+
                 int cantidad = archivoJugadores.getCantidadRegistros();
                 if (cantidad == 0) {
-                    cout << "No hay jugadores registrados. \n";
+                    cout << "No hay jugadores registrados.\n";
                     cin.get();
                     break;
                 }
-                archivoJugadores.listarNombreApellido();
 
-                cout << "\nIngrese el ID del jugador a eliminar (0 para volver): ";
-                int id = leerEnteroConIntentos(3);
-                if(id == 0) break;
+                cout << "Ingrese el DNI del jugador a eliminar (0 para volver): ";
+                int dni = leerEnteroConIntentos(3);
+                if (dni == 0) break;
 
-                int pos = archivoJugadores.buscarPorId(id);
-
+                int pos = archivoJugadores.buscarPorDni(dni);
                 if (pos == -1) {
                     cout << "Jugador no encontrado.\n";
-                } else {
+                    cin.get();
+                    break;
+
+                } 
                     Jugador J = archivoJugadores.leerRegistro(pos);
                     cout << "\nJugador encontrado:\n";
                     J.mostrar();
 
-                    char confirm;
-                    cout << "\n¿Desea eliminar este jugador? (S/N): ";
-                    confirm = leerOpcionSN();
+                    cout << "\n¿Desea eliminar este jugador? (S/N):";
+                    char confirm = leerOpcionSN();
 
-                    if (confirm == 'S') {
-                        if (archivoJugadores.eliminarRegistroFisico(id))
-                            cout << "Jugador eliminado correctamente.\n";
-                        else
-                            cout << "Error al eliminar el jugador.\n";
-                    } else {
-                        cout << "Operación cancelada.\n";
+                    if (confirm != 'S') {
+                        cout << "Eliminacion cancelada. Volviendo al menu...\n";
+                        cin.get();
+                        break;
                     }
+
+                    if (archivoJugadores.eliminarRegistroFisico(dni)) {
+                            cout << "Jugador eliminado correctamente.\n";
+                    } else {
+                            cout << "Error al eliminar el jugador.\n";
+                    }
+                    cout << "\nPresione doble ENTER para volver...\n";
+                    cin.get();
+                    break;
+            
+            }
+
+          case 9: { 
+          system("cls");
+          cout << "\n=== LISTA DE JUGADORES ===\n";
+
+           int cantidad = archivoJugadores.getCantidadRegistros();
+           if (cantidad == 0) {
+               cout << "No hay jugadores registrados.\n";
+            } else {
+             archivoJugadores.listarRegistros();
+            }
+
+          cout << "\nPresione doble ENTER para volver al menu...";
+          cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+          cin.get();
+
+        break;
+    } 
+
+
+            case 10: {
+                system("cls");
+                cout << "\n=== CREAR FIXTURE ===\n";
+
+                ArchivoTorneo archTorneo("torneos.dat");
+
+                int cantidad = archTorneo.CantidadRegistros();
+                if (cantidad == 0) {
+                    cout << "No hay torneos registrados.\n";
+                    cout << "\nPrecione doble ENTER para volver al menu...";
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cin.get();
+                    break;
                 }
 
-                cin.get();
-                break;
-            }
+                cout << "¿Desea crear el fixture del torneo? (S/N):";
+                char confirm = leerOpcionSN();
 
-            case 9:
-            {
-                archivoJugadores.listarRegistros();
-                cin.get();
-                break;
-            }
+                if (confirm != 'S') {
+                    cout << "Operacion cancelada. Volviendo al menu...\n";
+                    cin.get();
+                    break;
+                }
 
-            case 10:
-            {
-                ArchivoTorneo archTorneo("torneos.dat");
                 archTorneo.crearFixture(1);
+
+                cout << "\nFixture creado correctamente.\n";
+                cout << "\nPrecione doble ENTER para volver al menu...";
                 cin.get();
+
                 break;
             }
 
             case 11: {
+
+                system("cls");
+                cout << "\n=== REGISTRAR TORNEO ===\n";
+
                 Torneo t;
                 t.cargar();
+
+                cout << "\nTorneo cargado correctamente:\n";
                 t.mostrar();
+
+                cout << "\nPrecione doble ENTER para volver al menu...";
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cin.get();
+
                 break;
 
             }

@@ -195,3 +195,12 @@ remove("clubes.dat");
 rename("temp.dat", "clubes.dat");
 return true;
 }
+
+bool ArchivoClub::existeClubPorNombre(const std::string& nombre) {
+    for (int i = 0; i < cantidadClubes; i++) {
+    if (clubes[i].getNombre() == nombre) {
+        return true;
+    }
+}
+ return false;
+}
