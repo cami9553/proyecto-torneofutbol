@@ -51,4 +51,3 @@ int main()
 
     cout << "Saliendo del programa..." << endl;
 }
-

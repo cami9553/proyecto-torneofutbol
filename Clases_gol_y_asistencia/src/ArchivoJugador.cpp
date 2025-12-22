@@ -196,7 +196,7 @@ void ArchivoJugador::leerTodos(Jugador* vector, int CantidadRegistros)
     fclose(pFile);
 }
 
-bool ArchivoJugador::eliminarRegistroFisico(int dni)
+bool ArchivoJugador::eliminarRegistroFisico(int id)
 {
     Jugador jugador;
     FILE *p = fopen(_nombreArchivo.c_str(), "rb");
@@ -208,7 +208,7 @@ bool ArchivoJugador::eliminarRegistroFisico(int dni)
 
     while (fread(&jugador, sizeof(jugador), 1, p))
     {
-        if (jugador.getDni() != dni)
+        if (jugador.getId() != id)
         {
             fwrite(&jugador, sizeof(Jugador), 1, temp);
         }
