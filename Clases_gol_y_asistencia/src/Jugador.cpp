@@ -7,15 +7,19 @@ using namespace std;
 
 Jugador::Jugador()
 {
+    
 	_posicion = 0;
 	_idClub = 0;
+    
 }
 
-Jugador::Jugador(int posicion, int idClub, int dni, const char* apellido, const char* nombre, const char* telefono, const char* email, Fecha fechaNacimiento)
+Jugador::Jugador(int posicion, int idClub, int id, int dni, const char* apellido, const char* nombre, const char* telefono, const char* email, Fecha fechaNacimiento)
     : Persona(dni, apellido, nombre, telefono, email, fechaNacimiento)
 {
-    _posicion = posicion;
-    _idClub = idClub;
+    setId(id);
+    _posicion = 0;
+    _idClub = 0;
+    
 }
 
 void Jugador::setPosicion(int posicion){
@@ -37,6 +41,7 @@ int Jugador::getIdClub(){
 //Otros metodos
 bool Jugador::cargar() {
     if(Persona::cargar() == false) return false;
+
     cout << "\nClub (Elige ID): "<<endl;
 
     //Muestro lista de clubes creados
@@ -57,6 +62,8 @@ bool Jugador::cargar() {
     cout << "\nPosicion (Defensor:1/Mediocampista:2/Delantero:3): ";
     _posicion = leerEnteroEnRango(1,3);
 
+    generarNuevoId();
+
     return true;
 }
 
@@ -76,3 +83,6 @@ void Jugador::mostrar() {
     cout << left << setw(20) << "Posicion:"  << nombrePosicion << endl;
     cout << "====================================================\n\n" << endl;
 }
+
+
+

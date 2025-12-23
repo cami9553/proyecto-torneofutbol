@@ -458,13 +458,19 @@ void menuAdministrativo() {
         }
         if (!fechaValida) break;
 
+        // Asignar ID antes de guardar
+        J.setId(archivoJugadores.getSiguienteID());
+
+
         // Guardar jugador
         if (archivoJugadores.guardarRegistro(J)) {
-            cout << "\nJugador registrado exitosamente.\n";
+         cout << "\nJugador registrado exitosamente.\n";
+         cout << "ID asignado: " << J.getId() << "\n";
         } else {
-            cout << "\nError al guardar el jugador.\n";
-        }
+    cout << "\nError al guardar el jugador.\n";
+ }
 
+       
         cout << "\nDesea cargar otro jugador? (S/N): ";
         cin >> confirm;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -474,95 +480,116 @@ void menuAdministrativo() {
     break;
 }
 
+case 7: {
+    system("cls");
+    cout << "\n=== EDITAR JUGADOR ===\n";
 
-         case 7: {
-                system("cls");
-                cout << "\n=== EDITAR JUGADOR ===\n";
+    int cantidad = archivoJugadores.getCantidadRegistros();
+    if (cantidad == 0) {
+        cout << "No hay jugadores registrados.\n";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
+        break;
+    }
 
-                int cantidad = archivoJugadores.getCantidadRegistros();
-                if (cantidad == 0) {
-                    cout << "No hay jugadores registrados. \n";
-                    cin.get();
-                    break;
-                }
+    // Mostrar lista de jugadores
+    archivoJugadores.listarNombreApellido();
 
-                archivoJugadores.listarNombreApellido();
+    int id;
+    cout << "\nIngrese el ID del jugador a editar (0 para volver): ";
+    cin >> id;
 
-                cout << "\nIngrese el ID del jugador a editar (0 para volver): ";
-                int dni = leerEnteroEnRango(0, 99999999);
-                if (dni == 0) break;
+    if(id == 0) {
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // limpiar buffer
+        break; // volver al menú
+    }
 
-                int pos = archivoJugadores.buscarPorDni(dni);
-                if (pos == -1) {
-                    cout << "Jugador no encontrado.\n";
-                    cin.get();
-                    break;
-                }
-                    Jugador J = archivoJugadores.leerRegistro(pos);
-                    cout << "\nDatos actuales del jugador:\n";
-                    J.mostrar();
+    // Buscar jugador por ID
+    int pos = archivoJugadores.buscarPorId(id);
+    if(pos == -1) {
+        cout << "Jugador no encontrado.\n";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
+        break;
+    }
 
-                    cout << "\nIngrese los nuevos datos (0 para cancelar en cualquier campo):\n";
-                    if (J.cargar()) {
-                        if (archivoJugadores.modificarRegistro(J, pos)) {
-                        cout << "Jugador modificado correctamente.\n";
-                    } else {
-                        cout << "Error al modificar el registro.\n";
-                }
-            } else {
-                cout << "Edicion cancelada. No se modifico el jugador.\n";
-            }
-                cout << "\nPrecione doble ENTER para volver...\n";
-                cin.get();
-                break;
-            }
+    // Leer y mostrar datos actuales
+    Jugador J = archivoJugadores.leerRegistro(pos);
+    cout << "\nDatos actuales del jugador:\n";
+    J.mostrar();
 
-            case 8: {
+    if (!J.esValido()) {
+    cout << "Registro invalido.\n";
+    system("pause");
+    return;
+}
 
-                system("cls");
-                cout << "\n==== ELIMINAR JUGADOR ====\n";
 
-                int cantidad = archivoJugadores.getCantidadRegistros();
-                if (cantidad == 0) {
-                    cout << "No hay jugadores registrados.\n";
-                    cin.get();
-                    break;
-                }
+    // Editar datos
+    cout << "\nIngrese los nuevos datos (0 para cancelar cualquier campo):\n";
+    if(J.cargar()) { // dentro de J.cargar() se puede manejar la cancelación por campo
+        if(archivoJugadores.modificarRegistro(J, pos)) {
+            cout << "\nJugador modificado correctamente.\n";
+        } else {
+            cout << "\nError al modificar el registro.\n";
+        }
+    } else {
+        cout << "\nEdición cancelada. No se modificó el jugador.\n";
+    }
 
-                cout << "Ingrese el DNI del jugador a eliminar (0 para volver): ";
-                int dni = leerEnteroConIntentos(3);
-                if (dni == 0) break;
+    cout << "\nPresione ENTER para volver...\n";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // limpiar buffer antes de pausa
+    cin.get();
 
-                int pos = archivoJugadores.buscarPorDni(dni);
-                if (pos == -1) {
-                    cout << "Jugador no encontrado.\n";
-                    cin.get();
-                    break;
+    break;
+}
+  case 8: {
+    system("cls");
+    cout << "\n==== ELIMINAR JUGADOR ====\n";
 
-                } 
-                    Jugador J = archivoJugadores.leerRegistro(pos);
-                    cout << "\nJugador encontrado:\n";
-                    J.mostrar();
+    int cantidad = archivoJugadores.getCantidadRegistros();
+    if (cantidad == 0) {
+        cout << "No hay jugadores registrados.\n";
+        cin.get();
+        break;
+    }
 
-                    cout << "\n¿Desea eliminar este jugador? (S/N):";
-                    char confirm = leerOpcionSN();
+    cout << "Ingrese el DNI del jugador a eliminar (0 para volver): ";
+    int dni = leerEnteroConIntentos(3);
+    if (dni == 0) break;
 
-                    if (confirm != 'S') {
-                        cout << "Eliminacion cancelada. Volviendo al menu...\n";
-                        cin.get();
-                        break;
-                    }
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // limpia buffer
 
-                    if (archivoJugadores.eliminarRegistroFisico(dni)) {
-                            cout << "Jugador eliminado correctamente.\n";
-                    } else {
-                            cout << "Error al eliminar el jugador.\n";
-                    }
-                    cout << "\nPresione doble ENTER para volver...\n";
-                    cin.get();
-                    break;
-            
-            }
+    int pos = archivoJugadores.buscarPorDni(dni);
+    if (pos == -1) {
+        cout << "Jugador no encontrado.\n";
+        cin.get();
+        break;
+    }
+
+    Jugador J = archivoJugadores.leerRegistro(pos);
+    cout << "\nJugador encontrado:\n";
+    J.mostrar();
+
+    cout << "\n¿Desea eliminar este jugador? (S/N):";
+    char confirm = leerOpcionSN();
+
+    if (confirm != 'S') {
+        cout << "Eliminacion cancelada. Volviendo al menu...\n";
+        cin.get();
+        break;
+    }
+
+    if (archivoJugadores.eliminarRegistroFisico(dni)) {
+        cout << "Jugador eliminado correctamente.\n";
+    } else {
+        cout << "Error al eliminar el jugador.\n";
+    }
+    cout << "\nPresione ENTER para volver...\n";
+    cin.get();
+    break;
+}
+
 
           case 9: { 
           system("cls");

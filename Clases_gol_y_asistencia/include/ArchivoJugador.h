@@ -17,7 +17,6 @@ public:
     bool guardarRegistro(const Jugador& jugador);
     bool modificarRegistro(const Jugador& jugador, int posicion);
     void leerTodos(Jugador* vector, int CantidadRegistros);
-    void listarNombreApellido();
     void listarJugadorPorClub(int idClub);
     void listarRegistros();
     int buscarPorDni(int dni);
@@ -26,6 +25,9 @@ public:
     bool eliminarRegistroFisico(int dni);
     bool verificarClub(int idJugador, int idClub);
     bool existeJugadorPorDni(int dni);
+    int getSiguienteID();
+    void listarNombreApellido();
+
 
 };
 

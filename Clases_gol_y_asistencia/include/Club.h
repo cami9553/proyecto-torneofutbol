@@ -14,10 +14,10 @@ class Club {
 
     public:
     Club();
-
+    void generarNuevoId();
     static int getUltimoId();
     static void setUltimoId(int ultimoId);
-    void generarNuevoId();
+
 
     void setIdClub(int id);
     void setNombre(std::string nombre);
