@@ -12,6 +12,7 @@ class Jugador: public Persona
     private:
         int _posicion;
         int _idClub;
+        
 
     public:
         Jugador();

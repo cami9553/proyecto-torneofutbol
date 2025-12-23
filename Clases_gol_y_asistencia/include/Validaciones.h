@@ -1,6 +1,7 @@
 #ifndef VALIDACIONES_H
 #define VALIDACIONES_H
 #include <string>
+#include "Fecha.h"
 
 int leerEnteroConIntentos(int maxIntentos = 3);
 int leerEnteroEnRango(int min, int max);
@@ -15,6 +16,7 @@ bool validarJugadoryClub(int idJugador, int idClub);
 bool volverAtras(const char* texto);
 bool esNumero(const char* texto);
 int convertirEntero(const char* texto);
-
+int ingresarEnteroRango(const std::string &prompt, int min, int max);
+bool validarFecha(const std::string& str, Fecha& f);
 
 #endif
