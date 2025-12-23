@@ -7,19 +7,17 @@
 #include "ArchivoJugador.h"
 using namespace std;
 
-
+// Inicialización del static
 int Persona::_ultimoId = 0;
 
-Persona::Persona()
-{
+// Constructores
+Persona::Persona() {
     _idPersona = 0;
     _dni = 0;
     strcpy(_apellido, "");
     strcpy(_nombre, "");
     strcpy(_telefono, "");
     strcpy(_email,"");
-    Fecha _fechaNacimiento;
-
 }
 
 Persona::Persona(int dni, const char* apellido, const char* nombre, const char* telefono, const char* email, Fecha fechaNacimiento) {
@@ -32,68 +30,35 @@ Persona::Persona(int dni, const char* apellido, const char* nombre, const char* 
     _fechaNacimiento = fechaNacimiento;
 }
 
-int Persona::getUltimoId(){return _ultimoId;}
-void Persona::setUltimoId(int ultimoId) {_ultimoId = ultimoId;}
-void Persona::generarNuevoId() {_idPersona = ++_ultimoId;}
-
-//Setters
-void Persona::setDni(int dni){
-	_dni = dni;
+// Métodos de ID
+void Persona::generarNuevoId() {
+    _idPersona = ++_ultimoId;
 }
 
-void Persona::setApellido(std::string apellido){
-	strcpy(_apellido, apellido.c_str());
-}
+int Persona::getUltimoId() { return _ultimoId; }
+void Persona::setUltimoId(int ultimoId) { _ultimoId = ultimoId; }
 
-void Persona::setNombre(std::string nombre){
-	strcpy(_nombre, nombre.c_str());
-}
+// Setters
+void Persona::setDni(int dni) { _dni = dni; }
+void Persona::setApellido(std::string apellido) { strcpy(_apellido, apellido.c_str()); }
+void Persona::setNombre(std::string nombre) { strcpy(_nombre, nombre.c_str()); }
+void Persona::setTelefono(std::string telefono) { strcpy(_telefono, telefono.c_str()); }
+void Persona::setEmail(std::string email) { strcpy(_email, email.c_str()); }
+void Persona::setFechaNacimiento(Fecha f) { _fechaNacimiento = f; }
+void Persona::setId(int id) { _idPersona = id; }
 
-void Persona::setTelefono(std::string telefono){
-	strcpy(_telefono, telefono.c_str());
-}
+// Getters
+int Persona::getDni() { return _dni; }
+int Persona::getId() const { return _idPersona; }
+const char* Persona::getApellido() { return _apellido; }
+const char* Persona::getNombre() { return _nombre; }
+const char* Persona::getTelefono() { return _telefono; }
+const char* Persona::getEmail() { return _email; }
+Fecha Persona::getFechaNacimiento() { return _fechaNacimiento; }
 
-void Persona::setEmail(std::string email){
-	strcpy(_email, email.c_str());
-}
-
-void Persona::setFechaNacimiento(Fecha f) {
-    _fechaNacimiento = f;
-}
-
-//Getters
-
-int Persona::getId(){
-    return _idPersona;
-}
-
-int Persona::getDni(){
-	return _dni;
-}
-
-const char *Persona::getApellido(){
-	return _apellido;
-}
-
-const char *Persona::getNombre(){
-	return _nombre;
-}
-
-const char *Persona::getTelefono(){
-	return _telefono;
-}
-
-const char *Persona::getEmail(){
-	return _email;
-}
-
-Fecha Persona::getFechaNacimiento() {
-    return _fechaNacimiento;
-}
-
-
-//Otros metodos
+// Otros métodos
 bool Persona::cargar() {
+    generarNuevoId();
     cout << "ID: " << _idPersona << endl;
     cout << "DNI: ";
 
@@ -121,31 +86,29 @@ bool Persona::cargar() {
     cout << "Telefono: ";
     leerTelefono(_telefono, 15, 7, 15);
 
-   string email;
-   int intentos = 0;
-   bool emailValido = false;
+    string email;
+    int intentos = 0;
+    bool emailValido = false;
 
-   while (intentos < 3) {
-    cout << "Email:";
-    getline(cin, email);
+    while (intentos < 3) {
+        cout << "Email:";
+        getline(cin, email);
 
-    if (validarEmail(email.c_str())) {
-        emailValido = true;
-        break;
-    } else {
-        intentos++;
-        cout << "Error: Email invalido. Intente nuevamente. \n";
+        if (validarEmail(email.c_str())) {
+            emailValido = true;
+            break;
+        } else {
+            intentos++;
+            cout << "Error: Email invalido. Intente nuevamente. \n";
+        }
     }
 
-   }
+    if (!emailValido) {
+        cout << "Carga cancelada por email invalido. \n";
+        return false;
+    }
 
-   if (!emailValido) {
-    cout << "Carga cancelada por email invalido. \n";
-    return false;
-
-   }
-
-   setEmail(email);
+    setEmail(email);
 
     cout << "Fecha de nacimiento: \n";
     _fechaNacimiento.cargar();
@@ -154,15 +117,14 @@ bool Persona::cargar() {
 }
 
 void Persona::mostrar() {
-    cout << left << setw(20) << "ID: "           << _idPersona << endl;
-    cout << left << setw(20) << "Nombre:"           << _nombre << " " << _apellido << endl;
-    cout << left << setw(20) << "DNI:"              << _dni << endl;
-    cout << left << setw(20) << "Telefono:"         << _telefono << endl;
-    cout << left << setw(20) << "Email:"            << _email << endl;
+    cout << left << setw(20) << "ID: " << _idPersona << endl;
+    cout << left << setw(20) << "Nombre:" << _nombre << " " << _apellido << endl;
+    cout << left << setw(20) << "DNI:" << _dni << endl;
+    cout << left << setw(20) << "Telefono:" << _telefono << endl;
+    cout << left << setw(20) << "Email:" << _email << endl;
     cout << left << setw(20) << "Fecha Nacimiento:" << _fechaNacimiento.toString() << endl;
 }
 
 void Persona::mostrarNombreApellido() {
     cout << _apellido << " " << _nombre << " (ID:" << _idPersona << ")" << endl;
 }
-

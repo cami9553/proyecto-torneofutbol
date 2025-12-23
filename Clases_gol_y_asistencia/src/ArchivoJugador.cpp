@@ -135,29 +135,15 @@ int ArchivoJugador::buscarPorId(int id)
 }
 
 
-void ArchivoJugador::listarNombreApellido()
-{
-    int cantidad = getCantidadRegistros();
-    if (cantidad == 0)
-    {
-        std::cout << "No hay jugadores registrados.\n";
-        return;
-    }
 
-    Jugador J;
-    for (int i = 0; i < cantidad; i++)
-    {
-        J = leerRegistro(i);
-        J.mostrarNombreApellido();
-    }
-}
+
 
 void ArchivoJugador::listarJugadorPorClub(int idClub)
 {
     int cantidad = getCantidadRegistros();
     if (cantidad == 0)
     {
-        std::cout << "No hay jugadores registrados.\n";
+        cout << "No hay jugadores registrados.\n";
         return;
     }
 
@@ -165,13 +151,13 @@ void ArchivoJugador::listarJugadorPorClub(int idClub)
     for (int i = 0; i < cantidad; i++)
     {
             J = leerRegistro(i);
-            if(J.getIdClub() == idClub){
-                cout <<"- ";
+
+            if(J.esValido()) continue;
+
                 J.mostrarNombreApellido();
             }
 
     }
-}
 
 
 int ArchivoJugador::obtenerDni(int idJugador)
@@ -254,4 +240,28 @@ bool ArchivoJugador::existeJugadorPorDni(int dni) {
         }
     }
     return false;
+}
+int ArchivoJugador::getSiguienteID() {
+    return getCantidadRegistros() + 1; // devuelve el próximo ID disponible
+}
+void ArchivoJugador::listarNombreApellido()
+{
+    int cantidad = getCantidadRegistros();
+    if (cantidad == 0)
+    {
+        cout << "No hay jugadores registrados.\n";
+        return;
+    }
+
+    Jugador J;
+    for (int i = 0; i < cantidad; i++)
+    {
+        J = leerRegistro(i);
+
+        if (!J.esValido()) {
+           continue;
+        }
+
+        J.mostrarNombreApellido();
+    }
 }
