@@ -4,6 +4,8 @@
 #include <limits>
 #include <string>
 #include <cstring>
+#include "Fecha.h"
+#include <string>
 
 using namespace std;
 
@@ -205,3 +207,50 @@ bool volverAtras(const char* texto)
     return strcmp(texto, "*") == 0;
 }
 
+int ingresarEnteroRango(const string &prompt, int min, int max) {
+    string input;
+    int valor;
+
+    while (true) {
+        cout << prompt << " (entre " << min << " y " << max << ", o -1 para volver atras): ";
+        cin >> input;
+
+        if (input == "-1") return -1;
+
+        try {
+            valor = stoi(input);
+        } catch (...) {
+            cout << "Error: ingrese un numero valido.\n";
+            continue;
+        }
+
+        if (valor >= min && valor <= max) return valor;
+
+        cout << "Error: El valor debe estar entre " << min << " y " << max << ".\n";
+    }
+}
+
+
+bool validarFecha(const std::string& str, Fecha& f) {
+
+    if (str.size() !=10 || str [2] !=  '/' || str[5] != '/')
+    return false;
+
+    try {
+        int dia = std::stoi(str.substr(0,2));
+        int mes = std::stoi(str.substr(3,2));
+        int anio = std::stoi(str.substr(6,4));
+
+        if (dia < 1 || dia > 31) return false;
+        if (mes < 1 || mes > 12) return false;
+        if (anio < 1900 || anio > 2100) return false; // rango válido
+
+        f.setDia(dia);   // tu clase Fecha debe tener estos setters
+        f.setMes(mes);
+        f.setAnio(anio);
+
+        return true;
+    } catch (...) {
+        return false;
+    }
+}

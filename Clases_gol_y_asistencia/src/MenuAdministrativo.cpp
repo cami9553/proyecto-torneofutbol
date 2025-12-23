@@ -7,6 +7,8 @@
 #include "ArchivoTorneo.h"
 #include "Validaciones.h"
 #include "Torneo.h"
+#include "Fecha.h"
+#include <string>
 
 using namespace std;
 
@@ -305,36 +307,175 @@ void menuAdministrativo() {
 
                 break;
             }
+ case 6: {
+    system("cls");
+    cout << "\n=== REGISTRO DE JUGADOR ===\n";
+    char confirm = 'N';
 
-            case 6: {
-                system("cls");
-                cout << "\n=== REGISTRO DE JUGADOR ===\n";
+    do {
+        Jugador J;
 
-               char confirm;
+        // DNI
+        int intentosDni = 0;
+        bool dniValido = false;
+        while (intentosDni < 3) {
+            cout << "Ingrese DNI (0 para volver): ";
+            string dniStr;
+            getline(cin, dniStr);
+            if (dniStr == "0") break;
 
-                do{
-                    Jugador J;
+            bool esNumero = true;
+            for (char c : dniStr) if (!isdigit(c)) esNumero = false;
 
-                    if(!J.cargar()) {
-                        cout << "Carga cancelada o incompleta. No se guardo el jugador.\n";
-                        cin.get();
-                        break;
-                    }
-                        if (archivoJugadores.guardarRegistro(J)) {
-                            cout << "Jugador registrado exitosamente.\n\n";
-                        } else {
-                            cout << "Error al guardar el jugador.\n";
-                        }
+            if (!esNumero) {
+                intentosDni++;
+                cout << "DNI invalido. Solo numeros. Intento " << intentosDni << " de 3.\n";
+                continue;
+            }
 
-                        cout << "Desea cargar otro jugador?: (S/N):";
-                        confirm = leerOpcionSN();
+            int dni = atoi(dniStr.c_str());
+            if (dni < 1 || dni > 99999999) {
+                intentosDni++;
+                cout << "DNI invalido. Debe ser entre 1 y 99999999. Intento " << intentosDni << " de 3.\n";
+                continue;
+            }
 
-                    } while (confirm == 'S');
+            J.setDni(dni);
+            dniValido = true;
+            break;
+        }
+        if (!dniValido) break;
 
-                   break;
-                }
+        // Nombre
+        int intentosNombre = 0;
+        bool nombreValido = false;
+        while (intentosNombre < 3) {
+            cout << "Ingrese nombre (0 para volver): ";
+            string nombre;
+            getline(cin, nombre);
+            if (nombre == "0") break;
 
-            case 7: {
+            bool valido = true;
+            for (char c : nombre) if (!isalpha(c) && c != ' ') valido = false;
+
+            if (!valido) {
+                intentosNombre++;
+                cout << "Nombre invalido. Solo letras y espacios. Intento " << intentosNombre << " de 3.\n";
+                continue;
+            }
+
+            J.setNombre(nombre);
+            nombreValido = true;
+            break;
+        }
+        if (!nombreValido) break;
+
+        // Apellido
+        int intentosApellido = 0;
+        bool apellidoValido = false;
+        while (intentosApellido < 3) {
+            cout << "Ingrese apellido (0 para volver): ";
+            string apellido;
+            getline(cin, apellido);
+            if (apellido == "0") break;
+
+            bool valido = true;
+            for (char c : apellido) if (!isalpha(c) && c != ' ') valido = false;
+
+            if (!valido) {
+                intentosApellido++;
+                cout << "Apellido invalido. Solo letras y espacios. Intento " << intentosApellido << " de 3.\n";
+                continue;
+            }
+
+            J.setApellido(apellido);
+            apellidoValido = true;
+            break;
+        }
+        if (!apellidoValido) break;
+
+        // Teléfono
+        int intentosTel = 0;
+        bool telValido = false;
+        while (intentosTel < 3) {
+            cout << "Ingrese telefono (0 para volver): ";
+            string tel;
+            getline(cin, tel);
+            if (tel == "0") break;
+
+            if (!validarTelefono(tel.c_str(), 6, 15)) {
+                intentosTel++;
+                cout << "Telefono invalido. Solo numeros y longitud correcta. Intento " << intentosTel << " de 3.\n";
+                continue;
+            }
+
+            J.setTelefono(tel);
+            telValido = true;
+            break;
+        }
+        if (!telValido) break;
+
+        // Email
+        int intentosEmail = 0;
+        bool emailValido = false;
+        while (intentosEmail < 3) {
+            cout << "Ingrese email (0 para volver): ";
+            string email;
+            getline(cin, email);
+            if (email == "0") break;
+
+            if (!validarEmail(email)) {
+                intentosEmail++;
+                cout << "Email invalido. Intento " << intentosEmail << " de 3.\n";
+                continue;
+            }
+
+            J.setEmail(email);
+            emailValido = true;
+            break;
+        }
+        if (!emailValido) break;
+
+        // Fecha de nacimiento
+        int intentosFecha = 0;
+        bool fechaValida = false;
+        while (intentosFecha < 3) {
+            cout << "Ingrese fecha de nacimiento (DD/MM/AAAA, 0 para volver): ";
+            string fechaStr;
+            getline(cin, fechaStr);
+            if (fechaStr == "0") break;
+
+            Fecha f;
+            if (!validarFecha(fechaStr, f)) {
+                intentosFecha++;
+                cout << "Formato invalido. Intento " << intentosFecha << " de 3.\n";
+                continue;
+            }
+
+            J.setFechaNacimiento(f);
+            fechaValida = true;
+            break;
+        }
+        if (!fechaValida) break;
+
+        // Guardar jugador
+        if (archivoJugadores.guardarRegistro(J)) {
+            cout << "\nJugador registrado exitosamente.\n";
+        } else {
+            cout << "\nError al guardar el jugador.\n";
+        }
+
+        cout << "\nDesea cargar otro jugador? (S/N): ";
+        cin >> confirm;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    } while (confirm == 'S' || confirm == 's');
+
+    break;
+}
+
+
+         case 7: {
                 system("cls");
                 cout << "\n=== EDITAR JUGADOR ===\n";
 
