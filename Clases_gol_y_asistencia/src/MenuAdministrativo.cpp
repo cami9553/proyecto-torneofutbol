@@ -204,7 +204,6 @@ void menuAdministrativo() {
 
             case 5: {
                 system("cls");
-                cout << "\n=== LISTA DE CLUBES ===\n";
                 archivoClubes.listarRegistros();
 
                 cout << "\nPresione ENTER para volver al menu...";
