@@ -78,10 +78,20 @@ void Jugador::mostrar() {
     else
         nombrePosicion = "Delantero";
 
-    Persona::mostrar();
-    cout << left << setw(20) << "Club:"      << archivoClub.buscarPorId(_idClub)->getNombre() << endl;
-    cout << left << setw(20) << "Posicion:"  << nombrePosicion << endl;
-    cout << "====================================================\n\n" << endl;
+
+
+    if(archivoClub.buscarPorId(_idClub)){
+        Persona::mostrar();
+        cout << left << setw(20) << "Club:"      << archivoClub.buscarPorId(_idClub)->getNombre() << endl;
+        cout << left << setw(20) << "Posicion:"  << nombrePosicion << endl;
+        cout << "====================================================\n\n" << endl;
+    }else{
+        setIdClub(0);
+        Persona::mostrar();
+        cout << left << setw(20) << "Club: " <<  "Sin Club" << endl;
+        cout << left << setw(20) << "Posicion:"  << nombrePosicion << endl;
+        cout << "====================================================\n\n" << endl;
+    }
 }
 
 
